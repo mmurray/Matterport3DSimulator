@@ -1,0 +1,34 @@
+
+#container, #container a{
+	padding:20px;
+	font-size:20px;
+	text-align:left;
+	background-color:AliceBlue;
+}
+
+.btn div{
+	font-size:20px;
+}
+
+.td {
+	padding: 6px;
+}
+.th {
+	padding: 6px;
+}
+
+.dialog_table{
+	border-collapse: separate;
+	font-size:20px;
+	border-spacing:6px;
+	margin: 6px auto;
+	width:100%;
+}
+
+.header_row {
+	background-color: Bisque;
+}
+
+.word_row {
+	background-color: Beige;
+}
