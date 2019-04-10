@@ -11,24 +11,33 @@
 }
 
 .td {
-	padding: 6px;
+	padding:6px;
 }
 .th {
-	padding: 6px;
+	padding:6px;
 }
 
 .dialog_table{
-	border-collapse: separate;
+	border-collapse:separate;
 	font-size:20px;
 	border-spacing:6px;
 	margin: 6px auto;
 	width:100%;
 }
 
-.header_row {
-	background-color: Bisque;
+.chat_header_row {
+	color:White;
+	background-color:Chocolate;
+	text-align:center;
 }
 
-.word_row {
-	background-color: Beige;
+.chat_you_row {
+	background-color:Bisque;
+	text-align:left;
+
+}
+
+.chat_partner_row {
+	background-color:Beige;
+	text-align:right;
 }

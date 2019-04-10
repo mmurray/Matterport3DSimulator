@@ -43,8 +43,6 @@ client through the python server.
     * Add "free play" navigation during instructions period (before starting task) to let user familiarize.
 * Small Stuff
     * Add text instructions.
-    * Add text letting users know the server is waiting to pair them with a partner.
     * Add pairing timeout behavior if a client never gets a partner.
-    * Make chat interface less ugly.
     * Add Google Chrome requirement.
     

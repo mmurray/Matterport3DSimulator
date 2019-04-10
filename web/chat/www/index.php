@@ -15,6 +15,9 @@
 <link rel="stylesheet" href="style.css">
 
 <script type="text/javascript">
+// Whether to show debug messages.
+var debug = true;
+
 // Global vars for the script
 var iv;  // the interval function that polls for Server response
 var num_polls_since_last_message = 0;  // the number of times we've polled and gotten no response
@@ -75,13 +78,13 @@ function url_exists(url) {
 // Chat interface.
 
 function show_chat() {
-  append_error("show_chat called");  // DEBUG
+  add_debug("show_chat called");
   $('#dialog_div').show();
 }
 
 // Enable the user text input.
 function enable_chat() {
-  append_error("enable_chat called");  // DEBUG
+  add_debug("enable_chat called");
   $('#user_input').prop("disabled", false);
   $('#user_input').focus();
   $('#user_say').prop("disabled", false);
@@ -89,26 +92,17 @@ function enable_chat() {
 
 // Disable user text input.
 function disable_chat() {
-  append_error("disable_chat called");  // DEBUG
+  add_debug("disable_chat called");
   $('#user_input').prop("disabled", true);
   $('#user_say').prop("disabled", true);
 }
 
 // Add a chat to either the user or partner dialog row and open the next row for typing.
 function add_chat(message, speaker) {
-  append_error("add_chat called with " + speaker + " and " + message);  // DEBUG
-  if (speaker == "self") {
-    speaker_html = "You";
-  }
-  else if (speaker == "other") {
-    speaker_html = "Partner";
-  }
-  else {
-    show_error("Unrecognized speaker " + speaker);
-  }
-
+  add_debug("add_chat called with " + speaker + " and " + message);
   var table = $('#dialog_table');
-  var markup = "<tr class=\"chat_row\"><td>" + speaker_html + "</td><td>" + message + "</td></tr>";
+  var row_type = (speaker == "self" ? "chat_you_row" : "chat_partner_row");
+  var markup = "<tr class=\"" + row_type + "\"><td>" + message + "</td></tr>";
   $("#dialog_table tbody").append(markup);
 }
 
@@ -116,7 +110,7 @@ function add_chat(message, speaker) {
 // d - the directory
 // uid - user id
 function send_user_chat() {
-  append_error("send_user_chat called");  // DEBUG
+  add_debug("send_user_chat called");
   var m = $('#user_input').val().toLowerCase().trim();  // read the value, lowercase and strip it
   $('#user_input').val('');  // clear user text
   var data = {type:"update", action:"chat", message:m};
@@ -133,29 +127,29 @@ function send_user_chat() {
 // Navigator interface.
 
 function show_nav() {
-  append_error("show_nav called");  // DEBUG
+  add_debug("show_nav called");
   $('#user_nav_div').show();
 }
 
 function show_mirror_nav() {
-  append_error("show_mirror_nav called");  // DEBUG
+  add_debug("show_mirror_nav called");
   $('#user_nav_div').show();
 }
 
 function enable_nav() {
-  append_error("enable_nav called");  // DEBUG
+  add_debug("enable_nav called");
   $('#user_nav').prop("disabled", false);
   $('#user_nav_end').prop("disabled", false);
 }
 
 function disable_nav() {
-  append_error("disable_nav called");  // DEBUG
+  add_debug("disable_nav called");
   $('#user_nav').prop("disabled", true);
   $('#user_nav_end').prop("disabled", true);
 }
 
 function send_user_end(d, uid) {
-  append_error("send_user_end called");  // DEBUG
+  add_debug("send_user_end called");
   var data = {type:"update", action:"end"};
   var url = "manage_files.php?opt=write&fn=" + client_comm_url + "&m=" + encodeURIComponent(JSON.strigify(data));
   var success = http_get(url);
@@ -170,18 +164,18 @@ function send_user_end(d, uid) {
 // Gold view interface.
 
 function show_gold_view() {
-  append_error("show_gold_view called");  // DEBUG
+  add_debug("show_gold_view called");
   $('#user_gold_div').show();
 }
 
 function enable_gold_view() {
-  append_error("enable_gold_view called");  // DEBUG
+  add_debug("enable_gold_view called");
   $('#user_gold').prop("disabled", false);
   $('#user_gold_play').prop("disabled", false);
 }
 
 function disable_gold_view() {
-  append_error("disable_gold_view called");  // DEBUG
+  add_debug("disable_gold_view called");
   $('#user_gold').prop("disabled", true);
   $('#user_gold_play').prop("disabled", true);
 }
@@ -191,7 +185,7 @@ function disable_gold_view() {
 
 // Enable the end game/get code button.
 function enable_get_code() {
-  append_error("enable_get_code called");  // DEBUG
+  add_debug("enable_get_code called");
   $('#finished_task_div').show();
   $('#finish_task_button').show();
   $('#finish_task_button').prop("disabled", false);
@@ -199,7 +193,7 @@ function enable_get_code() {
 
 // Display an auxiliary information message below the dialog interface.
 function display_aux_message(msg) {
-  append_error("display_aux_message called with " + msg);  // DEBUG
+  add_debug("display_aux_message called with " + msg);
   $('#auxiliary_text').html(msg);
 }
 
@@ -209,8 +203,10 @@ function show_error(msg) {
 }
 
 // Display an error message at the bottom of the page.
-function append_error(msg) {
-  $('#error_text').html($('#error_text').html() + "<br/>" + msg);
+function add_debug(msg) {
+  if (debug) {
+    $('#debug_text').html(msg + "<br/>" + $('#debug_text').html());    
+  }
 }
 
 // Show the displayed end game message, close dialog, and open the payment button.
@@ -304,6 +300,7 @@ function start_task(d, uid) {
   $('#inst_div').hide();
   $('#start_game_button').prop("disabled", true);
   $('#interaction_div').show();
+  display_aux_message("Waiting on another player to connect...");
 
   // Start infinite, 5 second poll for server feedback that ends when action message is shown.
   server_comm_url = d + uid + ".server.json";
@@ -363,16 +360,14 @@ if (!isset($_POST['uid'])) {
     </div>
     <div class="col-md-6">
       <div id="dialog_div" style="display:none;">
-        <table id="dialog_table" class="dialog_table"><tbody>
-          <tr id="header_row" class="header_row">
-            <td><b>You</b></td>
-            <td><b>Partner</b></td>
-          </tr>
-          <tr id="next_words_row" style="display:none;">
-            <td id="user_next_word"></td>
-            <td id="partner_next_word"></td>
-          </tr>
-        </tbody></table>
+        <table id="dialog_table" class="dialog_table">
+          <thead><th class="chat_header_row">You
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Partner</th></thead>
+          <tbody></tbody>
+        </table>
         <p>
           <input type="text" disabled id="user_input" style="width:100%;" placeholder="your message..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"><br/>
           <button class="btn" disabled id="user_say" onclick="send_user_chat('<?php echo $d;?>', '<?php echo $uid;?>')">Send</button>
@@ -388,6 +383,11 @@ if (!isset($_POST['uid'])) {
   <div class="row">
     <div class="col-md-12">
       <p id="error_text" style="color:red"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p id="debug_text" style="color:purple"></p>
     </div>
   </div>
 </div>
