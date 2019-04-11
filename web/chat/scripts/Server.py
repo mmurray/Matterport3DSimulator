@@ -160,23 +160,36 @@ class Server:
             for uid in unassigned:
                 self.files_to_write.extend([("none", uid, "server",
                                              {"type": "update", "action": "enable_error_exit"})])
-            self.flush_files()
+            while (len(self.files_to_write)) > 0:
+                print("Server: Flushing files...")
+                self.flush_files()
+                time.sleep(self.spin_time)
+                self.curr_cycle += 1
 
     # Interpret JSON communication from a user.
     # fn - the file path to interpret.
     def interpret_client_comm(self, fn, uid):
         with open(fn, 'r') as f:
             d = json.load(f)
-
         # New client connecting.
         if d["type"] == "new":
             self.create_new_user(uid)
+
+            # Log new user appearance.
+            log_fn = os.path.join(self.log_dir, uid + ".log")
+            with open(log_fn, 'a') as f:
+                f.write('%d\tclient\t%s\n' % (self.curr_cycle, d))
         # Game action.
         if d["type"] == "update":
             g = self.games[self.u2g[uid]]
             nav_ms, oracle_ms = g.update(d)
             self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
             self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
+
+            # Log client updates.
+            log_fn = os.path.join(self.log_dir, g.name + ".log")
+            with open(log_fn, 'a') as f:
+                f.write('%d\tclient\t%s\n' % (self.curr_cycle, d))
 
         # Mark this communication for removal.
         self.files_to_remove.append(fn)
@@ -203,6 +216,12 @@ class Server:
             nav_ms, oracle_ms = g.assign_roles()
             self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
             self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
+
+            # Log user pairing.
+            for uids, uido in [[uid1, uid2], [uid2, uid1]]:
+                log_fn = os.path.join(self.log_dir, uids + ".log")
+                with open(log_fn, 'a') as f:
+                    f.write('%d\tserver\t%s\n' % (self.curr_cycle, {"type": "pair", "partner": uido}))
 
     # Removes flagged files, writes queued files, and logs writes as text.
     def flush_files(self):
@@ -235,7 +254,7 @@ class Server:
                     json.dump(ss, f)
                 log_fn = os.path.join(self.log_dir, game_name + ".log")
                 with open(log_fn, 'a') as f:
-                    f.write('\n'.join(['%d\t%s' % (self.curr_cycle, s) for s in ss]) + '\n')
+                    f.write('\n'.join(['%d\tserver\t%s' % (self.curr_cycle, s) for s in ss]) + '\n')
                 uids_messaged.append(uid)
 
         # Re-queue files to write for users whose clients have not yet processed their files.
