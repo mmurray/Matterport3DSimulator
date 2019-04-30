@@ -123,17 +123,34 @@ function send_user_chat() {
   disable_chat();
 }
 
+window.send_user_action = function(t, a, m) {
+  add_debug("send_user_action called");
+  var data = {type:t, action:a, message:m};
+  var url = "manage_files.php?opt=write&fn=" + client_comm_url + "&m=" + encodeURIComponent(JSON.stringify(data));
+  var success = http_get(url);
+  if (success == "0") {
+    show_error("Failed to write file '" + client_comm_url + "' with message contents '" + m + "'.<br>Attempt made with url '" + url + "'.");
+  }
+}
+
 // ----------
 // Navigator interface.
 
 function show_nav() {
   add_debug("show_nav called");
   $('#user_nav_div').show();
+  init_nav();
 }
 
 function show_mirror_nav() {
+  window.setOracleMode();
   add_debug("show_mirror_nav called");
   $('#user_nav_div').show();
+  init_nav();
+}
+
+function update_mirror_nav(msg) {
+  update_oracle_camera(msg);
 }
 
 function enable_nav() {
@@ -151,7 +168,7 @@ function disable_nav() {
 function send_user_end(d, uid) {
   add_debug("send_user_end called");
   var data = {type:"update", action:"end"};
-  var url = "manage_files.php?opt=write&fn=" + client_comm_url + "&m=" + encodeURIComponent(JSON.strigify(data));
+  var url = "manage_files.php?opt=write&fn=" + client_comm_url + "&m=" + encodeURIComponent(JSON.stringify(data));
   var success = http_get(url);
   if (success == "0") {
     show_error("Failed to write file '" + client_comm_url + "' with message contents '" + m + "'.<br>Attempt made with url '" + url + "'.");
@@ -169,7 +186,7 @@ function show_gold_view() {
 }
 
 function enable_gold_view() {
-  add_debug("enable_gold_view called");
+  window.setOracleMode();
   $('#user_gold').prop("disabled", false);
   $('#user_gold_play').prop("disabled", false);
 }
@@ -261,6 +278,9 @@ function poll_for_agent_messages() {
       else if (comm[idx].action == "show_mirror_nav") {
         show_mirror_nav();
       }
+      else if (comm[idx].action == "update_mirror_nav") {
+        update_mirror_nav(comm[idx].message);
+      }
       else if (comm[idx].action == "enable_nav") {
         enable_nav();
       }
@@ -287,7 +307,7 @@ function poll_for_agent_messages() {
 
   // We poll every 5 seconds (5000 ms); if polling has gone on with no messages for
   // three minutes (internal timeouts are 2), allow ending.
-  if (num_polls_since_last_message * 5 >= 180) {
+  if (num_polls_since_last_message * 5 >= 360) {
     end_game("It looks like something went wrong on our end; sorry about that! You can end the HIT and recieve payment.");
   }
 
@@ -305,9 +325,25 @@ function start_task(d, uid) {
   // Start infinite, 5 second poll for server feedback that ends when action message is shown.
   server_comm_url = d + uid + ".server.json";
   client_comm_url = d + uid + ".client.json";
-  iv = setInterval(poll_for_agent_messages, 5000);
+  iv = setInterval(poll_for_agent_messages, 1000);
 }
 
+</script>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js" integrity="sha384-s1ITto93iSMDxlp/79qhWHi+LsIi9Gx6yL+cOKDuymvihkfol83TYbLbOw+W/wv4" crossorigin="anonymous"></script>
+<script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.2/d3.min.js"></script>
+<script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.min.js"></script>
+<script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/RequestAnimationFrame.js"></script>
+<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Detector.js"></script>
+<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/PTZCameraControls.js"></script>
+<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Matterport3D.js"></script>
+<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/HIT.js"></script>
+<script type="text/javascript">
+window.R2R_DATA_PREFIX="<? echo(getenv("R2R_DATA_PREFIX") ?: "R2R_data/"); ?>";
+window.CONNECTIVITY_DATA_PREFIX="<? echo(getenv("CONNECTIVITY_DATA_PREFIX") ?: "connectivity/"); ?>";
+window.MATTERPORT_DATA_PREFIX="<? echo(getenv("MATTERPORT_DATA_PREFIX") ?: "data/"); ?>";
 </script>
 
 </head>
@@ -345,16 +381,16 @@ if (!isset($_POST['uid'])) {
   <div class="row">
     <div class="col-md-6">
       <div id="user_nav_div" style="display:none;">
-        <button class="btn" id="user_nav">Replace Me with Navigation Panel</button>
+        <figure style="display: inline-block; width: 100%;"><canvas id="skybox" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
         <p>
           When you think you're at the goal location, click 'Stop' below.<br/>
           <button class="btn" disabled id="user_nav_end" onclick="send_user_stop('<?php echo $d;?>', '<?php echo $uid;?>')">Stop</button>
         </p>
       </div>
       <div id="user_gold_div" style="display:none;">
-        <button class="btn" id="user_gold">Replace Me with Gold View Panel</button>
+        <figure style="display: inline-block; width: 100%;"><canvas id="skybox_gold" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
         <p>
-          <button class="btn" id="user_gold_play">Show Best Route</button>
+          <button class="btn" disabled="disabled" id="user_gold_play" onclick="window.play_animation()">Show Best Route</button>
         </p>
       </div>
     </div>
@@ -405,6 +441,7 @@ if (!isset($_POST['uid'])) {
 </div>
 
 </div>
+
 </body>
 
 </html>

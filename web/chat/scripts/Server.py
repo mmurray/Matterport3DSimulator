@@ -48,6 +48,7 @@ class Game:
                  {"type": "update", "action": "show_gold_view"}]]
 
     # Update the game from a client communication.
+    # Returns (nav_m, oracle_m)
     def update(self, d):
         action = d["action"]
         if action == "chat":
@@ -72,7 +73,11 @@ class Game:
                 listener_m.extend([{"type": "update", "action": "enable_nav"}])
                 self.turn = "navigator"
                 return [listener_m, speaker_m]
-        # TODO: action "nav"
+        if action == "nav":
+            contents = d["message"]
+            nav_m = []
+            oracle_m = [{"type": "update", "action": "update_mirror_nav", "message": contents}]
+            return [nav_m, oracle_m]
         # TODO: action "end"
 
     # Interrupted.

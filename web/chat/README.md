@@ -22,6 +22,41 @@ instances (e.g., chat texts, navigation actions).
 Navigate via web browser to `[your server and path]/www/index.php` in two tabs to connect
 with yourself and simulate two turkers.
 
+**Docker**
+
+If you have docker installed you can use the included shell scripts to launch the server components.
+
+Build docker images:
+```bash
+./docker/build.sh
+```
+
+Run Apache/PHP with the `www` directory:
+```bash
+./docker/run_www.sh
+```
+
+Run the Python server:
+```bash
+./docker/run_server.sh
+```
+
+Run both in the background (useful for production):
+```bash
+./docker/run_prod.sh
+``` 
+
+**Matterport Data**
+
+If using docker, set the environment variable `MATTERPORT_DATA_PATH` to the location of your copy of the matterport dataset and everything else will be wired up through mounted volumes.
+/www:/var/www/site \
+    -v $(pwd)/../../tasks/R2R/data:/var/www/site/R2R_data \
+    -v $(pwd)/../../connectivity:/var/www/site/connectivity
+If not using docker, you need to create symlinks for the following data paths:
+- ../../tasks/R2R/data -> www/R2R_data
+- ../../connectivity -> www/connectivity
+- {your matterport data path} -> www/data
+
 **The Gist**
 
 Each client is assigned a unique id when they connect to the index page by PHP.

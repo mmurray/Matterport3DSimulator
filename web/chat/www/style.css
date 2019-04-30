@@ -41,3 +41,8 @@
 	background-color:Beige;
 	text-align:right;
 }
+
+canvas {
+	width: 100% !important;
+	height: auto !important;
+}
