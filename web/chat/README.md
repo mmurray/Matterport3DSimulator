@@ -49,9 +49,7 @@ Run both in the background (useful for production):
 **Matterport Data**
 
 If using docker, set the environment variable `MATTERPORT_DATA_PATH` to the location of your copy of the matterport dataset and everything else will be wired up through mounted volumes.
-/www:/var/www/site \
-    -v $(pwd)/../../tasks/R2R/data:/var/www/site/R2R_data \
-    -v $(pwd)/../../connectivity:/var/www/site/connectivity
+
 If not using docker, you need to create symlinks for the following data paths:
 - ../../tasks/R2R/data -> www/R2R_data
 - ../../connectivity -> www/connectivity
