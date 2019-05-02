@@ -157,12 +157,14 @@ function enable_nav() {
   add_debug("enable_nav called");
   $('#user_nav').prop("disabled", false);
   $('#user_nav_end').prop("disabled", false);
+  window.enable_nav_controls();
 }
 
 function disable_nav() {
   add_debug("disable_nav called");
   $('#user_nav').prop("disabled", true);
   $('#user_nav_end').prop("disabled", true);
+  window.disable_nav_controls();
 }
 
 function send_user_end(d, uid) {
@@ -186,15 +188,16 @@ function show_gold_view() {
 }
 
 function enable_gold_view() {
-  window.setOracleMode();
   $('#user_gold').prop("disabled", false);
   $('#user_gold_play').prop("disabled", false);
+  $('#skybox_gold').css({display:'block'});
 }
 
 function disable_gold_view() {
   add_debug("disable_gold_view called");
   $('#user_gold').prop("disabled", true);
   $('#user_gold_play').prop("disabled", true);
+  $('#skybox_gold').css({display:'none'});
 }
 
 // ----------
@@ -305,9 +308,9 @@ function poll_for_agent_messages() {
     }
   }
 
-  // We poll every 5 seconds (5000 ms); if polling has gone on with no messages for
+  // We poll every 1 seconds (1000 ms); if polling has gone on with no messages for
   // three minutes (internal timeouts are 2), allow ending.
-  if (num_polls_since_last_message * 5 >= 360) {
+  if (num_polls_since_last_message >= 180) {
     end_game("It looks like something went wrong on our end; sorry about that! You can end the HIT and recieve payment.");
   }
 
@@ -388,7 +391,7 @@ if (!isset($_POST['uid'])) {
         </p>
       </div>
       <div id="user_gold_div" style="display:none;">
-        <figure style="display: inline-block; width: 100%;"><canvas id="skybox_gold" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
+        <figure style="display: inline-block; width: 100%;"><canvas id="skybox_gold" style="width:100%; height:auto; display: none; margin: 0 auto;"> </canvas></figure>
         <p>
           <button class="btn" disabled="disabled" id="user_gold_play" onclick="window.play_animation()">Show Best Route</button>
         </p>

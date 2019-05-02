@@ -56,6 +56,17 @@ window.init_nav = function() {
   });
 };
 
+window.disable_nav_controls = function() {
+  controls.enabled=false;
+  $('#skybox').css({'opacity': 0.5});
+};
+
+window.enable_nav_controls = function() {
+  if (!controls) return; // Not initialized yet, just return...
+  controls.enabled=true;
+  $('#skybox').css({'opacity': 1.0});
+};
+
 window.update_oracle_camera = function(msg, gold_only = false) {
   if (!controls) {
     return;
@@ -260,6 +271,12 @@ function initialize_data(scan, image_id) {
   // Create a cylinder frame for showing arrows of directions
   cylinder_frame = matt.load_viewpoints(connections);
   cylinder_frame_gold = matt.load_viewpoints(connections);
+
+  if (oracle_mode) {
+    cylinder_frame.visible = false;
+    cylinder_frame_gold.visible = false;
+  }
+
   // Keep a structure of connection graph
   id_to_ix = {};
   for (var i = 0; i < connections.length; i++) {
@@ -288,10 +305,6 @@ function initialize_data(scan, image_id) {
 
 function reinitialize_data(scan, image_id) {
   // Create a cylinder frame for showing arrows of directions
-  // cylinder_frame = matt.load_viewpoints(connections);
-  // cylinder_frame_gold = cylinder_frame.clone();
-
-  // world_frame.add(cylinder_frame);
   if (world_frame_gold) {
     world_frame_gold.add(cylinder_frame_gold);
   }
