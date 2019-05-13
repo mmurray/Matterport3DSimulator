@@ -5,8 +5,14 @@
 from env import R2RBatch
 import json
 import os
+import argparse
 
-r2r = R2RBatch(None, batch_size=1)
+parser = argparse.ArgumentParser()
+parser.add_argument('--dir', default='./data/v1/scans')
+parser.add_argument('--split', default='train')
+args = parser.parse_args()
+
+r2r = R2RBatch(None, batch_size=1, splits=[args.split])
 
 def mkdir_p(path):
     try:
@@ -18,7 +24,7 @@ def mkdir_p(path):
 
 for scan in r2r.paths:
     for goal in r2r.paths[scan]:
-        mkdir_p('./data/v1/scans/{}/policies'.format(scan))
-        with open('./data/v1/scans/{}/policies/{}.json'.format(scan, goal), 'w') as f:
+        mkdir_p('{}/{}/policies'.format(args.dir, scan))
+        with open('{}/{}/policies/{}.json'.format(args.dir, scan, goal), 'w') as f:
             f.write(json.dumps(r2r.paths[scan][goal]))
 
