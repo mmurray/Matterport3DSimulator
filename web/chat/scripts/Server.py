@@ -5,18 +5,27 @@ import argparse
 import json
 import numpy as np
 import os
+import sys
 import time
 
 
 class Game:
 
     # Initialize the game.
-    def __init__(self, uid1, uid2, max_cycles_per_turn):
+    def __init__(self, uid1, uid2, max_cycles_per_turn,
+                 house, target_obj, start_pano, end_region, end_pano):
         print("Game: initializing with users %s, %s" % (uid1, uid2))
+        print("Game: ... house %s, target %s, start pano %s, end region %s, end pano %s" %
+              (house, target_obj, start_pano, end_region, end_pano))
 
         self.navigator = uid1
         self.oracle = uid2
         self.max_cycles_per_turn = max_cycles_per_turn
+        self.house = house
+        self.target_obj = target_obj
+        self.start_pano = start_pano
+        self.end_region = end_region
+        self.end_pano = end_pano
 
         self.partner = {uid1: uid2, uid2: uid1}
         self.remaining_cycles = max_cycles_per_turn
@@ -37,15 +46,25 @@ class Game:
         # Make primary navigation visible to navigator.
         # Enable navigator chat and navigation.
         # Make mirror navigation visible to oracle.
-        return [[{"type": "update", "action": "set_aux", "message": "Another player connected! You are The Navigator."},
+        return [[{"type": "update", "action": "set_house", "value": self.house},
+                 {"type": "update", "action": "set_target_obj", "value": self.target_obj},
+                 {"type": "update", "action": "set_start_pano", "value": self.start_pano},
+                 {"type": "update", "action": "set_aux", "message": "Another player connected! You are The Navigator."},
                  {"type": "update", "action": "show_chat"},
                  {"type": "update", "action": "show_nav"},
                  {"type": "update", "action": "enable_chat"},
-                 {"type": "update", "action": "enable_nav"}],
-                [{"type": "update", "action": "set_aux", "message": "Another player connected! You are The Oracle."},
+                 {"type": "update", "action": "enable_nav"},
+                 ],
+                [{"type": "update", "action": "set_house", "value": self.house},
+                 {"type": "update", "action": "set_target_obj", "value": self.target_obj},
+                 {"type": "update", "action": "set_start_pano", "value": self.start_pano},
+                 {"type": "update", "action": "set_end_pano", "value": self.end_pano},
+                 {"type": "update", "action": "set_aux", "message": "Another player connected! You are The Oracle."},
                  {"type": "update", "action": "show_chat"},
                  {"type": "update", "action": "show_mirror_nav"},
-                 {"type": "update", "action": "show_gold_view"}]]
+                 {"type": "update", "action": "show_gold_view"},
+                 ]
+                ]
 
     # Update the game from a client communication.
     # Returns (nav_m, oracle_m)
@@ -102,12 +121,14 @@ class Server:
     # max_seconds_unpaired - how many seconds to let a client sit unpaired before aborting the dialog.
     # client_dir - directory to use for IPC with web server via JSON file reads/writes.
     # log_dir - directory to store interaction logs.
-    def __init__(self, spin_time, max_seconds_per_turn, max_seconds_unpaired, client_dir, log_dir):
+    def __init__(self, spin_time, max_seconds_per_turn, max_seconds_unpaired, client_dir, log_dir,
+                 house_targets):
         self.spin_time = spin_time
         self.max_cycles_per_turn = max_seconds_per_turn / float(spin_time)
         self.max_cycles_unpaired = max_seconds_unpaired / float(spin_time)
         self.client_dir = client_dir
         self.log_dir = log_dir
+        self.house_targets = house_targets
 
         # State and message information.
         self.users = []  # list of user ids, uid
@@ -210,8 +231,16 @@ class Server:
         while len(unassigned) > 1:
             uid1 = unassigned.pop(0)
             uid2 = unassigned.pop(0)
-            print("Server: assign_pairs pairing users " + uid1 + " and " + uid2)
-            g = Game(uid1, uid2, self.max_cycles_per_turn)
+
+            # TODO: select a house and tuple from house_targets in some kind of better, active fashion than this.
+            house = np.random.choice(list(self.house_targets.keys()))
+            pair_idx = np.random.randint(0, len(self.house_targets[house]))
+            target_obj, start_pano, end_region, end_pano = self.house_targets[house][pair_idx]
+
+            print("Server: assign_pairs pairing users %s and %s to play in house %s with target %s" %
+                  (uid1, uid2, house, target_obj))
+            g = Game(uid1, uid2, self.max_cycles_per_turn,
+                     house, target_obj, start_pano, end_region, end_pano)
             gid = len(self.games)
             self.games.append(g)
             self.u2g[uid1] = gid
@@ -276,10 +305,15 @@ def main(args):
     max_seconds_per_turn = 120
     max_seconds_unpaired = 120
 
+    print("main: loading house targets from '%s'" % args.house_target_fn)
+    with open(args.house_target_fn, 'r') as f:
+        house_targets = json.load(f)
+    print("main: ... done; loaded %d houses of targets" % len(house_targets))
+
     # Start the Server.
     print("main: instantiated server...")
     s = Server(server_spin_time, max_seconds_per_turn, max_seconds_unpaired,
-               args.client_dir, args.log_dir)
+               args.client_dir, args.log_dir, house_targets)
     print("main: ... done")
 
     print("main: spinning server...")
@@ -292,4 +326,6 @@ if __name__ == '__main__':
                         help="the directory to read/write client communication text files")
     parser.add_argument('--log_dir', type=str, required=True,
                         help="the directory to write logfiles to")
+    parser.add_argument('--house_target_fn', type=str, required=True,
+                        help="the file containing house targets for data collection")
     main(parser.parse_args())

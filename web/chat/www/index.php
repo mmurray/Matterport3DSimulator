@@ -25,6 +25,12 @@ var num_polls_since_last_message = 0;  // the number of times we've polled and g
 var server_comm_url;
 var client_comm_url;
 
+var scan;  // the house index.
+var target_obj;  // the target object.
+var inst;  // instructions based on target object.
+var start_pano;  // the starting panorama.
+var end_pano;  // the target, ending panorama.
+
 // Functions related to server-side processing.
 
 // Get the contents of the given url, then delete the underlying file.
@@ -73,6 +79,30 @@ function url_exists(url) {
 }
 
 // Functions related to client-side processing.
+
+// ----------
+// Setters.
+
+function set_house(v) {
+  add_debug("set_house called with '" + v + "'");
+  scan = v;
+}
+
+function set_target_obj(v) {
+  add_debug("set_target_obj called with '" + v + "'");
+  target_obj = v;
+  inst = "Find the " + target_obj + " and take a picture of it.";
+}
+
+function set_start_pano(v) {
+  add_debug("set_start_pano called with '" + v + "'");
+  start_pano = v;
+}
+
+function set_end_pano(v) {
+  add_debug("set_end_pano called with '" + v + "'");
+  end_pano = v;
+}
 
 // ----------
 // Chat interface.
@@ -139,14 +169,16 @@ window.send_user_action = function(t, a, m) {
 function show_nav() {
   add_debug("show_nav called");
   $('#user_nav_div').show();
-  init_nav();
+  init_nav(scan, start_pano, end_pano, inst);
+  $('#shared_instructions').text(inst);
 }
 
 function show_mirror_nav() {
   window.setOracleMode();
   add_debug("show_mirror_nav called");
   $('#user_nav_div').show();
-  init_nav();
+  init_nav(scan, start_pano, end_pano, inst);
+  $('#shared_instructions').text(inst);
 }
 
 function update_mirror_nav(msg) {
@@ -266,41 +298,54 @@ function poll_for_agent_messages() {
       else if (comm[idx].action == "disable_chat") {
         disable_chat();
       }
-      else if (comm[idx].action == "show_chat") {
-        show_chat();
-      }
-      else if (comm[idx].action == "enable_chat") {
-        enable_chat();
+      else if (comm[idx].action == "disable_gold_view") {
+        disable_gold_view();
       }
       else if (comm[idx].action == "disable_nav") {
         disable_nav();
       }
-      else if (comm[idx].action == "show_nav") {
-        show_nav();
+      else if (comm[idx].action == "enable_chat") {
+        enable_chat();
       }
-      else if (comm[idx].action == "show_mirror_nav") {
-        show_mirror_nav();
-      }
-      else if (comm[idx].action == "update_mirror_nav") {
-        update_mirror_nav(comm[idx].message);
-      }
-      else if (comm[idx].action == "enable_nav") {
-        enable_nav();
+      else if (comm[idx].action == "enable_error_exit") {
+        enable_get_code();
       }
       else if (comm[idx].action == "enable_gold_view") {
         enable_gold_view();
       }
-      else if (comm[idx].action == "disable_gold_view") {
-        disable_gold_view();
-      }
-      else if (comm[idx].action == "show_gold_view") {
-        show_gold_view();
+      else if (comm[idx].action == "enable_nav") {
+        enable_nav();
       }
       else if (comm[idx].action == "set_aux") {
         display_aux_message(comm[idx].message);
       }
-      else if (comm[idx].action == "enable_error_exit") {
-        enable_get_code();
+      else if (comm[idx].action == "set_end_pano") {
+        set_end_pano(comm[idx].value);
+      }
+      else if (comm[idx].action == "set_house") {
+        set_house(comm[idx].value);
+      }
+      else if (comm[idx].action == "set_start_pano") {
+        set_start_pano(comm[idx].value);
+      }
+      else if (comm[idx].action == "set_target_obj") {
+        set_target_obj(comm[idx].value);
+      }
+      else if (comm[idx].action == "show_chat") {
+        show_chat();
+      }
+      else if (comm[idx].action == "show_gold_view") {
+        show_gold_view();
+      }
+      else if (comm[idx].action == "show_mirror_nav") {
+        show_mirror_nav();
+      }
+      else if (comm[idx].action == "show_nav") {
+        show_nav();
+      }
+      
+      else if (comm[idx].action == "update_mirror_nav") {
+        update_mirror_nav(comm[idx].message);
       }
       else {
         show_error("Unrecognized comm action " + comm[idx].action)
@@ -386,8 +431,8 @@ if (!isset($_POST['uid'])) {
       <div id="user_nav_div" style="display:none;">
         <figure style="display: inline-block; width: 100%;"><canvas id="skybox" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
         <p>
-          When you think you're at the goal location, click 'Stop' below.<br/>
-          <button class="btn" disabled id="user_nav_end" onclick="send_user_stop('<?php echo $d;?>', '<?php echo $uid;?>')">Stop</button>
+          When you have found the target object, click 'Take Photo' below.<br/>
+          <button class="btn" disabled id="user_nav_end" onclick="send_user_stop('<?php echo $d;?>', '<?php echo $uid;?>')">Take Photo</button>
         </p>
       </div>
       <div id="user_gold_div" style="display:none;">
@@ -399,6 +444,7 @@ if (!isset($_POST['uid'])) {
     </div>
     <div class="col-md-6">
       <div id="dialog_div" style="display:none;">
+        <p id="shared_instructions"></p>
         <table id="dialog_table" class="dialog_table">
           <thead><th class="chat_header_row">You
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

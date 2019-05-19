@@ -48,6 +48,7 @@ def main(args):
     # all end regions closest panos for the object.
     # The agent will spawn at start_pano and the gold trajectory will be shown to the end_pano, but evaluation will
     # mark correct stopping at any pano point in the end_region.
+    house_target_tuple = {}
     for house in house_obj_region:
         instances = []
 
@@ -95,7 +96,16 @@ def main(args):
                             best_end_pano = end_pano
                             best_end_pano_d = distances[best_start_pano][end_pano]  # minimze start->end pano dist.
                 instances.append((obj, best_start_pano, end_region, best_end_pano))
-                print(house, instances[-1])
+        if len(instances) > 0:
+            house_target_tuple[house] = instances
+        else:
+            print("WARNING: could not find any good paths in house %s!" % house)
+
+    print("Writing %d tuples across %d houses to file '%s'" %
+          (sum([len(house_target_tuple[h]) for h in house_target_tuple]), len(house_target_tuple), args.output_fn))
+    with open(args.output_fn, 'w') as f:
+         json.dump(house_target_tuple, f)
+    print("... done")
 
 
 if __name__ == '__main__':
@@ -104,4 +114,6 @@ if __name__ == '__main__':
                         help="JSON file mapping houses to objects to regions")
     parser.add_argument('--region_panorama_fn', type=str, required=True,
                         help="JSON file mapping houses to regions to panoramas")
+    parser.add_argument('--output_fn', type=str, required=True,
+                        help="JSON file output of pairs")
     main(parser.parse_args())

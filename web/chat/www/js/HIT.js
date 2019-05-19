@@ -1,5 +1,3 @@
-//var ix = ${ix}   // UNCOMMENT THIS LINE WHEN INTEGRATING WITH AMT
-var ix = location.search.split('ix=')[1];   // UNCOMMENT THIS LINE TO RUN UI LOCALLY WITH GULP
 
 var scan;
 var curr_image_id;
@@ -34,15 +32,13 @@ window.setOracleMode = function() {
 
 var matt = new Matterport3D("");
 
-window.init_nav = function() {
+window.init_nav = function(house_scan, start_pano, end_pano, inst) {
   matt.loadJson(window.R2R_DATA_PREFIX + '/R2R_train.json').then(function(data){
-    task = data[ix.toString()];
-    scan = task['scan'];
-    curr_image_id = task['path'][0];
-    curr_image_id_gold = task['path'][0];
-    goal_image_id = task['path'][task['path'].length - 1];
-    instructions = task['instructions'][0];
-    $('#instr').text(instructions);
+    scan = house_scan;
+    curr_image_id = start_pano;
+    curr_image_id_gold = start_pano;
+    goal_image_id = end_pano;
+    $('#instr').text(inst);
     skybox_init();
     load_connections(scan, curr_image_id);
 
