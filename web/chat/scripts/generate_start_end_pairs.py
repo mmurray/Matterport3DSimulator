@@ -49,6 +49,7 @@ def main(args):
     # The agent will spawn at start_pano and the gold trajectory will be shown to the end_pano, but evaluation will
     # mark correct stopping at any pano point in the end_region.
     house_target_tuple = {}
+    all_ds = []
     for house in house_obj_region:
         instances = []
 
@@ -96,10 +97,29 @@ def main(args):
                             best_end_pano = end_pano
                             best_end_pano_d = distances[best_start_pano][end_pano]  # minimze start->end pano dist.
                 instances.append((obj, best_start_pano, end_region, best_end_pano))
+                all_ds.append(best_end_pano_d)
         if len(instances) > 0:
             house_target_tuple[house] = instances
         else:
             print("WARNING: could not find any good paths in house %s!" % house)
+
+    # DEBUG - visualize distances.
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    freq_of_count_bins = {}
+    bin_size = 5
+    for c in all_ds:
+        cbin = int(c // bin_size) + 1
+        if cbin not in freq_of_count_bins:
+            freq_of_count_bins[cbin] = 0
+        freq_of_count_bins[cbin] += 1
+    for cbin in range(min(freq_of_count_bins), max(freq_of_count_bins)):
+        if cbin not in freq_of_count_bins:
+            freq_of_count_bins[cbin] = 0
+    ordered = sorted(freq_of_count_bins.items(), key=lambda x: x[1], reverse=True)
+    fig, ax = plt.subplots(figsize=(16, 10))
+    g = sns.barplot(ax=ax, x=[o[0] * bin_size for o in ordered], y=[o[1] for o in ordered])
+    plt.show()
 
     print("Writing %d tuples across %d houses to file '%s'" %
           (sum([len(house_target_tuple[h]) for h in house_target_tuple]), len(house_target_tuple), args.output_fn))
