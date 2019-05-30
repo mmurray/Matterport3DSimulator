@@ -381,7 +381,7 @@ function start_task(d, uid) {
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js" integrity="sha384-s1ITto93iSMDxlp/79qhWHi+LsIi9Gx6yL+cOKDuymvihkfol83TYbLbOw+W/wv4" crossorigin="anonymous"></script>
 <script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.2/d3.min.js"></script>
-<script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.min.js"></script>
+<script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js"></script>
 <script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/RequestAnimationFrame.js"></script>
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Detector.js"></script>
@@ -392,6 +392,7 @@ function start_task(d, uid) {
 window.R2R_DATA_PREFIX="<? echo(getenv("R2R_DATA_PREFIX") ?: "R2R_data/"); ?>";
 window.CONNECTIVITY_DATA_PREFIX="<? echo(getenv("CONNECTIVITY_DATA_PREFIX") ?: "connectivity/"); ?>";
 window.MATTERPORT_DATA_PREFIX="<? echo(getenv("MATTERPORT_DATA_PREFIX") ?: "data/"); ?>";
+window.MAX_GOLD_LENGTH=<? echo(getenv("MAX_GOLD_LENGTH") ?: 5); ?>;
 </script>
 
 </head>

@@ -6,7 +6,7 @@ var goal_image_id;
 
 // declare a bunch of variable we will need later
 var camera, camera_pose, scene, controls, renderer, connections, id_to_ix, world_frame, cylinder_frame, cubemap_frame;
-var camera_gold, camera_pose_gold, scene_gold, controls_gold, renderer_gold, connections_gold, id_to_ix_gold,
+var camera_gold, camera_pose_gold, scene_gold, controls_gold, renderer_gold,
     world_frame_gold, cylinder_frame_gold, cubemap_frame_gold;
 var mouse = new THREE.Vector2();
 var id, id_gold, last_pose;
@@ -19,9 +19,6 @@ var path;
 var oracle_mode = false;
 var playing = false;
 var optimal_policy;
-var anim_org_pos;
-var anim_org_rot;
-var anim_org_img;
 var reversed_policies = {};
 
 
@@ -189,28 +186,27 @@ function gold_skybox_init() {
   controls_gold.zoomSpeed = 1.5;
   controls_gold.dampingFactor = 0.5;
 
-  controls_gold.addEventListener('change', function() { render(renderer_gold, scene_gold, camera_gold); });
-
-  // controls_gold.enabled=false;
   controls_gold.dispose();
 }
 
 function gold_skybox_reinit() {
-  // create the camera (kinect 2)
-  camera_gold = camera.clone();
-  camera_pose_gold = new THREE.Group();
+
+  camera_gold = camera.clone(true);
+
+  camera_pose_gold = camera_pose.clone(true);
+  camera_pose_gold.remove(camera_pose_gold.children[0]);
   camera_pose_gold.add(camera_gold);
 
-  // create the Matterport world frame
-  world_frame_gold = new THREE.Group();
+  world_frame_gold = world_frame.clone(true);
+  for (var child in world_frame_gold.children) {
+    world_frame_gold.remove(child);
+  }
 
-  // create the cubemap frame
-  cubemap_frame_gold = new THREE.Group();
-  cubemap_frame_gold.rotation.x = -Math.PI; // Adjust cubemap for z up
+  cubemap_frame_gold = cubemap_frame.clone(true);
+  cubemap_frame_gold.remove(cubemap_frame_gold.children[0]);
   cubemap_frame_gold.add(world_frame_gold);
 
-  // create the Scene
-  scene_gold = new THREE.Scene();
+  scene_gold = scene.clone(true);
   world_frame_gold.add(camera_pose_gold);
   scene_gold.add(cubemap_frame_gold);
 
@@ -219,29 +215,7 @@ function gold_skybox_reinit() {
   world_frame_gold.add(light_gold);
   world_frame_gold.add(new THREE.AmbientLight( 0xAAAAAA )); // soft light
 
-  // // init the WebGL renderer
-  // renderer = new THREE.WebGLRenderer({canvas: document.getElementById("skybox"), antialias: true } );
-  // renderer.setSize(SIZE_X, SIZE_Y);
-
   controls_gold.camera = camera_gold;
-  // controls_gold = new THREE.PTZCameraControls(camera_gold, renderer_gold.domElement);
-  // controls_gold.minZoom = 1;
-  // controls_gold.maxZoom = 3.0;
-  // controls_gold.minTilt = -0.6 * Math.PI / 2;
-  // controls_gold.maxTilt = 0.6 * Math.PI / 2;
-  // controls_gold.enableDamping = true;
-  // controls_gold.panSpeed = -0.25;
-  // controls_gold.tiltSpeed = -0.25;
-  // controls_gold.zoomSpeed = 1.5;
-  // controls_gold.dampingFactor = 0.5;
-  //
-  // controls_gold.camera = controls.camera.clone();
-  //
-  // controls_gold.addEventListener('change', function() { render(renderer_gold, scene_gold, camera_gold); });
-  //
-  // controls_gold.enabled=false;
-  // controls_gold.dispose();
-
 }
 
 function select(event) {
@@ -263,9 +237,9 @@ function select(event) {
 }
 
 
-function initialize_data(scan, image_id) {
+function initialize_data(scan, image_id, gold_only=false) {
   // Create a cylinder frame for showing arrows of directions
-  cylinder_frame = matt.load_viewpoints(connections);
+  if (!gold_only) cylinder_frame = matt.load_viewpoints(connections);
   cylinder_frame_gold = matt.load_viewpoints(connections);
 
   if (oracle_mode) {
@@ -280,19 +254,19 @@ function initialize_data(scan, image_id) {
     id_to_ix[im] = i;
   }
 
-  world_frame.add(cylinder_frame);
+  if (!gold_only) world_frame.add(cylinder_frame);
   if (world_frame_gold) {
     world_frame_gold.add(cylinder_frame_gold);
   }
   matt.loadCubeTexture(cube_urls(scan, image_id)).then(function(texture){
 
-    scene.background = texture;
+    if (!gold_only) scene.background = texture;
 
     if (scene_gold) {
       scene_gold.background = texture;
     }
 
-    move_to(image_id, cylinder_frame, world_frame, true);
+    if (!gold_only) move_to(image_id, cylinder_frame, world_frame, true);
     if (cylinder_frame_gold && world_frame_gold) {
       move_to(image_id, cylinder_frame_gold, world_frame_gold, true, true);
     }
@@ -466,6 +440,9 @@ function take_action(image_id, cylinder_frame, camera, camera_pose, renderer, sc
     camera.rotation.x = this.x;
     camera.rotation.y = this.y;
     camera.rotation.z = this.z;
+
+    // camera.updateProjectionMatrix();
+
     render(renderer, scene, camera);
   });
   var new_vfov = VFOV*0.95;
@@ -512,7 +489,7 @@ function animate() {
 }
 
 function animate_gold() {
-  id_gold = requestAnimationFrame( animate );
+  id_gold = requestAnimationFrame( animate_gold );
   TWEEN.update();
 }
 
@@ -520,10 +497,6 @@ function animate_gold() {
 // Gold path animation
 window.play_animation = function() {
   if (!playing){
-    anim_org_pos = controls_gold.camera.position;
-    anim_org_rot = controls_gold.camera.rotation;
-    anim_org_img = curr_image_id_gold;
-
     var cylinders = cylinder_frame_gold.children;
     for (var i = 0; i < cylinders.length; ++i){
       cylinders[i].visible = false;
@@ -544,33 +517,28 @@ window.play_animation = function() {
 };
 
 function step_forward(){
-  if (step >= path.length-1) {
+  if (step >= (window.MAX_GOLD_LENGTH > 0 ? window.MAX_GOLD_LENGTH : path.length-1)) {
     playing = false;
     step = 0;
 
     setTimeout(function() {
       gold_skybox_reinit();
-      reinitialize_data(scan, curr_image_id);
-      window.update_oracle_camera({
-        img_id: curr_image_id,
-        rot: {_x: controls.camera.rotation.x, _y: controls.camera.rotation.y}
-      }, true);
-      // move_to(curr_image_id, cylinder_frame_gold, world_frame_gold, true, true);
-      // load_connections(scan, path[0]);
+      reinitialize_data(scan, path[0]);
 
-      // controls_gold.camera.position = anim_org_pos;
-      // controls_gold.camera.rotation = anim_org_rot;
-      // render(renderer_gold, scene_gold, camera_gold);
+      camera_pose_gold.rotation.x = camera_pose.rotation.x;
+      camera_pose_gold.rotation.y = camera_pose.rotation.y;
+      camera_pose_gold.rotation.z = camera_pose.rotation.z;
+      camera_pose_gold.rotation.order = camera_pose.rotation.order;
 
-      // move_to(anim_org_img, cylinder_frame_gold, world_frame_gold, false, true);
+      camera_gold.rotation.x = camera.rotation.x;
+      camera_gold.rotation.y = camera.rotation.y;
+      camera_gold.rotation.z = camera.rotation.z;
+      camera_gold.rotation.order = camera.rotation.order;
 
-      // window.update_oracle_camera({img_id: path[step]}, true);
+      render(renderer_gold, scene_gold, camera_gold);
+
       document.getElementById("user_gold_play").disabled = false;
     }, 3000);
-    // var cylinders = cylinder_frame_gold.children;
-    // for (var i = 0; i < cylinders.length; ++i){
-    //   cylinders[i].visible = connections[id_to_ix[curr_image_id_gold]]['unobstructed'][i];
-    // }
   } else {
     step += 1;
     window.update_oracle_camera({img_id: path[step]}, true);
