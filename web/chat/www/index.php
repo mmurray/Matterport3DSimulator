@@ -174,6 +174,7 @@ function show_nav() {
 }
 
 function show_mirror_nav() {
+    console.log("Show_mirror_nav");
   window.setOracleMode();
   add_debug("show_mirror_nav called");
   $('#user_nav_div').show();
@@ -378,8 +379,8 @@ function start_task(d, uid) {
 
 </script>
 
-<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js" integrity="sha384-s1ITto93iSMDxlp/79qhWHi+LsIi9Gx6yL+cOKDuymvihkfol83TYbLbOw+W/wv4" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-s1ITto93iSMDxlp/79qhWHi+LsIi9Gx6yL+cOKDuymvihkfol83TYbLbOw+W/wv4" crossorigin="anonymous"></script>
 <script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.2/d3.min.js"></script>
 <script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js"></script>
 <script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
@@ -413,12 +414,56 @@ if (!isset($_POST['uid'])) {
   write_file($client_comm_url, json_encode($data), 'Could not create file to register user with the Server.');
 
   # Show instructions.
-  $inst = "<p>INSTRUCTIONS</p><br/>";
+  $inst = "<h2>INSTRUCTIONS</h2><br/>";
   ?>
   <div class="row" id="inst_div">
     <div class="col-md-12">
       <?php echo $inst;?>
-      <button class="btn" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start Game</button>
+      <p>For this task you will be paired with a partner. One of you will act as a <em>navigator</em>, actively moving through an indoor scene. The other will act as an <em>oracle</em>, providing guidance to the navigator when they ask for help.</p>
+
+       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          View full instructions <i class="glyphicon glyphicon-menu-down expand_caret"></i>
+        </button>
+        <button class="btn btn-success" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start task</button>
+        <div class="collapse" id="collapseExample">
+
+
+      <h3>Partner 1: Navigator</h3>
+      <p>The navigator will be shown an indoor scene and given a short description of an object to find within the scene. The navigator can move throughout the scene with the following mouse controls:</p>
+      <h4>Mouse Controls:</h4>
+
+        <ul>
+        <li><strong>Left-click and drag the image</strong> to look around.</li>
+        <li><strong>Right-click on a blue cylinder</strong> to move to that position (note: sometimes the blue cylinders are close to your feet, so you may need to look down).</li>
+        <li><strong>Click "Take a Photo"</strong> when you have found the target object</strong></li>
+       </ul>
+
+      <p>The target object will often be far away in the scene and a short description may not be sufficient to find the right object. To efficiently complete the task, the navigator should communicate with their oracle partner in the chat room. The oracle is provided with a preview of the best path towards the goal object so they can answer questions to guide the navigator toward the right path.</p>
+
+      <p>The navigator should ask the oracle specific questions. For example, when faced with the below scene, it is more helpful to ask a question like "Should I go through the door on the left or the door on the right?" rather than "Where now?"</p>
+
+      <div class="row">
+          <div class="col-md-5"><img src="img/nav_example_1.png" width="100%" /></div>
+          <div class="col-md-7">
+            <p class="alert alert-success"><i class="glyphicon glyphicon-ok"></i> <strong>GOOD:</strong>&nbsp;"Should I go through the door on the left or the door on the right?"</p>
+            <p class="alert alert-danger"><i class="glyphicon glyphicon-remove"></i> <strong>BAD:</strong>&nbsp;"Where now?"</p>
+          </div>
+        </div>
+<br/>
+
+      <p>After asking a question, the scene will pause until the oracle has enought time to respond. But once the oracle has sent their response the navigator can continue moving throughout the scene.</p>
+
+      <p>When the navigator has finally located the object, they will click the "Take a Photo" button to take a photo of the object and complete the task.</p>
+
+      <h3>Partner 2: Oracle</h3>
+
+      <p>The oracle initially just observes as the navigator moves through the scene. Once the navigator asks a question, the oracle is provided with an animated preview of the best next steps to take toward the goal. It is the oracle's job to describe these steps to the navigator by sending a response in the chat room. Before responding, they can replay the best path animation as many times as they want by clicking the "Show Best Path" button.</p>
+
+        <button class="btn btn-success" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start task</button>
+</div>
+
+
+
       </form>
     </div>
   </div>
