@@ -12,7 +12,7 @@ import time
 class Game:
 
     # Initialize the game.
-    def __init__(self, uid1, uid2, max_cycles_per_turn,
+    def __init__(self, uid1, uid2,
                  house, target_obj, start_pano, end_panos):
         print("Game: initializing with users %s, %s" % (uid1, uid2))
         print("Game: ... house %s, target %s, start pano %s, end panos " %
@@ -20,14 +20,12 @@ class Game:
 
         self.navigator = uid1
         self.oracle = uid2
-        self.max_cycles_per_turn = max_cycles_per_turn
         self.house = house
         self.target_obj = target_obj
         self.start_pano = start_pano
         self.end_panos = end_panos
 
         self.partner = {uid1: uid2, uid2: uid1}
-        self.remaining_cycles = max_cycles_per_turn
 
         # Used when game is started.
         self.turn = None
@@ -117,12 +115,12 @@ class Game:
             return [nav_m, oracle_m, False]
 
     # Interrupted.
-    def interrupt(self):
-        return [[{"type": "update", "action": "set_aux", "message": "Unexpected Error."},
+    def interrupt(self, m):
+        return [[{"type": "update", "action": "set_aux", "message": m},
                  {"type": "update", "action": "disable_chat"},
                  {"type": "update", "action": "disable_nav"},
                  {"type": "update", "action": "enable_exit"}],
-                [{"type": "update", "action": "set_aux", "message": "Unexpected Error."},
+                [{"type": "update", "action": "set_aux", "message": m},
                  {"type": "update", "action": "disable_chat"},
                  {"type": "update", "action": "disable_gold_view"},
                  {"type": "update", "action": "enable_exit"}]]
@@ -151,6 +149,7 @@ class Server:
         self.users = []  # list of user ids, uid
         self.time_unpaired = {}  # map from uid -> int indicating how long a user has waited unpaired.
         self.games = []  # list of games indexed by game id gid
+        self.games_timeout = []  # list of games' remaining times
         self.logs = []  # list of log file names parallel to games list
         self.u2g = {}  # assignment of users to games, uid -> gid
 
@@ -183,10 +182,27 @@ class Server:
                 self.start_games()
 
                 # Remove users who have been unpaired for too long.
-                # TODO
+                unassigned = [uid for uid in self.users if uid not in self.u2g]
+                for uid in unassigned:
+                    self.time_unpaired[uid] -= 1
+                    if self.time_unpaired[uid] == 0:
+                        self.files_to_write.extend(
+                            [("none", uid, "server", {"type": "update", "action": "enable_exit"}),
+                             ("none", uid, "server", {"type": "update", "action": "set_aux",
+                                                      "message": "Looks like there's no one around to pair with! " +
+                                                      "Sorry about that. You can end the HIT and recieve payment."})])
 
                 # Interrupt games that have had no communication for too long.
-                # TODO
+                for gidx in range(len(self.games)):
+                    if self.games[gidx] is not None:
+                        self.games_timeout[gidx] -= 1
+                        if self.games_timeout[gidx] == 0:
+                            g = self.games[gidx]
+                            nav_ms, oracle_ms = g.interrupt(
+                                "Looks like you or your partner took too long to respond. Sorry about that! " +
+                                "You can end the HIT and recieve payment.")
+                            self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
+                            self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
 
                 # Remove flagged files and write new ones.
                 self.flush_files()
@@ -197,15 +213,19 @@ class Server:
         # Clean up upon sigterm.
         except KeyboardInterrupt:
             print("Server: caught interrupt signal; ending games and messaging unpaired users")
+            # Interrupt games.
             for g in self.games:
                 if g is not None:
-                    nav_ms, oracle_ms = g.interrupt()
+                    nav_ms, oracle_ms = g.interrupt("Unexpected Server Error. You can end the HIT and recieve payment.")
                     self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
                     self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
+            # Let unpaired users off the hook.
             unassigned = [uid for uid in self.users if uid not in self.u2g]
             for uid in unassigned:
-                self.files_to_write.extend([("none", uid, "server",
-                                             {"type": "update", "action": "enable_error_exit"})])
+                self.files_to_write.extend([("none", uid, "server", {"type": "update", "action": "enable_exit"}),
+                                            ("none", uid, "server", {"type": "update", "action": "set_aux",
+                                                                     "message": "Unexpected Server Error." +
+                                                                     "You can end the HIT and recieve payment."})])
             while (len(self.files_to_write)) > 0:
                 print("Server: Flushing files...")
                 self.flush_files()
@@ -228,6 +248,7 @@ class Server:
         # Game action.
         if d["type"] == "update":
             g = self.games[self.u2g[uid]]
+            self.games_timeout[self.u2g[uid]] = self.max_cycles_per_turn
             nav_ms, oracle_ms, game_over = g.update(d)
             self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
             self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
@@ -263,10 +284,15 @@ class Server:
 
             print("Server: assign_pairs pairing users %s and %s to play in house %s with target obj %s (dists=" %
                   (uid1, uid2, house, target_obj) + str(dists) + ")")
-            g = Game(uid1, uid2, self.max_cycles_per_turn,
-                     house, target_obj, start_pano, end_panos)
-            gid = len(self.games)
-            self.games.append(g)
+            g = Game(uid1, uid2, house, target_obj, start_pano, end_panos)
+            if None in self.games:
+                gid = self.games.index(None)
+                self.games[gid] = g
+                self.games_timeout[gid] = self.max_cycles_per_turn
+            else:
+                gid = len(self.games)
+                self.games.append(g)
+                self.games_timeout.append(self.max_cycles_per_turn)
             self.u2g[uid1] = gid
             self.u2g[uid2] = gid
 
@@ -326,8 +352,8 @@ def main(args):
 
     # Hard-coded server and game params.
     server_spin_time = 1
-    max_seconds_per_turn = 120
-    max_seconds_unpaired = 120
+    max_seconds_per_turn = 300
+    max_seconds_unpaired = 300
 
     print("main: loading house targets from '%s'" % args.house_target_fn)
     with open(args.house_target_fn, 'r') as f:

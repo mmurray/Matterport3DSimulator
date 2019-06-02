@@ -365,8 +365,8 @@ function poll_for_agent_messages() {
   }
 
   // We poll every 1 seconds (1000 ms); if polling has gone on with no messages for
-  // three minutes (internal timeouts are 2), allow ending.
-  if (num_polls_since_last_message >= 180) {
+  // six minutes (internal timeouts are 5), allow ending.
+  if (num_polls_since_last_message >= 360) {
     end_game("It looks like something went wrong on our end; sorry about that! You can end the HIT and recieve payment.");
   }
 
