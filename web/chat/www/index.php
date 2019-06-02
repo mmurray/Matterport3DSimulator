@@ -29,7 +29,8 @@ var scan;  // the house index.
 var target_obj;  // the target object.
 var inst;  // instructions based on target object.
 var start_pano;  // the starting panorama.
-var end_pano;  // the target, ending panorama.
+var end_panos;  // the target, ending panorama.
+var curr_location_img_id;  // the current pano the navigator is at.
 
 // Functions related to server-side processing.
 
@@ -91,7 +92,7 @@ function set_house(v) {
 function set_target_obj(v) {
   add_debug("set_target_obj called with '" + v + "'");
   target_obj = v;
-  inst = "Find the " + target_obj + " and take a picture of it.";
+  inst = "Go to the room with the " + target_obj + ".";
 }
 
 function set_start_pano(v) {
@@ -99,9 +100,9 @@ function set_start_pano(v) {
   start_pano = v;
 }
 
-function set_end_pano(v) {
-  add_debug("set_end_pano called with '" + v + "'");
-  end_pano = v;
+function set_end_panos(v) {
+  add_debug("set_end_panos called with '" + v + "'");
+  end_panos = v.split(",");
 }
 
 // ----------
@@ -136,9 +137,6 @@ function add_chat(message, speaker) {
   $("#dialog_table tbody").append(markup);
 }
 
-// Get user input chat and send it to the Server.
-// d - the directory
-// uid - user id
 function send_user_chat() {
   add_debug("send_user_chat called");
   var m = $('#user_input').val().toLowerCase().trim();  // read the value, lowercase and strip it
@@ -153,8 +151,20 @@ function send_user_chat() {
   disable_chat();
 }
 
+function send_user_stop() {
+  add_debug("send_user_stop called");
+  var data = {type:"update", action:"guess_stop", value:curr_location_img_id};
+  var url = "manage_files.php?opt=write&fn=" + client_comm_url + "&m=" + encodeURIComponent(JSON.stringify(data));
+  var success = http_get(url);
+  if (success == "0") {
+    show_error("Failed to write file '" + client_comm_url + "' with message contents '" + m + "'.<br>Attempt made with url '" + url + "'.");
+  }
+  display_aux_message('');
+}
+
 window.send_user_action = function(t, a, m) {
   add_debug("send_user_action called");
+  curr_location_img_id = m.img_id;
   var data = {type:t, action:a, message:m};
   var url = "manage_files.php?opt=write&fn=" + client_comm_url + "&m=" + encodeURIComponent(JSON.stringify(data));
   var success = http_get(url);
@@ -169,7 +179,7 @@ window.send_user_action = function(t, a, m) {
 function show_nav() {
   add_debug("show_nav called");
   $('#user_nav_div').show();
-  init_nav(scan, start_pano, end_pano, inst);
+  init_nav(scan, start_pano, end_panos, inst);
   $('#shared_instructions').text(inst);
 }
 
@@ -178,7 +188,7 @@ function show_mirror_nav() {
   window.setOracleMode();
   add_debug("show_mirror_nav called");
   $('#user_nav_div').show();
-  init_nav(scan, start_pano, end_pano, inst);
+  init_nav(scan, start_pano, end_panos, inst);
   $('#shared_instructions').text(inst);
 }
 
@@ -308,7 +318,7 @@ function poll_for_agent_messages() {
       else if (comm[idx].action == "enable_chat") {
         enable_chat();
       }
-      else if (comm[idx].action == "enable_error_exit") {
+      else if (comm[idx].action == "enable_exit") {
         enable_get_code();
       }
       else if (comm[idx].action == "enable_gold_view") {
@@ -320,8 +330,8 @@ function poll_for_agent_messages() {
       else if (comm[idx].action == "set_aux") {
         display_aux_message(comm[idx].message);
       }
-      else if (comm[idx].action == "set_end_pano") {
-        set_end_pano(comm[idx].value);
+      else if (comm[idx].action == "set_end_panos") {
+        set_end_panos(comm[idx].value);
       }
       else if (comm[idx].action == "set_house") {
         set_house(comm[idx].value);
@@ -477,8 +487,8 @@ if (!isset($_POST['uid'])) {
       <div id="user_nav_div" style="display:none;">
         <figure style="display: inline-block; width: 100%;"><canvas id="skybox" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
         <p>
-          When you have found the target object, click 'Take Photo' below.<br/>
-          <button class="btn" disabled id="user_nav_end" onclick="send_user_stop('<?php echo $d;?>', '<?php echo $uid;?>')">Take Photo</button>
+          When you and your partner believe you have found the correct room, click 'Found Room' below.<br/>
+          <button class="btn" disabled id="user_nav_end" onclick="send_user_stop('<?php echo $d;?>', '<?php echo $uid;?>')">Found Room</button>
         </p>
       </div>
       <div id="user_gold_div" style="display:none;">

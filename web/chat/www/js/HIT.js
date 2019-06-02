@@ -2,7 +2,7 @@
 var scan;
 var curr_image_id;
 var curr_image_id_gold;
-var goal_image_id;
+var goal_image_ids;
 
 // declare a bunch of variable we will need later
 var camera, camera_pose, scene, controls, renderer, connections, id_to_ix, world_frame, cylinder_frame, cubemap_frame;
@@ -18,7 +18,8 @@ var ASPECT = SIZE_X/SIZE_Y;
 var path;
 var oracle_mode = false;
 var playing = false;
-var optimal_policy;
+var optimal_policies;
+var shortest_policy;
 var reversed_policies = {};
 
 
@@ -29,22 +30,22 @@ window.setOracleMode = function() {
 
 var matt = new Matterport3D("");
 
-window.init_nav = function(house_scan, start_pano, end_pano, inst) {
+window.init_nav = function(house_scan, start_pano, end_panos, inst) {
   matt.loadJson(window.R2R_DATA_PREFIX + '/R2R_train.json').then(function(data){
     scan = house_scan;
     curr_image_id = start_pano;
     curr_image_id_gold = start_pano;
-    goal_image_id = end_pano;
+    goal_image_ids = end_panos;
     $('#instr').text(inst);
     skybox_init();
     load_connections(scan, curr_image_id);
 
     if (oracle_mode) {
-      matt.loadJson(window.MATTERPORT_DATA_PREFIX + '/v1/scans/'+scan+'/policies/'+goal_image_id+'.json').then(function(policyData){
-        optimal_policy = policyData;
-        reversed_policies = {};
-        $('#user_gold_play').removeAttr('disabled');
-      });
+      var idx;
+      optimal_policies = Array(goal_image_ids.length);
+      for (idx = 0; idx < goal_image_ids.length; idx++) {
+        load_optimal_policy(idx);
+      }
     }
   });
 };
@@ -92,6 +93,32 @@ window.update_oracle_camera = function(msg, gold_only = false) {
     animateCylinderTransition(cylinder_frame_gold, camera_gold, camera_pose_gold, renderer_gold, scene_gold, world_frame_gold, true);
   }
 };
+
+function load_optimal_policy(idx) {
+  matt.loadJson(window.MATTERPORT_DATA_PREFIX + '/v1/scans/'+scan+'/policies/'+goal_image_ids[idx]+'.json').then(function(policyData){
+    optimal_policies[idx] = policyData;
+    reversed_policies = {};
+    $('#user_gold_play').removeAttr('disabled');
+  });
+}
+
+function readTextFile(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+}
 
 // ## Initialize everything
 function skybox_init() {
@@ -504,10 +531,20 @@ window.play_animation = function() {
 
     if (!reversed_policies[curr_image_id_gold]) {
       reversed_policies[curr_image_id_gold] = true;
-      optimal_policy[curr_image_id_gold].reverse();
+      var idx;
+      var shortest_len = -1;
+      shortest_policy = -1;
+      for (idx=0; idx < optimal_policies.length; idx++) {
+        var idx_len = optimal_policies[idx][curr_image_id_gold].length;
+        if (shortest_policy == -1 || idx_len < shortest_len) {
+          shortest_policy = optimal_policies[idx];
+          shortest_len = idx_len;
+        }
+      }
+      shortest_policy[curr_image_id_gold].reverse();
     }
 
-    path = optimal_policy[curr_image_id_gold];
+    path = shortest_policy[curr_image_id_gold];
     // path.shift(); // remove the first node because we're already there
     document.getElementById("user_gold_play").disabled = true;
     step = 0;

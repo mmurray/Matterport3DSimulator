@@ -89,15 +89,18 @@ def main(args):
 
             # For every end region, add a datum instance for the chosen best start_pano
             for end_region in end_regions:
-                best_end_pano = None
-                best_end_pano_d = None
+                end_panos = []
+                end_pano_ds = []
                 for end_pano in house_region_panorama[house][end_region]:
                     if end_pano in distances[best_start_pano]:
-                        if best_end_pano_d is None or best_start_pano_d > distances[best_start_pano][end_pano]:
-                            best_end_pano = end_pano
-                            best_end_pano_d = distances[best_start_pano][end_pano]  # minimze start->end pano dist.
-                instances.append((obj, best_start_pano, end_region, best_end_pano))
-                all_ds.append(best_end_pano_d)
+                        end_panos.append(end_pano)
+                        end_pano_ds.append(distances[best_start_pano][end_pano])
+                if best_start_pano not in end_panos:
+                    instances.append((obj, best_start_pano, end_region, end_panos, end_pano_ds))
+                    all_ds.append(np.average(end_pano_ds))
+                else:
+                    print("WARNING: skipping best start pano contained in end region for object %s in house %s"
+                          % (obj, house))
         if len(instances) > 0:
             house_target_tuple[house] = instances
         else:
@@ -117,6 +120,7 @@ def main(args):
         if cbin not in freq_of_count_bins:
             freq_of_count_bins[cbin] = 0
     ordered = sorted(freq_of_count_bins.items(), key=lambda x: x[1], reverse=True)
+    print(ordered)
     fig, ax = plt.subplots(figsize=(16, 10))
     g = sns.barplot(ax=ax, x=[o[0] * bin_size for o in ordered], y=[o[1] for o in ordered])
     plt.show()

@@ -13,10 +13,10 @@ class Game:
 
     # Initialize the game.
     def __init__(self, uid1, uid2, max_cycles_per_turn,
-                 house, target_obj, start_pano, end_region, end_pano):
+                 house, target_obj, start_pano, end_panos):
         print("Game: initializing with users %s, %s" % (uid1, uid2))
-        print("Game: ... house %s, target %s, start pano %s, end region %s, end pano %s" %
-              (house, target_obj, start_pano, end_region, end_pano))
+        print("Game: ... house %s, target %s, start pano %s, end panos " %
+              (house, target_obj, start_pano) + str(end_panos))
 
         self.navigator = uid1
         self.oracle = uid2
@@ -24,8 +24,7 @@ class Game:
         self.house = house
         self.target_obj = target_obj
         self.start_pano = start_pano
-        self.end_region = end_region
-        self.end_pano = end_pano
+        self.end_panos = end_panos
 
         self.partner = {uid1: uid2, uid2: uid1}
         self.remaining_cycles = max_cycles_per_turn
@@ -58,7 +57,7 @@ class Game:
                 [{"type": "update", "action": "set_house", "value": self.house},
                  {"type": "update", "action": "set_target_obj", "value": self.target_obj},
                  {"type": "update", "action": "set_start_pano", "value": self.start_pano},
-                 {"type": "update", "action": "set_end_pano", "value": self.end_pano},
+                 {"type": "update", "action": "set_end_panos", "value": ','.join(self.end_panos)},
                  {"type": "update", "action": "set_aux", "message": "Another player connected! You are The Oracle."},
                  {"type": "update", "action": "show_chat"},
                  {"type": "update", "action": "show_mirror_nav"},
@@ -83,7 +82,7 @@ class Game:
                 speaker_m.extend([{"type": "update", "action": "disable_nav"}])
                 listener_m.extend([{"type": "update", "action": "enable_gold_view"}])
                 self.turn = "oracle"
-                return [speaker_m, listener_m]
+                return [speaker_m, listener_m, False]
 
             # Oracle typed a help response chat to the navigator, so disable gold view.
             # In addition, enable the navigator to do navigation.
@@ -91,24 +90,42 @@ class Game:
                 speaker_m.extend([{"type": "update", "action": "disable_gold_view"}])
                 listener_m.extend([{"type": "update", "action": "enable_nav"}])
                 self.turn = "navigator"
-                return [listener_m, speaker_m]
-        if action == "nav":
+                return [listener_m, speaker_m, False]
+        elif action == "nav":
             contents = d["message"]
             nav_m = []
             oracle_m = [{"type": "update", "action": "update_mirror_nav", "message": contents}]
-            return [nav_m, oracle_m]
-        # TODO: action "end"
+            return [nav_m, oracle_m, False]
+        elif action == "guess_stop":
+            curr_pano = d["value"]
+            if curr_pano in self.end_panos:  # correct location, so end task.
+                nav_m = [{"type": "update", "action": "set_aux", "message": "Congrats, you found the room!"},
+                         {"type": "update", "action": "disable_chat"},
+                         {"type": "update", "action": "disable_nav"},
+                         {"type": "update", "action": "enable_exit"}]
+                oracle_m = [{"type": "update", "action": "set_aux",
+                             "message": "Congrats, you helped your partner find the room!"},
+                            {"type": "update", "action": "disable_chat"},
+                            {"type": "update", "action": "disable_gold_view"},
+                            {"type": "update", "action": "enable_exit"}]
+                return [nav_m, oracle_m, True]
+            else:  # incorrect location, so freeze nav and set aux.
+                nav_m = [{"type": "update", "action": "disable_nav"},
+                         {"type": "update", "action": "set_aux",
+                          "message": "You're not yet in the right room. Try asking your partner for directions."}]
+                oracle_m = []
+            return [nav_m, oracle_m, False]
 
     # Interrupted.
     def interrupt(self):
         return [[{"type": "update", "action": "set_aux", "message": "Unexpected Error."},
                  {"type": "update", "action": "disable_chat"},
                  {"type": "update", "action": "disable_nav"},
-                 {"type": "update", "action": "enable_error_exit"}],
+                 {"type": "update", "action": "enable_exit"}],
                 [{"type": "update", "action": "set_aux", "message": "Unexpected Error."},
                  {"type": "update", "action": "disable_chat"},
                  {"type": "update", "action": "disable_gold_view"},
-                 {"type": "update", "action": "enable_error_exit"}]]
+                 {"type": "update", "action": "enable_exit"}]]
 
 
 class Server:
@@ -167,7 +184,9 @@ class Server:
 
                 # Remove users who have been unpaired for too long.
                 # TODO
-                # self.timeout_users()
+
+                # Interrupt games that have had no communication for too long.
+                # TODO
 
                 # Remove flagged files and write new ones.
                 self.flush_files()
@@ -179,9 +198,10 @@ class Server:
         except KeyboardInterrupt:
             print("Server: caught interrupt signal; ending games and messaging unpaired users")
             for g in self.games:
-                nav_ms, oracle_ms = g.interrupt()
-                self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
-                self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
+                if g is not None:
+                    nav_ms, oracle_ms = g.interrupt()
+                    self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
+                    self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
             unassigned = [uid for uid in self.users if uid not in self.u2g]
             for uid in unassigned:
                 self.files_to_write.extend([("none", uid, "server",
@@ -208,7 +228,7 @@ class Server:
         # Game action.
         if d["type"] == "update":
             g = self.games[self.u2g[uid]]
-            nav_ms, oracle_ms = g.update(d)
+            nav_ms, oracle_ms, game_over = g.update(d)
             self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
             self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
 
@@ -216,6 +236,10 @@ class Server:
             log_fn = os.path.join(self.log_dir, g.name + ".log")
             with open(log_fn, 'a') as f:
                 f.write('%d\tclient\t%s\n' % (self.curr_cycle, d))
+
+            # If game is over, clear it.
+            if game_over:
+                self.games[self.u2g[uid]] = None
 
         # Mark this communication for removal.
         self.files_to_remove.append(fn)
@@ -235,12 +259,12 @@ class Server:
             # TODO: select a house and tuple from house_targets in some kind of better, active fashion than this.
             house = np.random.choice(list(self.house_targets.keys()))
             pair_idx = np.random.randint(0, len(self.house_targets[house]))
-            target_obj, start_pano, end_region, end_pano = self.house_targets[house][pair_idx]
+            target_obj, start_pano, _, end_panos, dists = self.house_targets[house][pair_idx]
 
-            print("Server: assign_pairs pairing users %s and %s to play in house %s with target %s" %
-                  (uid1, uid2, house, target_obj))
+            print("Server: assign_pairs pairing users %s and %s to play in house %s with target obj %s (dists=" %
+                  (uid1, uid2, house, target_obj) + str(dists) + ")")
             g = Game(uid1, uid2, self.max_cycles_per_turn,
-                     house, target_obj, start_pano, end_region, end_pano)
+                     house, target_obj, start_pano, end_panos)
             gid = len(self.games)
             self.games.append(g)
             self.u2g[uid1] = gid
