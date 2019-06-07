@@ -655,11 +655,16 @@ if (urlv.house_scan && urlv.start_pano && urlv.end_panos && urlv.inst) {
       $('#interaction_div').show();
     $('#user_nav_div').show();
     show_chat();
-    init_nav(urlv.house_scan, urlv.start_pano, urlv.end_panos, urlv.inst);
+    init_nav(urlv.house_scan, urlv.start_pano, [urlv.end_panos], urlv.inst);
     $('#shared_instructions').text(urlv.inst);
     if (urlv.mode == "oracle") {
         show_gold_view();
         enable_gold_view();
+        var idx;
+          optimal_policies = Array(goal_image_ids.length);
+          for (idx = 0; idx < goal_image_ids.length; idx++) {
+            load_optimal_policy(idx);
+          }
     }
 }
 
