@@ -31,6 +31,7 @@ var inst;  // instructions based on target object.
 var start_pano;  // the starting panorama.
 var end_panos;  // the target, ending panorama.
 var curr_location_img_id;  // the current pano the navigator is at.
+var feedback_metadata; // metadata required for submitting feedback
 
 // Functions related to server-side processing.
 
@@ -184,7 +185,6 @@ function show_nav() {
 }
 
 function show_mirror_nav() {
-    console.log("Show_mirror_nav");
   window.setOracleMode();
   add_debug("show_mirror_nav called");
   $('#user_nav_div').show();
@@ -234,6 +234,8 @@ function enable_gold_view() {
   $('#user_gold').prop("disabled", false);
   $('#user_gold_play').prop("disabled", false);
   $('#skybox_gold').css({display:'block'});
+  $('#user_gold_play').show();
+  $('#nav_inst').html("Your partner has asked for help! View their correspondence in the chat and view the best route by clicking \"Show Best Route\" below.<br/>");
 }
 
 function disable_gold_view() {
@@ -241,17 +243,26 @@ function disable_gold_view() {
   $('#user_gold').prop("disabled", true);
   $('#user_gold_play').prop("disabled", true);
   $('#skybox_gold').css({display:'none'});
+  $('#user_gold_play').hide();
+  $('#nav_inst').html("Your partner is navigating through this scene. When they ask you for help you will be able to view the best route by clicking \"Show Best Route\" below.<br/>");
 }
 
 // ----------
 // Misc.
 
 // Enable the end game/get code button.
-function enable_get_code() {
+function enable_get_code(msg) {
   add_debug("enable_get_code called");
+  $('#interaction_div').hide();
   $('#finished_task_div').show();
   $('#finish_task_button').show();
   $('#finish_task_button').prop("disabled", false);
+  $('#finished_auxiliary_text').html($('#auxiliary_text').html());
+  $('#feedback_nav_id').val(msg.navigator);
+  $('#feedback_oracle_id').val(msg.oracle);
+  if (oracle_mode) {
+    $('#rating_label').html("Rate the clarity of your partner's questions and how well they followed your instructions. Higher is better (1 = Very Poor, 10 = Very Good)");
+  }
 }
 
 // Display an auxiliary information message below the dialog interface.
@@ -319,7 +330,7 @@ function poll_for_agent_messages() {
         enable_chat();
       }
       else if (comm[idx].action == "enable_exit") {
-        enable_get_code();
+        enable_get_code(comm[idx].message);
       }
       else if (comm[idx].action == "enable_gold_view") {
         enable_gold_view();
@@ -390,7 +401,7 @@ function start_task(d, uid) {
 </script>
 
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-s1ITto93iSMDxlp/79qhWHi+LsIi9Gx6yL+cOKDuymvihkfol83TYbLbOw+W/wv4" crossorigin="anonymous"></script>
+
 <script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.2/d3.min.js"></script>
 <script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js"></script>
 <script type="text/javascript" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
@@ -439,37 +450,72 @@ if (!isset($_POST['uid'])) {
 
 
       <h3>Partner 1: Navigator</h3>
-      <p>The navigator will be shown an indoor scene and given a short description of an object to find within the scene. The navigator can move throughout the scene with the following mouse controls:</p>
+      <p>The navigator will be shown an indoor scene and given a short description of a room to find within the scene. The navigator can move throughout the scene with the following mouse controls:</p>
+
+
       <h4>Mouse Controls:</h4>
 
         <ul>
         <li><strong>Left-click and drag the image</strong> to look around.</li>
         <li><strong>Right-click on a blue cylinder</strong> to move to that position (note: sometimes the blue cylinders are close to your feet, so you may need to look down).</li>
-        <li><strong>Click "Take a Photo"</strong> when you have found the target object</strong></li>
+        <li><strong>Click "Found Room"</strong> when you think you have found the target room</strong></li>
        </ul>
 
-      <p>The target object will often be far away in the scene and a short description may not be sufficient to find the right object. To efficiently complete the task, the navigator should communicate with their oracle partner in the chat room. The oracle is provided with a preview of the best path towards the goal object so they can answer questions to guide the navigator toward the right path.</p>
 
-      <p>The navigator should ask the oracle specific questions. For example, when faced with the below scene, it is more helpful to ask a question like "Should I go through the door on the left or the door on the right?" rather than "Where now?"</p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom:10px">
+  Click here to practice navigation
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Practice Navigation</h4>
+      </div>
+      <div class="modal-body">
+                <figure style="display: inline-block; width: 100%;"><canvas id="skybox_demo" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <p>The target room will often be far away in the scene and a short description may not be sufficient to find the right room. To efficiently complete the task, the navigator should communicate with their oracle partner in the chat room. The oracle is provided with a preview of the best path towards the goal so they can answer questions to guide the navigator toward the right path.</p>
+
+      <p>The navigator should ask the oracle specific questions. For example, it is more helpful to ask a question like "Should I go through the door on the left or the door on the right?" rather than "Where now?"</p>
 
       <div class="row">
-          <div class="col-md-5"><img src="img/nav_example_1.png" width="100%" /></div>
-          <div class="col-md-7">
+          <!--<div class="col-md-3"><img src="img/nav_example_1.png" width="100%" /></div>-->
+          <div class="col-md-12">
             <p class="alert alert-success"><i class="glyphicon glyphicon-ok"></i> <strong>GOOD:</strong>&nbsp;"Should I go through the door on the left or the door on the right?"</p>
             <p class="alert alert-danger"><i class="glyphicon glyphicon-remove"></i> <strong>BAD:</strong>&nbsp;"Where now?"</p>
           </div>
         </div>
 <br/>
 
-      <p>After asking a question, the scene will pause until the oracle has enought time to respond. But once the oracle has sent their response the navigator can continue moving throughout the scene.</p>
+      <p>After asking a question, the scene will pause until the oracle has enough time to respond. But once the oracle has sent their response the navigator can continue moving throughout the scene.</p>
 
-      <p>When the navigator has finally located the object, they will click the "Take a Photo" button to take a photo of the object and complete the task.</p>
+      <p>When the navigator has finally located the room, they will click the "Found Room" button to take a photo of the object and complete the task.</p>
 
       <h3>Partner 2: Oracle</h3>
 
       <p>The oracle initially just observes as the navigator moves through the scene. Once the navigator asks a question, the oracle is provided with an animated preview of the best next steps to take toward the goal. It is the oracle's job to describe these steps to the navigator by sending a response in the chat room. Before responding, they can replay the best path animation as many times as they want by clicking the "Show Best Path" button.</p>
 
-        <button class="btn btn-success" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start task</button>
+      <p>When describing the best path, the oracle should strive to be as helpful as possible. For example, it is more helpful to send a description like "Move through the door, then turn left and go down the hall" instead of "Go left".
+
+         <div class="row">
+          <!--<div class="col-md-3"><img src="img/nav_example_1.png" width="100%" /></div>-->
+          <div class="col-md-12">
+            <p class="alert alert-success"><i class="glyphicon glyphicon-ok"></i> <strong>GOOD:</strong>&nbsp;"Move through the door, then turn left and go down the hall"</p>
+            <p class="alert alert-danger"><i class="glyphicon glyphicon-remove"></i> <strong>BAD:</strong>&nbsp;"Go left"</p>
+          </div>
+        </div>
+
 </div>
 
 
@@ -486,7 +532,7 @@ if (!isset($_POST['uid'])) {
     <div class="col-md-6">
       <div id="user_nav_div" style="display:none;">
         <figure style="display: inline-block; width: 100%;"><canvas id="skybox" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
-        <p>
+        <p id="nav_inst">
           When you and your partner believe you have found the correct room, click 'Found Room' below.<br/>
           <button class="btn" disabled id="user_nav_end" onclick="send_user_stop('<?php echo $d;?>', '<?php echo $uid;?>')">Found Room</button>
         </p>
@@ -494,7 +540,7 @@ if (!isset($_POST['uid'])) {
       <div id="user_gold_div" style="display:none;">
         <figure style="display: inline-block; width: 100%;"><canvas id="skybox_gold" style="width:100%; height:auto; display: none; margin: 0 auto;"> </canvas></figure>
         <p>
-          <button class="btn" disabled="disabled" id="user_gold_play" onclick="window.play_animation()">Show Best Route</button>
+          <button class="btn" style="display:none;" disabled="disabled" id="user_gold_play" onclick="window.play_animation()">Show Best Route</button>
         </p>
       </div>
     </div>
@@ -536,10 +582,54 @@ if (!isset($_POST['uid'])) {
 <div id="finished_task_div" style="display:none;">
   <div class="row">
     <div class="col-md-12">
-      <p>Click the button below to generate your Mechanical Turk code needed to submit the HIT.</p>
+       <div class="alert alert-success" role="alert" id="finished_auxiliary_text"></div>
       <form action="generate_code.php" method="POST">
+      <div class="form-group">
+        <label for="rating">How helpful was your partner?</label>
+        <p id="rating_label">Rate the helpfulness of your partner in answering your questions and helping you get to the goal. Higher rating is better (1 = Very unhelpful, 10 = Very helpful)</p>
+        <label class="radio-inline">
+          <input type="radio" name="rating" id="rating" value="1"> 1
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="rating" id="rating" value="2"> 2
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="rating" id="rating" value="3"> 3
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="rating" id="rating" value="4"> 4
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="rating" id="rating" value="5"> 5
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="rating" id="rating" value="6"> 6
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="rating" id="rating" value="7"> 7
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="rating" id="rating" value="8"> 8
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="rating" id="rating" value="9"> 9
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="rating" id="rating" value="10"> 10
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="free_form_feedback">Please provide any additional feedback you have about your partner or about the task in general:</label>
+        <textarea class="form-control" rows="3" name="free_form_feedback" id="free_form_feedback"></textarea>
+      </div>
+
+      <p>Click the button below to submit your feedback and generate your Mechanical Turk code needed to submit the HIT.</p>
+
+
         <input type="hidden" name="uid" value="<?php echo $uid;?>">
-        <input type="submit" class="btn" id="finish_task_button" value="Get Mechanical Turk code" style="display:none;" disabled>
+        <input type="hidden" name="navigator" id="feedback_nav_id" value="">
+        <input type="hidden" name="oracle" id="feedback_oracle_id" value="">
+        <input type="submit" class="btn btn-default" id="finish_task_button" value="Get Mechanical Turk code" style="display:none;" disabled>
       </form>
     </div>
   </div>
@@ -548,5 +638,35 @@ if (!isset($_POST['uid'])) {
 </div>
 
 </body>
+
+<script type="text/javascript">
+
+demo_skybox_init();
+demo_load_connections();
+
+var urlv = getUrlVars();
+if (urlv.house_scan && urlv.start_pano && urlv.end_pano && urlv.inst) {
+    window.setDebugMode();
+    if (urlv.mode == "oracle") {
+        window.setOracleMode();
+    }
+    $('#inst_div').hide();
+      $('#start_game_button').prop("disabled", true);
+      $('#interaction_div').show();
+    $('#user_nav_div').show();
+    show_chat();
+    init_nav(urlv.house_scan, urlv.start_pano, urlv.end_pano, urlv.inst);
+    $('#shared_instructions').text(urlv.inst);
+    if (urlv.mode == "oracle") {
+        show_gold_view();
+        enable_gold_view();
+    }
+}
+
+if (urlv.max_gold_len) {
+    window.MAX_GOLD_LENGTH = parseInt(urlv.max_gold_len);
+}
+
+</script>
 
 </html>

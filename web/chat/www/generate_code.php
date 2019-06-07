@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Semantic MindMeld</title>
+<title>MP Dialog</title>
 
 <!-- First include jquery js -->
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -24,9 +24,18 @@ require_once('functions.php');
 if (!isset($_POST['uid'])) {
   die("You must have found this page by accident.");
 }
-
 # Submitted survey.
 else {
+
+    $data = array(
+        "uid" => $_POST['uid'],
+        "oracle" => $_POST['oracle'],
+        "navigator" => $_POST['navigator'],
+        "rating" => $_POST['rating'],
+        "free_form_feedback" => $_POST['free_form_feedback'],
+    );
+    write_file('feedback/' . $_POST['uid'] . '.json', json_encode($data), 'Could not create file to save feedback.');
+
 
   $uid = $_POST['uid'];
 

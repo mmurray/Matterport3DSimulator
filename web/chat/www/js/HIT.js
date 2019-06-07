@@ -1,7 +1,8 @@
 
-var scan;
+var scan= "sT4fr6TAbpF";
 var curr_image_id;
 var curr_image_id_gold;
+var curr_image_id_demo;
 var goal_image_ids;
 
 // declare a bunch of variable we will need later
@@ -21,16 +22,41 @@ var playing = false;
 var optimal_policies;
 var shortest_policy;
 var reversed_policies = {};
+var debug_mode = false;
 
+
+var camera_demo, camera_pose_demo, scene_demo, controls_demo, renderer_demo, connections_demo, id_to_ix_demo, world_frame_demo, cylinder_frame_demo, cubemap_frame_demo;
+
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = decodeURIComponent(hash[1]);
+    }
+    return vars;
+}
 
 window.setOracleMode = function() {
   oracle_mode = true;
+  window.oracle_mode = true;
   gold_skybox_init();
+  $('#nav_inst').html("Your partner is navigating through this scene. When they ask you for help you will be able to view the best route by clicking \"Show Best Route\" below.<br/>");
+};
+
+window.setDebugMode = function() {
+  window.send_user_action = function() {  };
+  debug_mode = true;
 };
 
 var matt = new Matterport3D("");
 
 window.init_nav = function(house_scan, start_pano, end_panos, inst) {
+  console.log("?house_scan="+encodeURIComponent(house_scan)+
+      "&start_pano="+encodeURIComponent(start_pano)+
+      "&end_panos="+encodeURIComponent(end_panos)+"&inst="+encodeURIComponent(inst));
   matt.loadJson(window.R2R_DATA_PREFIX + '/R2R_train.json').then(function(data){
     scan = house_scan;
     curr_image_id = start_pano;
@@ -80,10 +106,14 @@ window.update_oracle_camera = function(msg, gold_only = false) {
 
   function animateCylinderTransition(cylinder_frame, camera, camera_pose, renderer, scene, world_frame, is_gold) {
       var cylinder = cylinder_frame.getObjectByName(msg.img_id);
-      cylinder.currentHex = cylinder.material.emissive.getHex();
-      cylinder.material.emissive.setHex( 0xff0000 );
-      setTimeout(function(){ cylinder.material.emissive.setHex( cylinder.currentHex ); }, 200);
-      take_action(msg.img_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, is_gold);
+      if (cylinder) {
+        cylinder.currentHex = cylinder.material.emissive.getHex();
+        cylinder.material.emissive.setHex(0xff0000);
+        setTimeout(function () {
+          cylinder.material.emissive.setHex(cylinder.currentHex);
+        }, 200);
+        take_action(msg.img_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, is_gold);
+      }
     }
 
   if (msg.img_id != curr_image_id && !gold_only) {
@@ -216,6 +246,53 @@ function gold_skybox_init() {
   controls_gold.dispose();
 }
 
+function demo_skybox_init() {
+  // test if webgl is supported
+  if (! Detector.webgl) Detector.addGetWebGLMessage();
+
+  // create the camera (kinect 2)
+  camera_demo = new THREE.PerspectiveCamera(VFOV, ASPECT, 0.01, 1000);
+  camera_pose_demo = new THREE.Group();
+  camera_pose_demo.add(camera_demo);
+
+  // create the Matterport world frame
+  world_frame_demo = new THREE.Group();
+
+  // create the cubemap frame
+  cubemap_frame_demo = new THREE.Group();
+  cubemap_frame_demo.rotation.x = -Math.PI; // Adjust cubemap for z up
+  cubemap_frame_demo.add(world_frame_demo);
+
+  // create the Scene
+  scene_demo = new THREE.Scene();
+  world_frame_demo.add(camera_pose_demo);
+  scene_demo.add(cubemap_frame_demo);
+
+  var light_demo = new THREE.DirectionalLight( 0xFFFFFF, 1 );
+  light_demo.position.set(0, 0, 100);
+  world_frame_demo.add(light_demo);
+  world_frame_demo.add(new THREE.AmbientLight( 0xAAAAAA )); // soft light
+
+  // init the WebGL renderer
+  renderer_demo = new THREE.WebGLRenderer({canvas: document.getElementById("skybox_demo"), antialias: true } );
+  renderer_demo.setSize(SIZE_X, SIZE_Y);
+
+
+  controls_demo = new THREE.PTZCameraControls(camera_demo, renderer_demo.domElement);
+  controls_demo.minZoom = 1;
+  controls_demo.maxZoom = 3.0;
+  controls_demo.minTilt = -0.6 * Math.PI / 2;
+  controls_demo.maxTilt = 0.6 * Math.PI / 2;
+  controls_demo.enableDamping = true;
+  controls_demo.panSpeed = -0.25;
+  controls_demo.tiltSpeed = -0.25;
+  controls_demo.zoomSpeed = 1.5;
+  controls_demo.dampingFactor = 0.5;
+
+  controls_demo.addEventListener('select', select_demo);
+  controls_demo.addEventListener('change', function() { render(renderer_demo, scene_demo, camera_demo); });
+}
+
 function gold_skybox_reinit() {
 
   camera_gold = camera.clone(true);
@@ -263,6 +340,24 @@ function select(event) {
   }
 }
 
+function select_demo(event) {
+  var mouse = new THREE.Vector2();
+  var raycaster = new THREE.Raycaster();
+  var x = renderer_demo.domElement.offsetWidth;
+  var y = renderer_demo.domElement.offsetHeight;
+  mouse.x = ( event.x / x ) * 2 - 1;
+  mouse.y = - ( event.y / y ) * 2 + 1;
+  raycaster.setFromCamera( mouse, camera_demo );
+  var intersects = raycaster.intersectObjects( cylinder_frame_demo.children );
+  if ( intersects.length > 0 ) {
+    intersects[0].object.currentHex = intersects[0].object.material.emissive.getHex();
+    intersects[0].object.material.emissive.setHex( 0xff0000 );
+    image_id = intersects[ 0 ].object.name;
+    take_action_demo(image_id, cylinder_frame_demo, camera_demo, camera_pose_demo, renderer_demo, scene_demo, world_frame_demo);
+    setTimeout(function(){ intersects[0].object.material.emissive.setHex( intersects[0].object.currentHex ); }, 200);
+  }
+}
+
 
 function initialize_data(scan, image_id, gold_only=false) {
   // Create a cylinder frame for showing arrows of directions
@@ -300,6 +395,28 @@ function initialize_data(scan, image_id, gold_only=false) {
   });
 }
 
+
+function initialize_data_demo() {
+  // Create a cylinder frame for showing arrows of directions
+  cylinder_frame_demo = matt.load_viewpoints(connections_demo);
+
+  // Keep a structure of connection graph
+  id_to_ix_demo = {};
+  for (var i = 0; i < connections_demo.length; i++) {
+    var im = connections_demo[i]['image_id'];
+    id_to_ix_demo[im] = i;
+  }
+
+
+  world_frame_demo.add(cylinder_frame_demo);
+  matt.loadCubeTexture(cube_urls("sT4fr6TAbpF", "976ad0993bce4c5784da72eb4570d795")).then(function(texture){
+
+    scene_demo.background = texture;
+
+    move_to_demo("976ad0993bce4c5784da72eb4570d795", true);
+  });
+}
+
 function reinitialize_data(scan, image_id) {
   // Create a cylinder frame for showing arrows of directions
   if (world_frame_gold) {
@@ -319,6 +436,17 @@ function load_connections(scan, image_id) {
     });
   } else {
     initialize_data(scan, image_id);
+  }
+}
+
+function demo_load_connections() {
+  if (!connections_demo) {
+    var pose_url = window.CONNECTIVITY_DATA_PREFIX + "/sT4fr6TAbpF_connectivity.json";
+    d3.json(pose_url, function(error, data) {
+      if (error) return console.warn(error);
+      connections_demo = data;
+      initialize_data_demo();
+    })
   }
 }
 
@@ -369,6 +497,32 @@ function move_to(image_id, cylinder_frame, world_frame, isInitial=false, isGold=
   if (playing) {
     step_forward();
   }
+}
+
+function move_to_demo(image_id, isInitial=false, isGold=false) {
+  // Adjust cylinder visibility
+  var cylinders = cylinder_frame_demo.children;
+  for (var i = 0; i < cylinders.length; ++i){
+    cylinders[i].visible = connections_demo[id_to_ix_demo[image_id]]['unobstructed'][i];
+  }
+  // Correct world frame for individual skybox camera rotation
+  var inv = new THREE.Matrix4();
+  var cam_pose = cylinder_frame_demo.getObjectByName(image_id);
+
+  inv.getInverse(cam_pose.matrix);
+  var ignore = new THREE.Vector3();
+  inv.decompose(ignore, world_frame_demo.quaternion, world_frame_demo.scale);
+  world_frame_demo.updateMatrix();
+
+    if (isInitial) {
+      set_camera_pose(camera_pose_demo, cam_pose.matrix, cam_pose.height);
+    } else {
+      set_camera_position(camera_pose_demo, cam_pose.matrix, cam_pose.height);
+    }
+    render(renderer_demo, scene_demo, camera_demo);
+
+  curr_image_id_demo = image_id;
+
 }
 
 function set_camera_pose(camera_pose, matrix4d, height){
@@ -501,6 +655,76 @@ function take_action(image_id, cylinder_frame, camera, camera_pose, renderer, sc
       animate();
     }
   }
+  rotate_tween.start();
+}
+
+function take_action_demo(image_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, isGold) {
+  var texture_promise = matt.loadCubeTexture(cube_urls(scan, image_id)); // start fetching textures
+  var target = cylinder_frame.getObjectByName(image_id);
+
+  // Camera up vector
+  var camera_up = new THREE.Vector3(0,1,0);
+  var camera_look = new THREE.Vector3(0,0,-1);
+  var camera_m = get_camera_pose(camera, camera_pose);
+  var zero = new THREE.Vector3(0,0,0);
+  camera_m.setPosition(zero);
+  camera_up.applyMatrix4(camera_m);
+  camera_up.normalize();
+  camera_look.applyMatrix4(camera_m);
+  camera_look.normalize();
+
+  // look direction
+  var look = target.position.clone();
+  look.sub(camera_pose.position);
+  look.projectOnPlane(camera_up);
+  look.normalize();
+  // Simplified - assumes z is zero
+  var rotate = Math.atan2(look.y,look.x) - Math.atan2(camera_look.y,camera_look.x);
+  if (rotate < -Math.PI) rotate += 2*Math.PI;
+  if (rotate > Math.PI) rotate -= 2*Math.PI;
+
+  var target_y = camera.rotation.y + rotate;
+  var rotate_tween = new TWEEN.Tween({
+    x: camera.rotation.x,
+    y: camera.rotation.y,
+    z: camera.rotation.z})
+  .to( {
+    x: camera.rotation.x,
+    y: target_y,
+    z: 0 }, 2000*Math.abs(rotate) )
+  .easing( TWEEN.Easing.Cubic.InOut)
+  .onUpdate(function() {
+    camera.rotation.x = this.x;
+    camera.rotation.y = this.y;
+    camera.rotation.z = this.z;
+
+    // camera.updateProjectionMatrix();
+
+    render(renderer, scene, camera);
+  });
+  var new_vfov = VFOV*0.95;
+  var zoom_tween = new TWEEN.Tween({
+    vfov: VFOV})
+  .to( {vfov: new_vfov }, 500 )
+  .easing(TWEEN.Easing.Cubic.InOut)
+  .onUpdate(function() {
+    camera.fov = this.vfov;
+    camera.updateProjectionMatrix();
+    render(renderer, scene, camera);
+  })
+  .onComplete(function(){
+    cancelAnimationFrame(isGold ? id_gold : id);
+    // cancelAnimationFrame(id);
+    texture_promise.then(function(texture) {
+      scene.background = texture;
+      camera.fov = VFOV;
+      camera.updateProjectionMatrix();
+      // move_to(image_id);
+      move_to_demo(image_id, false)
+    });
+  });
+  rotate_tween.chain(zoom_tween);
+  animate();
   rotate_tween.start();
 }
 

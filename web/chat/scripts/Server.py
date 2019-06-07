@@ -65,7 +65,7 @@ class Game:
 
     # Update the game from a client communication.
     # Returns (nav_m, oracle_m)
-    def update(self, d):
+    def update(self, d, oracle, navigator):
         action = d["action"]
         if action == "chat":
             contents = d["message"]
@@ -100,12 +100,12 @@ class Game:
                 nav_m = [{"type": "update", "action": "set_aux", "message": "Congrats, you found the room!"},
                          {"type": "update", "action": "disable_chat"},
                          {"type": "update", "action": "disable_nav"},
-                         {"type": "update", "action": "enable_exit"}]
+                         {"type": "update", "action": "enable_exit", "message": {"oracle": oracle, "navigator": navigator}}]
                 oracle_m = [{"type": "update", "action": "set_aux",
                              "message": "Congrats, you helped your partner find the room!"},
                             {"type": "update", "action": "disable_chat"},
                             {"type": "update", "action": "disable_gold_view"},
-                            {"type": "update", "action": "enable_exit"}]
+                            {"type": "update", "action": "enable_exit", "message": {"oracle": oracle, "navigator": navigator}}]
                 return [nav_m, oracle_m, True]
             else:  # incorrect location, so freeze nav and set aux.
                 nav_m = [{"type": "update", "action": "disable_nav"},
@@ -249,7 +249,7 @@ class Server:
         if d["type"] == "update":
             g = self.games[self.u2g[uid]]
             self.games_timeout[self.u2g[uid]] = self.max_cycles_per_turn
-            nav_ms, oracle_ms, game_over = g.update(d)
+            nav_ms, oracle_ms, game_over = g.update(d, g.oracle, g.navigator)
             self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
             self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
 
