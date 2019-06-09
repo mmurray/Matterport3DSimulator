@@ -258,10 +258,13 @@ function enable_get_code(msg) {
   $('#finish_task_button').show();
   $('#finish_task_button').prop("disabled", false);
   $('#finished_auxiliary_text').html($('#auxiliary_text').html());
-  $('#feedback_nav_id').val(msg.navigator);
-  $('#feedback_oracle_id').val(msg.oracle);
-  if (oracle_mode) {
-    $('#rating_label').html("Rate the clarity of your partner's questions and how well they followed your instructions. Higher is better (1 = Very Poor, 10 = Very Good)");
+  if ((msg && msg.navigator) || (msg && msg.oracle)) {
+    $('#feedback_nav_id').val(msg.navigator);
+    $('#feedback_oracle_id').val(msg.oracle);
+    $('#helpful_rating').show();
+    if (oracle_mode) {
+      $('#rating_label').html("Rate the clarity of your partner's questions and how well they followed your instructions. Higher is better (1 = Very Poor, 10 = Very Good)");
+    }
   }
 }
 
@@ -363,6 +366,7 @@ function poll_for_agent_messages() {
         show_mirror_nav();
       }
       else if (comm[idx].action == "show_nav") {
+        $('#practice_div').hide();
         show_nav();
       }
       
@@ -391,6 +395,7 @@ function start_task(d, uid) {
   $('#start_game_button').prop("disabled", true);
   $('#interaction_div').show();
   display_aux_message("Waiting on another player to connect...");
+  $('#practice_div').show();
 
   // Start infinite, 5 second poll for server feedback that ends when action message is shown.
   server_comm_url = d + uid + ".server.json";
@@ -462,28 +467,11 @@ if (!isset($_POST['uid'])) {
        </ul>
 
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom:10px">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#practice_modal" style="margin-bottom:10px">
   Click here to practice navigation
 </button>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Practice Navigation</h4>
-      </div>
-      <div class="modal-body">
-                <figure style="display: inline-block; width: 100%;"><canvas id="skybox_demo" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
-      </div>
-    </div>
-  </div>
-</div>
 
       <p>The target room will often be far away in the scene and a short description may not be sufficient to find the right room. To efficiently complete the task, the navigator should communicate with their oracle partner in the chat room. The oracle is provided with a preview of the best path towards the goal so they can answer questions to guide the navigator toward the right path.</p>
 
@@ -579,12 +567,38 @@ if (!isset($_POST['uid'])) {
   </div>
 </div>
 
+<div id="practice_div" style="display:none;">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#practice_modal" style="margin-bottom:10px">
+  Click here to practice navigation
+</button>
+
+<!-- Modal -->
+</div>
+
+<div class="modal fade" id="practice_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Practice Navigation</h4>
+      </div>
+      <div class="modal-body">
+                <figure style="display: inline-block; width: 100%;"><canvas id="skybox_demo" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="finished_task_div" style="display:none;">
   <div class="row">
     <div class="col-md-12">
        <div class="alert alert-success" role="alert" id="finished_auxiliary_text"></div>
       <form action="generate_code.php" method="POST">
-      <div class="form-group">
+      <div class="form-group" id="helpful_rating" style="display:none;">
         <label for="rating">How helpful was your partner?</label>
         <p id="rating_label">Rate the helpfulness of your partner in answering your questions and helping you get to the goal. Higher rating is better (1 = Very unhelpful, 10 = Very helpful)</p>
         <label class="radio-inline">
