@@ -7,6 +7,7 @@ RUN apt-get update && apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive apt-g
 # Enable apache mods.
 RUN a2enmod php7.2
 RUN a2enmod rewrite
+RUN a2enmod ssl
 
 # Update the PHP.ini file, enable <? ?> tags and quieten logging.
 RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php/7.2/apache2/php.ini
