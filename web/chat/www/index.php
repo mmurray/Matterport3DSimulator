@@ -655,7 +655,7 @@ if (urlv.house_scan && urlv.start_pano && urlv.end_panos && urlv.inst) {
       $('#interaction_div').show();
     $('#user_nav_div').show();
     show_chat();
-    init_nav(urlv.house_scan, urlv.start_pano, [urlv.end_panos], urlv.inst);
+    init_nav(urlv.house_scan, urlv.start_pano, urlv.end_panos.split(","), urlv.inst);
     $('#shared_instructions').text(urlv.inst);
     if (urlv.mode == "oracle") {
         show_gold_view();

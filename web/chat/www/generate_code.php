@@ -27,16 +27,6 @@ if (!isset($_POST['uid'])) {
 # Submitted survey.
 else {
 
-    $data = array(
-        "uid" => $_POST['uid'],
-        "oracle" => $_POST['oracle'],
-        "navigator" => $_POST['navigator'],
-        "rating" => $_POST['rating'],
-        "free_form_feedback" => $_POST['free_form_feedback'],
-    );
-    write_file('feedback/' . $_POST['uid'] . '.json', json_encode($data), 'Could not create file to save feedback.');
-
-
   $uid = $_POST['uid'];
 
   # Show exit instructions.
@@ -54,6 +44,14 @@ else {
   </div>
 
 <?php
+  $data = array(
+    "uid" => $_POST['uid'],
+    "oracle" => $_POST['oracle'],
+    "navigator" => $_POST['navigator'],
+    "rating" => $_POST['rating'],
+    "free_form_feedback" => $_POST['free_form_feedback'],
+  );
+  append_file('feedback/' . $_POST['uid'] . '.json', json_encode($data), 'Could not create file to save feedback.');
 }
 ?>
 
