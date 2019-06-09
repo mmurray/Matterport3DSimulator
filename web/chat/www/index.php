@@ -574,7 +574,7 @@ if (!isset($_POST['uid'])) {
   </div>
   <div class="row">
     <div class="col-md-12">
-      <p id="debug_text" style="color:purple"></p>
+      <p id="debug_text" style="color:purple;display:none;"></p>
     </div>
   </div>
 </div>
