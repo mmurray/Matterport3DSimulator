@@ -51,7 +51,7 @@ else {
     "rating" => $_POST['rating'],
     "free_form_feedback" => $_POST['free_form_feedback'],
   );
-  append_file('feedback/' . $_POST['uid'] . '.json', json_encode($data), 'Could not create file to save feedback.');
+  append_file('feedback/' . $_POST['uid'] . '.json', json_encode($data) . "\n", 'Could not create file to save feedback.');
 }
 ?>
 

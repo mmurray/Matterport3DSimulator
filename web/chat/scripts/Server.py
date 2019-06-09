@@ -186,11 +186,12 @@ class Server:
                 for uid in unassigned:
                     self.time_unpaired[uid] -= 1
                     if self.time_unpaired[uid] == 0:
+                        self.users.remove(uid) # Remove the user from the queue so they dont get paired later
                         self.files_to_write.extend(
-                            [("none", uid, "server", {"type": "update", "action": "enable_exit"}),
-                             ("none", uid, "server", {"type": "update", "action": "set_aux",
+                            [("none", uid, "server", {"type": "update", "action": "set_aux",
                                                       "message": "Looks like there's no one around to pair with! " +
-                                                      "Sorry about that. You can end the HIT and recieve payment."})])
+                                                      "Sorry about that. You can end the HIT and recieve payment."}),
+                             ("none", uid, "server", {"type": "update", "action": "enable_exit"})])
 
                 # Interrupt games that have had no communication for too long.
                 for gidx in range(len(self.games)):
@@ -222,10 +223,10 @@ class Server:
             # Let unpaired users off the hook.
             unassigned = [uid for uid in self.users if uid not in self.u2g]
             for uid in unassigned:
-                self.files_to_write.extend([("none", uid, "server", {"type": "update", "action": "enable_exit"}),
-                                            ("none", uid, "server", {"type": "update", "action": "set_aux",
+                self.files_to_write.extend([("none", uid, "server", {"type": "update", "action": "set_aux",
                                                                      "message": "Unexpected Server Error." +
-                                                                     "You can end the HIT and recieve payment."})])
+                                                                     "You can end the HIT and recieve payment."}),
+                                            ("none", uid, "server", {"type": "update", "action": "enable_exit"})])
             while (len(self.files_to_write)) > 0:
                 print("Server: Flushing files...")
                 self.flush_files()

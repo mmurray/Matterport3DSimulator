@@ -120,6 +120,7 @@ function enable_chat() {
   $('#user_input').prop("disabled", false);
   $('#user_input').focus();
   $('#user_say').prop("disabled", false);
+  $('#user_input_message').hide();
 }
 
 // Disable user text input.
@@ -127,6 +128,7 @@ function disable_chat() {
   add_debug("disable_chat called");
   $('#user_input').prop("disabled", true);
   $('#user_say').prop("disabled", true);
+  $('#user_input_message').show();
 }
 
 // Add a chat to either the user or partner dialog row and open the next row for typing.
@@ -140,7 +142,7 @@ function add_chat(message, speaker) {
 
 function send_user_chat() {
   add_debug("send_user_chat called");
-  var m = $('#user_input').val().toLowerCase().trim();  // read the value, lowercase and strip it
+  var m = $('#user_input').val().trim();  // read the value and strip it
   $('#user_input').val('');  // clear user text
   var data = {type:"update", action:"chat", message:m};
   var url = "manage_files.php?opt=write&fn=" + client_comm_url + "&m=" + encodeURIComponent(JSON.stringify(data));
@@ -186,6 +188,9 @@ function show_nav() {
 
 function show_mirror_nav() {
   window.setOracleMode();
+  $('.rating_adj').html('cooperative');
+  $('.rating_verb').html('following');
+  $('#user_input_message_val').html("Waiting for your partner to ask a question");
   add_debug("show_mirror_nav called");
   $('#user_nav_div').show();
   init_nav(scan, start_pano, end_panos, inst);
@@ -254,9 +259,11 @@ function disable_gold_view() {
 function enable_get_code(msg) {
   add_debug("enable_get_code called");
   $('#interaction_div').hide();
+  $('#practice_div').hide();
   $('#finished_task_div').show();
   $('#finish_task_button').show();
   $('#finish_task_button').prop("disabled", false);
+
   $('#finished_auxiliary_text').html($('#auxiliary_text').html());
   if ((msg && msg.navigator) || (msg && msg.oracle)) {
     $('#feedback_nav_id').val(msg.navigator);
@@ -292,6 +299,7 @@ function end_game(msg) {
   display_aux_message(msg);
   enable_get_code();
   clearInterval(iv);
+
 }
 
 // Enable user typing and remove auxiliary info about waiting for a partner.
@@ -363,6 +371,7 @@ function poll_for_agent_messages() {
         show_gold_view();
       }
       else if (comm[idx].action == "show_mirror_nav") {
+        $('#practice_div').hide();
         show_mirror_nav();
       }
       else if (comm[idx].action == "show_nav") {
@@ -400,6 +409,8 @@ function start_task(d, uid) {
   // Start infinite, 5 second poll for server feedback that ends when action message is shown.
   server_comm_url = d + uid + ".server.json";
   client_comm_url = d + uid + ".client.json";
+
+  window.send_user_action('new', '', '');
   iv = setInterval(poll_for_agent_messages, 1000);
 }
 
@@ -414,7 +425,7 @@ function start_task(d, uid) {
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Detector.js"></script>
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/PTZCameraControls.js"></script>
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Matterport3D.js"></script>
-<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/HIT.js?v2"></script>
+<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/HIT.js?v3"></script>
 <script type="text/javascript">
 window.R2R_DATA_PREFIX="<? echo(getenv("R2R_DATA_PREFIX") ?: "R2R_data/"); ?>";
 window.CONNECTIVITY_DATA_PREFIX="<? echo(getenv("CONNECTIVITY_DATA_PREFIX") ?: "connectivity/"); ?>";
@@ -436,8 +447,6 @@ $d = 'client/';
 if (!isset($_POST['uid'])) {
   $uid = uniqid();
   $client_comm_url = $d . $uid . '.client.json';
-  $data = array("type" => "new");
-  write_file($client_comm_url, json_encode($data), 'Could not create file to register user with the Server.');
 
   # Show instructions.
   $inst = "<h2>INSTRUCTIONS</h2><br/>";
@@ -488,7 +497,7 @@ if (!isset($_POST['uid'])) {
 
       <p>After asking a question, the scene will pause until the oracle has enough time to respond. But once the oracle has sent their response the navigator can continue moving throughout the scene.</p>
 
-      <p>When the navigator has finally located the room, they will click the "Found Room" button to take a photo of the object and complete the task.</p>
+      <p>When the navigator has finally located the room, they will click the "Found Room" button to complete the task.</p>
 
       <h3>Partner 2: Oracle</h3>
 
@@ -516,6 +525,7 @@ if (!isset($_POST['uid'])) {
 ?>
 
 <div id="interaction_div" style="display:none;">
+<div class="alert alert-warning"> Do not navigate away from this page until the task is complete!</div>
   <div class="row">
     <div class="col-md-6">
       <div id="user_nav_div" style="display:none;">
@@ -545,7 +555,8 @@ if (!isset($_POST['uid'])) {
         </table>
         <p>
           <input type="text" disabled id="user_input" style="width:100%;" placeholder="your message..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"><br/>
-          <button class="btn" disabled id="user_say" onclick="send_user_chat('<?php echo $d;?>', '<?php echo $uid;?>')">Send</button>
+          <button class="btn" disabled id="user_say" onclick="send_user_chat('<?php echo $d;?>', '<?php echo $uid;?>')">Send Message and Change Turns</button>
+          <span style="color:#00f;font-size:13px;" id="user_input_message"><span id="user_input_message_val">Waiting for a response from your partner</span>...</span>
         </p>
       </div>
     </div>
@@ -601,36 +612,36 @@ if (!isset($_POST['uid'])) {
       <div class="form-group" id="helpful_rating" style="display:none;">
         <label for="rating">How helpful was your partner?</label>
         <p id="rating_label">Rate the helpfulness of your partner in answering your questions and helping you get to the goal. Higher rating is better (1 = Very unhelpful, 10 = Very helpful)</p>
-        <label class="radio-inline">
-          <input type="radio" name="rating" id="rating" value="1"> 1
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="rating" id="rating" value="2"> 2
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="rating" id="rating" value="3"> 3
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="rating" id="rating" value="4"> 4
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="rating" id="rating" value="5"> 5
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="rating" id="rating" value="6"> 6
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="rating" id="rating" value="7"> 7
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="rating" id="rating" value="8"> 8
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="rating" id="rating" value="9"> 9
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="rating" id="rating" value="10"> 10
-        </label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="rating" id="rating" value="1">
+            1 - Partner was not <span class="rating_adj">helpful</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="rating" id="rating" value="2" >
+            2 - Partner was not great at <span class="rating_verb">giving</span> instructions
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="rating" id="rating" value="3" >
+            3 - Partner was okay at <span class="rating_verb">giving</span> instructions
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="rating" id="rating" value="4" >
+            4 - Partner was pretty <span class="rating_adj">helpful</span>
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="rating" id="rating" value="5" >
+            5 - Partner was really <span class="rating_adj">helpful</span>
+          </label>
+        </div>
       </div>
       <div class="form-group">
         <label for="free_form_feedback">Please provide any additional feedback you have about your partner or about the task in general:</label>
