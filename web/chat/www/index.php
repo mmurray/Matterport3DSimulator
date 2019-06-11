@@ -143,6 +143,9 @@ function add_chat(message, speaker) {
 function send_user_chat() {
   add_debug("send_user_chat called");
   var m = $('#user_input').val().trim().replace(/"/g, "'");  // read the value and strip it, replace double w single quotes
+  if (m.length == 0) {
+    return
+  }
   $('#user_input').val('');  // clear user text
   var data = {type:"update", action:"chat", message:m};
   var url = "manage_files.php?opt=write&fn=" + client_comm_url + "&m=" + encodeURIComponent(JSON.stringify(data));
@@ -630,34 +633,34 @@ if (!isset($_POST['uid'])) {
       <form action="generate_code.php" method="POST">
       <div class="form-group" id="helpful_rating" style="display:none;">
         <label for="rating">How helpful was your partner?</label>
-        <p id="rating_label">Rate the helpfulness of your partner in answering your questions and helping you get to the goal. Higher rating is better (1 = Very unhelpful, 10 = Very helpful)</p>
+        <p id="rating_label">Rate the helpfulness of your partner in answering your questions and helping you get to the goal.</p>
         <div class="radio">
           <label>
-            <input type="radio" name="rating" id="rating" value="1">
+            <input required type="radio" name="rating" id="rating" value="1">
             1 - Partner was not <span class="rating_adj">helpful</span>
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="rating" id="rating" value="2" >
+            <input required type="radio" name="rating" id="rating" value="2" >
             2 - Partner was not great at <span class="rating_verb">giving</span> instructions
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="rating" id="rating" value="3" >
+            <input required type="radio" name="rating" id="rating" value="3" >
             3 - Partner was okay at <span class="rating_verb">giving</span> instructions
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="rating" id="rating" value="4" >
+            <input required type="radio" name="rating" id="rating" value="4" >
             4 - Partner was pretty <span class="rating_adj">helpful</span>
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="rating" id="rating" value="5" >
+            <input required type="radio" name="rating" id="rating" value="5" >
             5 - Partner was really <span class="rating_adj">helpful</span>
           </label>
         </div>

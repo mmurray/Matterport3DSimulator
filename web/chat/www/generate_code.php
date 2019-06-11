@@ -44,14 +44,16 @@ else {
   </div>
 
 <?php
+  $pid = ($_POST['uid'] == $_POST['navigator'] ? $_POST['oracle'] : $_POST['navigator']);
   $data = array(
     "uid" => $_POST['uid'],
+    "pid" => $pid,
     "oracle" => $_POST['oracle'],
     "navigator" => $_POST['navigator'],
     "rating" => $_POST['rating'],
     "free_form_feedback" => $_POST['free_form_feedback'],
   );
-  append_file('feedback/' . $_POST['uid'] . '.json', json_encode($data) . "\n", 'Could not create file to save feedback.');
+  append_file('feedback/' . $_POST['uid'] . '_' . $pid . '.json', json_encode($data) . "\n", 'Could not create file to save feedback.');
 }
 ?>
 
