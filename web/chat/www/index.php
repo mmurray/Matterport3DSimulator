@@ -14,6 +14,9 @@
 
 <link rel="stylesheet" href="style.css">
 
+<link id="favicon" rel="shortcut icon" href="/favicon.ico">
+
+
 <script type="text/javascript">
 // Whether to show debug messages.
 var debug = true;
@@ -131,6 +134,9 @@ function disable_chat() {
   $('#user_input_message').show();
 }
 
+var blinkTimeout = null;
+var animInterval = null;
+
 // Add a chat to either the user or partner dialog row and open the next row for typing.
 function add_chat(message, speaker) {
   add_debug("add_chat called with " + speaker + " and " + message);
@@ -138,6 +144,23 @@ function add_chat(message, speaker) {
   var row_type = (speaker == "self" ? "chat_you_row" : "chat_partner_row");
   var markup = "<tr class=\"" + row_type + "\"><td>" + message + "</td></tr>";
   $("#dialog_table tbody").append(markup);
+  if (speaker !== "self") {
+    window.playSound(440.0, 'sine');
+    clearTimeout(blinkTimeout);
+    clearInterval(animInterval);
+    $('#favicon').attr('href', '/favicon-blink.ico');
+    blinkTimeout = setTimeout(function() {
+        clearInterval(animInterval);
+    }, 20000);
+    animInterval = setInterval(function() {
+        if ($('#favicon').attr('href') == '/favicon-alert.ico') {
+            $('#favicon').attr('href', '/favicon.ico');
+        } else {
+            $('#favicon').attr('href', '/favicon-alert.ico');
+        }
+    }, 500);
+  }
+
 }
 
 function send_user_chat() {
@@ -417,6 +440,23 @@ function start_task(d, uid) {
   iv = setInterval(poll_for_agent_messages, 1000);
 }
 
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = decodeURIComponent(hash[1]);
+    }
+    return vars;
+}
+
+var urlv = getUrlVars();
+if (urlv.house_scan) {
+    window.scan = urlv.house_scan;
+}
+
 </script>
 
 
@@ -457,6 +497,7 @@ if (!isset($_POST['uid'])) {
   <div class="row" id="inst_div">
     <div class="col-md-12">
       <?php echo $inst;?>
+<<<<<<< Updated upstream
       <p>
         We are researchers collecting information about how people help one another navigate using language.
         In this HIT, you will be paired with a partner.
@@ -471,6 +512,19 @@ if (!isset($_POST['uid'])) {
       </p>
 
         <div class="show" id="collapseExample">
+=======
+
+      <p>We are researchers collecting information about how people help one another move around houses using language. In this HIT, you will be paired with another worker, and you and your partner will collaborate to reach a goal room in a house. One person will navigate: walking around the house trying to find the room. The other will help with guidance: answering questions about where to go next. For navigating, the goal room won’t be specified exactly, for example, “Find the room with a plant.” There can be lots of plants in a house! So figuring out which room in the house is the challenge, and will require both players to solve. The guiding player will be able to see the future of where the navigating player should go, enabling them to give language instructions to the navigator.</p>
+<br/>
+
+     <!-- <p>For this task you will be paired with a partner. One of you will act as a <em>navigator</em>, actively moving through an indoor scene. The other will act as an <em>oracle</em>, providing guidance to the navigator when they ask for help.</p> -->
+
+       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          View full instructions <i class="glyphicon glyphicon-menu-down expand_caret"></i>
+        </button>
+        <button class="btn btn-success" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start task</button>
+        <div class="collapse" id="collapseExample">
+>>>>>>> Stashed changes
 
 
       <h3>Partner 1: Navigator</h3>
@@ -708,7 +762,8 @@ if (urlv.house_scan && urlv.start_pano && urlv.end_panos && urlv.inst) {
         show_gold_view();
         enable_gold_view();
         var idx;
-          optimal_policies = Array(goal_image_ids.length);
+        var goal_image_ids = urlv.end_panos.split(",");
+         var optimal_policies = Array(goal_image_ids.length);
           for (idx = 0; idx < goal_image_ids.length; idx++) {
             load_optimal_policy(idx);
           }
