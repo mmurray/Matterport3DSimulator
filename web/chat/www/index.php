@@ -93,7 +93,7 @@ function set_house(v) {
 function set_target_obj(v) {
   add_debug("set_target_obj called with '" + v + "'");
   target_obj = v;
-  inst = "Go to the room with the " + target_obj + ".";
+  inst = "Hint: Go to the room with the " + target_obj + ".";
 }
 
 function set_start_pano(v) {
@@ -142,7 +142,7 @@ function add_chat(message, speaker) {
 
 function send_user_chat() {
   add_debug("send_user_chat called");
-  var m = $('#user_input').val().trim().replace(/"/g, ''');  // read the value and strip it, replace double w single quotes
+  var m = $('#user_input').val().trim().replace(/"/g, "'");  // read the value and strip it, replace double w single quotes
   $('#user_input').val('');  // clear user text
   var data = {type:"update", action:"chat", message:m};
   var url = "manage_files.php?opt=write&fn=" + client_comm_url + "&m=" + encodeURIComponent(JSON.stringify(data));
@@ -454,25 +454,32 @@ if (!isset($_POST['uid'])) {
   <div class="row" id="inst_div">
     <div class="col-md-12">
       <?php echo $inst;?>
-      <p>For this task you will be paired with a partner. One of you will act as a <em>navigator</em>, actively moving through an indoor scene. The other will act as an <em>oracle</em>, providing guidance to the navigator when they ask for help.</p>
+      <p>
+        We are researchers collecting information about how people help one another navigate using language.
+        In this HIT, you will be paired with a partner.
+        <b>You will collaborate to reach a goal room within a house.</b>
+        One person will be the <b>navigator</b>: walking around the house trying to find the room.
+        The other will be the <b>oracle</b>: answering questions about where to go next.
+      </p>
+      <p><b>The goal room won’t be specified exactly</b>, for example, "Find the room with a plant."
+        There can be lots of plants in a house!
+        Figuring out <i>which</i> room in the house is the challenge, and will require <i>both</i> players to solve.
+        The oracle can view the future path the navigator should take, enabling them to give guidance.
+      </p>
 
-       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          View full instructions <i class="glyphicon glyphicon-menu-down expand_caret"></i>
-        </button>
-        <button class="btn btn-success" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start task</button>
-        <div class="collapse" id="collapseExample">
+        <div class="show" id="collapseExample">
 
 
       <h3>Partner 1: Navigator</h3>
-      <p>The navigator will be shown an indoor scene and given a short description of a room to find within the scene. The navigator can move throughout the scene with the following mouse controls:</p>
-
+      <p>The navigator will be dropped into a house and given an hint of which room they must find (e.g., "Find the room with the plant.").
+      The navigator can move through the house with the following mouse controls:</p>
 
       <h4>Mouse Controls:</h4>
 
         <ul>
         <li><strong>Left-click and drag the image</strong> to look around.</li>
         <li><strong>Right-click on a blue cylinder</strong> to move to that position (note: sometimes the blue cylinders are close to your feet, so you may need to look down).</li>
-        <li><strong>Click "Found Room"</strong> when you think you have found the target room</strong></li>
+        <li><strong>Click "Found Room"</strong> when you think you have found the target room.</strong></li>
        </ul>
 
 
@@ -482,38 +489,50 @@ if (!isset($_POST['uid'])) {
 
 
 
-      <p>The target room will often be far away in the scene and a short description may not be sufficient to find the right room. To efficiently complete the task, the navigator should communicate with their oracle partner in the chat room. The oracle is provided with a preview of the best path towards the goal so they can answer questions to guide the navigator toward the right path.</p>
+      <p>The target room will often be far away from the starting pint, and the hint alone will not be enough.
+      The navigator should communicate with their oracle partner using the chat interface.
+      The oracle is provided with a preview of the best path towards the room so they can answer questions to guide the navigator.
+      </p>
 
-      <p>The navigator should ask the oracle specific questions. For example, it is more helpful to ask a question like "Should I go through the door on the left or the door on the right?" rather than "Where now?"</p>
+      <p>
+      <b>When the navigator sends a question to the oracle, navigation will pause until the oracle sends a response!</b>
+      The navigator should ask the oracle specific questions, for example:
+    </p>
 
       <div class="row">
           <!--<div class="col-md-3"><img src="img/nav_example_1.png" width="100%" /></div>-->
           <div class="col-md-12">
-            <p class="alert alert-success"><i class="glyphicon glyphicon-ok"></i> <strong>GOOD:</strong>&nbsp;"Should I go through the door on the left or the door on the right?"</p>
-            <p class="alert alert-danger"><i class="glyphicon glyphicon-remove"></i> <strong>BAD:</strong>&nbsp;"Where now?"</p>
+            <p class="alert alert-success"><i class="glyphicon glyphicon-ok"></i> <strong>GOOD Question:</strong>&nbsp;"Should I go through the door to my left or towards the sofa to my right?"&nbsp;<strong>(specific + detailed)</strong></p>
+            <p class="alert alert-danger"><i class="glyphicon glyphicon-remove"></i> <strong>BAD Question:</strong>&nbsp;"Where now?"&nbsp;<strong>(unspecific + unhelpful)</strong></p>
           </div>
         </div>
 <br/>
 
       <p>After asking a question, the scene will pause until the oracle has enough time to respond. But once the oracle has sent their response the navigator can continue moving throughout the scene.</p>
 
-      <p>When the navigator has finally located the room, they will click the "Found Room" button to complete the task.</p>
+      <p>When the navigator has finally located the room, they will click the "<i>Found Room</i>" button to complete the task.</p>
 
       <h3>Partner 2: Oracle</h3>
 
-      <p>The oracle initially just observes as the navigator moves through the scene. Once the navigator asks a question, the oracle is provided with an animated preview of the best next steps to take toward the goal. It is the oracle's job to describe these steps to the navigator by sending a response in the chat room. Before responding, they can replay the best path animation as many times as they want by clicking the "Show Best Path" button.</p>
+      <p>The oracle observes as the navigator moves through the house.
+      When the navigator asks a question, the oracle is provided with an animated preview of the best next steps to take toward the goal room.
+      It is the oracle's job to describe these steps to the navigator by sending a response in the chat.
+      Before responding, they can replay the best path animation as many times as they want by clicking the "<i>Show Best Path</i>" button.</p>
 
-      <p>When describing the best path, the oracle should strive to be as helpful as possible. For example, it is more helpful to send a description like "Move through the door, then turn left and go down the hall" instead of "Go left".
+      <p><b>When the oracle sends a response to the navigator, they will again observe the navigator moving through the house!</b>
+        When describing the best path, the oracle should strive to be as helpful as possible, for example:
 
          <div class="row">
           <!--<div class="col-md-3"><img src="img/nav_example_1.png" width="100%" /></div>-->
           <div class="col-md-12">
-            <p class="alert alert-success"><i class="glyphicon glyphicon-ok"></i> <strong>GOOD:</strong>&nbsp;"Move through the door, then turn left and go down the hall"</p>
-            <p class="alert alert-danger"><i class="glyphicon glyphicon-remove"></i> <strong>BAD:</strong>&nbsp;"Go left"</p>
+            <p class="alert alert-success"><i class="glyphicon glyphicon-ok"></i> <strong>GOOD Response:</strong>&nbsp;"Move through the door, then turn left and go down the hall towards the staircase."&nbsp;<strong>(specific + detailed)</p>
+            <p class="alert alert-danger"><i class="glyphicon glyphicon-remove"></i> <strong>BAD Response:</strong>&nbsp;"Go left."&nbsp;<strong>(short + lacks details)</p>
           </div>
         </div>
 
 </div>
+
+<button class="btn btn-success" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start task</button>
 
 
 
