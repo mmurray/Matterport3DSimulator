@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/open-iconic/font/css/open-iconic.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css" />
+
+
+
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+    <title>MP Dialog Batch Report</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Batch Report</h2>
+
+      <h3>Overview:</h3>
+        <ul>
+            <li>{{num_success}}/{{num}} successful sessions</li>
+            <li>{{avg_traj}} average trajectory length</li>
+        </ul>
+
+
+      <h3>Sessions:</h3>
+
+
+<table id="table" class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Status</th>
+      <!--<th scope="col">Duration</th>-->
+      <th scope="col">Steps</th>
+      <th scope="col">Gold steps</th>
+      <th scope="col">Oracle Rating</th>
+      <th scope="col">Navigator Rating</th>
+      <th scope="col">Oracle Link</th>
+      <th scope="col">Navigator Link</th>
+      <th scope="col">View Dialog</th>
+      <th scope="col">View Feedback</th>
+      <th scope="col">View Logs</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for session in sessions %}
+    <tr>
+      <th scope="row">{{ session.id }}</th>
+        <td><span class="badge badge-pill badge-{{session.status_class}}">{{session.status_label}}</span></td>
+      <!--<td>N/A</td>-->
+      <td>{{ session.traj_count }}</td>
+      <td>0</td>
+        <td>{{ session.oracle_rating }}</td>
+      <td>{{ session.navigator_rating }}</td>
+        <td><a target="_blank" href="https://preview.mp-dialog.ml/?house_scan={{session.house}}&start_pano={{session.start_pano}}&end_panos={{session.end_panos}}&inst=Go%20to%20the%20room%20with%20the%20{{session.target_obj}}.&mode=oracle&max_gold_len=-1"><span class="oi oi-external-link"></span> Oracle</a></td>
+      <td><a target="_blank" href="https://preview.mp-dialog.ml/?house_scan={{session.house}}&start_pano={{session.start_pano}}&end_panos={{session.end_panos}}&inst=Go%20to%20the%20room%20with%20the%20{{session.target_obj}}."><span class="oi oi-external-link"></span> Nav</a></td>
+      <td>
+          <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#dialogModal{{session.id}}">Dialog</button>
+
+<!-- Modal -->
+<div class="modal fade" id="dialogModal{{session.id}}" tabindex="-1" role="dialog" aria-labelledby="dialogModal{{session.id}}" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dialogModal{{session.id}}">View Dialog</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+            {% for dialog in session.dialog %}
+            <li>{{dialog}}</li>
+            {% endfor %}
+
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      </td>
+      <td>
+          <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#feedbackModal{{session.id}}">Feedback</button>
+
+<!-- Modal -->
+<div class="modal fade" id="feedbackModal{{session.id}}" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel{{session.id}}" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="feedbackModalLabel{{session.id}}">View Feedback</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+            {% for feedback in session.feedback %}
+            <li>{{feedback}}</li>
+            {% endfor %}
+
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      </td>
+      <td>
+          <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#logModal{{session.id}}">Log</button>
+
+<!-- Modal -->
+<div class="modal fade" id="logModal{{session.id}}" tabindex="-1" role="dialog" aria-labelledby="logModalLabel{{session.id}}" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="logModalLabel{{session.id}}">View Logs</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre>
+            {{ session.log }}
+        </pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.13/js/dataTables.bootstrap4.min.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $('#table').DataTable();
+        });
+  </script>
+  </body>
+</html>
