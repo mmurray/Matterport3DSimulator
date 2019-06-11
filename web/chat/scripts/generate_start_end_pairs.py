@@ -37,6 +37,9 @@ def load_nav_graphs(scans):
 # Spin up a server to sit and manage incoming connections.
 def main(args):
 
+    MIN_PATH_LEN = 4
+    MAX_PATH_LEN = 35
+
     # Load resources.
     with open(args.obj_regions_fn, 'r') as f:
         house_obj_region = json.load(f)
@@ -49,34 +52,33 @@ def main(args):
     # The agent will spawn at start_pano and the gold trajectory will be shown to the end_pano, but evaluation will
     # mark correct stopping at any pano point in the end_region.
     house_target_tuple = {}
-    all_ds = []
     for house in house_obj_region:
         instances = []
 
         # Get connectivity graph and distances.
         graph = load_nav_graphs([house])[house]
-        distances = dict(nx.all_pairs_dijkstra_path_length(graph))
+        hops = dict(nx.all_pairs_dijkstra_path(graph))
 
         for obj in house_obj_region[house]:
             end_regions = house_obj_region[house][obj]
             # Choose a start_pano that maximizes the distance between itself and the closest end_pano per region.
             best_start_pano = None
             best_start_pano_d = None
-            for start_pano in distances.keys():
+            for start_pano in hops.keys():
                 ds_to_end_regions = []
                 skip_pano = False
                 for end_region in end_regions:
-                    ds_to_end_region_panos = [distances[start_pano][end_pano]
+                    ds_to_end_region_panos = [len(hops[start_pano][end_pano])
                                               for end_pano in house_region_panorama[house][end_region]
-                                              if end_pano in distances[start_pano]]
+                                              if end_pano in hops[start_pano]]
                     if len(ds_to_end_region_panos) == 0:
                         # print("WARNING: cannot reach end region '%s' in house '%s' from pano %s" %
                         #       (end_region, house, start_pano))
                         skip_pano = True
                         break  # don't consider this start_pano
-                    ds_to_end_regions.append(min([distances[start_pano][end_pano]
+                    ds_to_end_regions.append(min([len(hops[start_pano][end_pano])
                                                   for end_pano in house_region_panorama[house][end_region]
-                                                  if end_pano in distances[start_pano]]))
+                                                  if end_pano in hops[start_pano]]))
                 if skip_pano:
                     continue
                 l2_d_to_end_regions = np.linalg.norm(ds_to_end_regions)
@@ -92,12 +94,15 @@ def main(args):
                 end_panos = []
                 end_pano_ds = []
                 for end_pano in house_region_panorama[house][end_region]:
-                    if end_pano in distances[best_start_pano]:
+                    if end_pano in hops[best_start_pano]:
                         end_panos.append(end_pano)
-                        end_pano_ds.append(distances[best_start_pano][end_pano])
+                        end_pano_ds.append(len(hops[best_start_pano][end_pano]))
                 if best_start_pano not in end_panos:
-                    instances.append((obj, best_start_pano, end_region, end_panos, end_pano_ds))
-                    all_ds.append(np.average(end_pano_ds))
+                    if MIN_PATH_LEN <= min(end_pano_ds) <= MAX_PATH_LEN:
+                        instances.append((obj, best_start_pano, end_region, end_panos, end_pano_ds))
+                    else:
+                        print("WARNING: skipping path out of bounds for object %s in house %s (len %d)"
+                              % (obj, house, min(end_pano_ds)))
                 else:
                     print("WARNING: skipping best start pano contained in end region for object %s in house %s"
                           % (obj, house))
@@ -105,25 +110,6 @@ def main(args):
             house_target_tuple[house] = instances
         else:
             print("WARNING: could not find any good paths in house %s!" % house)
-
-    # DEBUG - visualize distances.
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-    freq_of_count_bins = {}
-    bin_size = 5
-    for c in all_ds:
-        cbin = int(c // bin_size) + 1
-        if cbin not in freq_of_count_bins:
-            freq_of_count_bins[cbin] = 0
-        freq_of_count_bins[cbin] += 1
-    for cbin in range(min(freq_of_count_bins), max(freq_of_count_bins)):
-        if cbin not in freq_of_count_bins:
-            freq_of_count_bins[cbin] = 0
-    ordered = sorted(freq_of_count_bins.items(), key=lambda x: x[1], reverse=True)
-    print(ordered)
-    fig, ax = plt.subplots(figsize=(16, 10))
-    g = sns.barplot(ax=ax, x=[o[0] * bin_size for o in ordered], y=[o[1] for o in ordered])
-    plt.show()
 
     print("Writing %d tuples across %d houses to file '%s'" %
           (sum([len(house_target_tuple[h]) for h in house_target_tuple]), len(house_target_tuple), args.output_fn))
