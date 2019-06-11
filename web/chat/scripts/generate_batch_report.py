@@ -3,12 +3,47 @@ from jinja2 import Template
 import os
 import ast
 import json
+import networkx as nx
+import numpy as np
+
+
+# Edited from 'tasks/R2R/utils.py'
+def load_gold_paths(scans):
+
+    def distance(pose1, pose2):
+        return ((pose1['pose'][3]-pose2['pose'][3])**2 +
+                (pose1['pose'][7]-pose2['pose'][7])**2 +
+                (pose1['pose'][11]-pose2['pose'][11])**2)**0.5
+
+    paths = {}
+    for scan in scans:
+        with open('../../../connectivity/%s_connectivity.json' % scan) as f:
+            g = nx.Graph()
+            positions = {}
+            data = json.load(f)
+            for i,item in enumerate(data):
+                if item['included']:
+                    for j,conn in enumerate(item['unobstructed']):
+                        if conn and data[j]['included']:
+                            positions[item['image_id']] = np.array([item['pose'][3],
+                                                                    item['pose'][7], item['pose'][11]])
+                            assert data[j]['unobstructed'][i], 'Graph should be undirected'
+                            g.add_edge(item['image_id'], data[j]['image_id'], weight=distance(item, data[j]))
+            nx.set_node_attributes(g, values=positions, name='position')
+            paths[scan] = dict(nx.all_pairs_dijkstra_path(g))
+
+    return paths
+
 
 def main(args):
 
     sessions = []
     total_traj = 0
     total_traj_count = 0
+
+    # TODO: get these from scans.txt
+    gold_paths = load_gold_paths(['17DRP5sb8fy', 'sT4fr6TAbpF', 'wc2JMjhGNzB'])
+
 
     for log_filename in os.listdir(os.path.join(args.input_dir, 'log')):
         if "_" in log_filename:
@@ -93,6 +128,10 @@ def main(args):
             if session['traj_count'] > 0:
                 total_traj_count += 1
                 total_traj += session['traj_count']
+
+
+            session["gold_path_len"] = len(gold_paths[session['house']][session['start_pano']][session['end_panos'].split(',')[0]])
+
             sessions.append(session)
 
     with open(os.path.dirname(os.path.abspath(__file__)) + '/resources/batch_report_template.html') as template_html_file:

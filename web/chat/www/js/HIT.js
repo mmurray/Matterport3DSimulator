@@ -1,5 +1,5 @@
 
-var scan= "sT4fr6TAbpF";
+var scan= window.scan || "sT4fr6TAbpF";
 var curr_image_id;
 var curr_image_id_gold;
 var curr_image_id_demo;
@@ -805,3 +805,25 @@ function step_forward(){
     window.update_oracle_camera({img_id: path[step]}, true);
   }
 };
+
+try {
+  var context = new AudioContext();
+} catch(e) {}
+
+window.playSound = function(frequency, type){
+  try {
+    var o = context.createOscillator();
+    var g = context.createGain();
+    o.type = type;
+    o.connect(g);
+    o.frequency.value = frequency;
+    g.connect(context.destination);
+    o.start(0);
+
+    g.gain.exponentialRampToValueAtTime(
+        0.00001, context.currentTime + 1
+    )
+  }catch(e) {}
+};
+
+

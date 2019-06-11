@@ -14,6 +14,9 @@
 
 <link rel="stylesheet" href="style.css">
 
+<link id="favicon" rel="shortcut icon" href="/favicon.ico">
+
+
 <script type="text/javascript">
 // Whether to show debug messages.
 var debug = true;
@@ -131,6 +134,9 @@ function disable_chat() {
   $('#user_input_message').show();
 }
 
+var blinkTimeout = null;
+var animInterval = null;
+
 // Add a chat to either the user or partner dialog row and open the next row for typing.
 function add_chat(message, speaker) {
   add_debug("add_chat called with " + speaker + " and " + message);
@@ -138,6 +144,24 @@ function add_chat(message, speaker) {
   var row_type = (speaker == "self" ? "chat_you_row" : "chat_partner_row");
   var markup = "<tr class=\"" + row_type + "\"><td>" + message + "</td></tr>";
   $("#dialog_table tbody").append(markup);
+  if (speaker !== "self") {
+    window.playSound(440.0, 'sine');
+    clearTimeout(blinkTimeout);
+    clearInterval(animInterval);
+    $('#favicon').attr('href', '/favicon-blink.ico');
+    blinkTimeout = setTimeout(function() {
+        clearInterval(animInterval);
+        $('#favicon').attr('href', '/favicon.ico');
+    }, 20000);
+    animInterval = setInterval(function() {
+        if ($('#favicon').attr('href') == '/favicon-alert.ico') {
+            $('#favicon').attr('href', '/favicon.ico');
+        } else {
+            $('#favicon').attr('href', '/favicon-alert.ico');
+        }
+    }, 500);
+  }
+
 }
 
 function send_user_chat() {
@@ -415,6 +439,23 @@ function start_task(d, uid) {
 
   window.send_user_action('new', '', '');
   iv = setInterval(poll_for_agent_messages, 1000);
+}
+
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = decodeURIComponent(hash[1]);
+    }
+    return vars;
+}
+
+var urlv = getUrlVars();
+if (urlv.house_scan) {
+    window.scan = urlv.house_scan;
 }
 
 </script>
@@ -708,7 +749,8 @@ if (urlv.house_scan && urlv.start_pano && urlv.end_panos && urlv.inst) {
         show_gold_view();
         enable_gold_view();
         var idx;
-          optimal_policies = Array(goal_image_ids.length);
+        var goal_image_ids = urlv.end_panos.split(",");
+         var optimal_policies = Array(goal_image_ids.length);
           for (idx = 0; idx < goal_image_ids.length; idx++) {
             load_optimal_policy(idx);
           }
