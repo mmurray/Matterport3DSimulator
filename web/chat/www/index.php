@@ -406,7 +406,7 @@ function start_task(d, uid) {
   $('#inst_div').hide();
   $('#start_game_button').prop("disabled", true);
   $('#interaction_div').show();
-  display_aux_message("Waiting on another player to connect...");
+  display_aux_message("Waiting on another player to connect... Please DO NOT refresh the page!");
   $('#practice_div').show();
 
   // Start infinite, 5 second poll for server feedback that ends when action message is shown.
