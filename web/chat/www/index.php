@@ -151,6 +151,7 @@ function add_chat(message, speaker) {
     $('#favicon').attr('href', '/favicon-blink.ico');
     blinkTimeout = setTimeout(function() {
         clearInterval(animInterval);
+        $('#favicon').attr('href', '/favicon.ico');
     }, 20000);
     animInterval = setInterval(function() {
         if ($('#favicon').attr('href') == '/favicon-alert.ico') {
