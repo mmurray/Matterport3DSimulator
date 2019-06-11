@@ -142,7 +142,7 @@ function add_chat(message, speaker) {
 
 function send_user_chat() {
   add_debug("send_user_chat called");
-  var m = $('#user_input').val().trim();  // read the value and strip it
+  var m = $('#user_input').val().trim().replace(/"/g, ''');  // read the value and strip it, replace double w single quotes
   $('#user_input').val('');  // clear user text
   var data = {type:"update", action:"chat", message:m};
   var url = "manage_files.php?opt=write&fn=" + client_comm_url + "&m=" + encodeURIComponent(JSON.stringify(data));
