@@ -13,7 +13,7 @@ import numpy as np
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--input", default="./data/v1/scans")
-parser.add_argument("--connectivity", default="./connectivity")
+parser.add_argument("--connectivity", default="../../../connectivity")
 args = parser.parse_args()
 
 s3 = boto3.client('s3')
@@ -83,7 +83,7 @@ with open(os.path.join(args.connectivity, 'scans_dialog.txt')) as scans_txt_file
             for filename in files:
                 local_path = os.path.join(root, filename)
                 relative_path = os.path.relpath(local_path, tmp_dir)
-                s3_path = os.path.join("data/v1/scans", scan)
+                s3_path = os.path.join("data/v1/scans", scan, relative_path)
                 s3.upload_file(local_path, "mp-dialog", s3_path,
                                ExtraArgs={'ACL': 'public-read'})
 
