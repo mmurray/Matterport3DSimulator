@@ -498,7 +498,6 @@ if (!isset($_POST['uid'])) {
   <div class="row" id="inst_div">
     <div class="col-md-12">
       <?php echo $inst;?>
-<<<<<<< Updated upstream
       <p>
         We are researchers collecting information about how people help one another navigate using language.
         In this HIT, you will be paired with a partner.
@@ -513,19 +512,6 @@ if (!isset($_POST['uid'])) {
       </p>
 
         <div class="show" id="collapseExample">
-=======
-
-      <p>We are researchers collecting information about how people help one another move around houses using language. In this HIT, you will be paired with another worker, and you and your partner will collaborate to reach a goal room in a house. One person will navigate: walking around the house trying to find the room. The other will help with guidance: answering questions about where to go next. For navigating, the goal room won’t be specified exactly, for example, “Find the room with a plant.” There can be lots of plants in a house! So figuring out which room in the house is the challenge, and will require both players to solve. The guiding player will be able to see the future of where the navigating player should go, enabling them to give language instructions to the navigator.</p>
-<br/>
-
-     <!-- <p>For this task you will be paired with a partner. One of you will act as a <em>navigator</em>, actively moving through an indoor scene. The other will act as an <em>oracle</em>, providing guidance to the navigator when they ask for help.</p> -->
-
-       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          View full instructions <i class="glyphicon glyphicon-menu-down expand_caret"></i>
-        </button>
-        <button class="btn btn-success" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start task</button>
-        <div class="collapse" id="collapseExample">
->>>>>>> Stashed changes
 
 
       <h3>Partner 1: Navigator</h3>
