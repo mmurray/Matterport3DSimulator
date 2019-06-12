@@ -102,12 +102,12 @@ class Game:
                 nav_m = [{"type": "update", "action": "set_aux", "message": "Congrats, you found the room!"},
                          {"type": "update", "action": "disable_chat"},
                          {"type": "update", "action": "disable_nav"},
-                         {"type": "update", "action": "enable_exit", "message": {"oracle": oracle, "navigator": navigator}}]
+                         {"type": "update", "action": "exit", "message": {"oracle": oracle, "navigator": navigator}}]
                 oracle_m = [{"type": "update", "action": "set_aux",
                              "message": "Congrats, you helped your partner find the room!"},
                             {"type": "update", "action": "disable_chat"},
                             {"type": "update", "action": "disable_gold_view"},
-                            {"type": "update", "action": "enable_exit", "message": {"oracle": oracle, "navigator": navigator}}]
+                            {"type": "update", "action": "exit", "message": {"oracle": oracle, "navigator": navigator}}]
                 return [nav_m, oracle_m, True]
             else:  # incorrect location, so freeze nav and set aux.
                 nav_m = [{"type": "update", "action": "disable_nav"},

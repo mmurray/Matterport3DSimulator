@@ -759,10 +759,12 @@ window.play_animation = function() {
       var shortest_len = -1;
       shortest_policy = -1;
       for (idx=0; idx < optimal_policies.length; idx++) {
-        var idx_len = optimal_policies[idx][curr_image_id_gold].length;
-        if (shortest_policy == -1 || idx_len < shortest_len) {
-          shortest_policy = optimal_policies[idx];
-          shortest_len = idx_len;
+        if (optimal_policies[idx][curr_image_id_gold]) {
+          var idx_len = optimal_policies[idx][curr_image_id_gold].length;
+          if (shortest_policy == -1 || idx_len < shortest_len) {
+            shortest_policy = optimal_policies[idx];
+            shortest_len = idx_len;
+          }
         }
       }
       shortest_policy[curr_image_id_gold].reverse();
