@@ -121,11 +121,11 @@ class Game:
         return [[{"type": "update", "action": "set_aux", "message": m},
                  {"type": "update", "action": "disable_chat"},
                  {"type": "update", "action": "disable_nav"},
-                 {"type": "update", "action": "enable_exit"}],
+                 {"type": "update", "action": "exit"}],
                 [{"type": "update", "action": "set_aux", "message": m},
                  {"type": "update", "action": "disable_chat"},
                  {"type": "update", "action": "disable_gold_view"},
-                 {"type": "update", "action": "enable_exit"}]]
+                 {"type": "update", "action": "exit"}]]
 
 
 class Server:
