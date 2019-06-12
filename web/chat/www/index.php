@@ -279,6 +279,15 @@ function disable_gold_view() {
   $('#nav_inst').html("Your partner is navigating through this scene. When they ask you for help you will be able to view the best route by clicking \"Show Best Route\" below.<br/>");
 }
 
+function enable_exit() {
+    $('#no_pair_message').show();
+}
+
+function exit() {
+    send_user_action("exit", "exit", {});
+    $('#give_up_btn').attr("disabled", "true").html("Loading...");
+}
+
 // ----------
 // Misc.
 
@@ -287,11 +296,15 @@ function enable_get_code(msg) {
   add_debug("enable_get_code called");
   $('#interaction_div').hide();
   $('#practice_div').hide();
+  $('#inst_div').hide();
   $('#finished_task_div').show();
   $('#finish_task_button').show();
   $('#finish_task_button').prop("disabled", false);
 
   $('#finished_auxiliary_text').html($('#auxiliary_text').html());
+  if ($('#finished_auxiliary_text').html() === "") {
+    $('#finished_auxiliary_text').html("Thanks for participating!");
+  }
   if ((msg && msg.navigator) || (msg && msg.oracle)) {
     $('#feedback_nav_id').val(msg.navigator);
     $('#feedback_oracle_id').val(msg.oracle);
@@ -368,7 +381,10 @@ function poll_for_agent_messages() {
         enable_chat();
       }
       else if (comm[idx].action == "enable_exit") {
-        enable_get_code(comm[idx].message);
+        enable_exit();
+      }
+      else if (comm[idx].action == "exit") {
+        enable_get_code(false);
       }
       else if (comm[idx].action == "enable_gold_view") {
         enable_gold_view();
@@ -393,6 +409,9 @@ function poll_for_agent_messages() {
       }
       else if (comm[idx].action == "show_chat") {
         show_chat();
+      }
+      else if (comm[idx].action == "hide_instructions") {
+        hide_instructions();
       }
       else if (comm[idx].action == "show_gold_view") {
         show_gold_view();
@@ -423,15 +442,18 @@ function poll_for_agent_messages() {
 
 }
 
+function hide_instructions() {
+  $('#inst_div').hide();
+  $('#interaction_div').show();
+}
+
 // Start the game.
 function start_task(d, uid) {
 
   // Show display.
-  $('#inst_div').hide();
   $('#start_game_button').prop("disabled", true);
-  $('#interaction_div').show();
-  display_aux_message("Waiting on another player to connect... Please DO NOT refresh the page!");
-  $('#practice_div').show();
+  //display_aux_message("Waiting on another player to connect... Please DO NOT refresh the page!");
+  $('.waiting_message').show();
 
   // Start infinite, 5 second poll for server feedback that ends when action message is shown.
   server_comm_url = d + uid + ".server.json";
@@ -497,6 +519,15 @@ if (!isset($_POST['uid'])) {
   ?>
   <div class="row" id="inst_div">
     <div class="col-md-12">
+        <p style="color:#00f;font-size: 18px;line-height:40px;display:none;" class="waiting_message" >Waiting on another player to connect... Please DO NOT refresh the page!</p>
+
+        <div style="display:none;" id="no_pair_message">
+            <div class="alert alert-warning">
+            <p>Looks like there's no one around to pair with! Sorry about that. If you don't want to wait any longer you can end the HIT and receive payment.</p>
+            </div>
+
+            <button onclick="exit()" style="clear:both;" id="give_up_btn" class="btn btn-danger">Give up and skip to survey</button>
+        </div>
       <?php echo $inst;?>
       <p>
         We are researchers collecting information about how people help one another navigate using language.
@@ -576,8 +607,8 @@ if (!isset($_POST['uid'])) {
 
 </div>
 
-<button class="btn btn-success" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start task</button>
-
+<button style="float:left;" class="btn btn-success btn-lg" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start task</button>
+<p style="color:#00f;float:left; margin-left: 10px;font-size: 18px;line-height:40px;display:none;" class="waiting_message" >Waiting on another player to connect... Please DO NOT refresh the page!</p>
 
 
       </form>
@@ -671,7 +702,7 @@ if (!isset($_POST['uid'])) {
   <div class="row">
     <div class="col-md-12">
        <div class="alert alert-success" role="alert" id="finished_auxiliary_text"></div>
-      <form action="generate_code.php" method="POST">
+      <form novalidate action="generate_code.php" method="POST">
       <div class="form-group" id="helpful_rating" style="display:none;">
         <label for="rating">How helpful was your partner?</label>
         <p id="rating_label">Rate the helpfulness of your partner in answering your questions and helping you get to the goal.</p>
@@ -707,7 +738,7 @@ if (!isset($_POST['uid'])) {
         </div>
       </div>
       <div class="form-group">
-        <label for="free_form_feedback">Please provide any additional feedback you have about your partner or about the task in general:</label>
+        <label for="free_form_feedback">Please provide any additional feedback you have:</label>
         <textarea class="form-control" rows="3" name="free_form_feedback" id="free_form_feedback"></textarea>
       </div>
 

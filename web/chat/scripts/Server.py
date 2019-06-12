@@ -47,6 +47,7 @@ class Game:
                  {"type": "update", "action": "set_target_obj", "value": self.target_obj},
                  {"type": "update", "action": "set_start_pano", "value": self.start_pano},
                  {"type": "update", "action": "set_aux", "message": "Another player connected! You are The Navigator."},
+                 {"type": "update", "action": "hide_instructions"},
                  {"type": "update", "action": "show_chat"},
                  {"type": "update", "action": "show_nav"},
                  {"type": "update", "action": "enable_chat"},
@@ -57,6 +58,7 @@ class Game:
                  {"type": "update", "action": "set_start_pano", "value": self.start_pano},
                  {"type": "update", "action": "set_end_panos", "value": ','.join(self.end_panos)},
                  {"type": "update", "action": "set_aux", "message": "Another player connected! You are The Oracle."},
+                 {"type": "update", "action": "hide_instructions"},
                  {"type": "update", "action": "show_chat"},
                  {"type": "update", "action": "show_mirror_nav"},
                  {"type": "update", "action": "show_gold_view"},
@@ -152,6 +154,7 @@ class Server:
         self.games_timeout = []  # list of games' remaining times
         self.logs = []  # list of log file names parallel to games list
         self.u2g = {}  # assignment of users to games, uid -> gid
+        self.exit_enabled = []
 
         # File upkeep is done at the end of each cycle; changes to be made stored in these structures.
         self.files_to_remove = []
@@ -186,12 +189,9 @@ class Server:
                 for uid in unassigned:
                     self.time_unpaired[uid] -= 1
                     if self.time_unpaired[uid] == 0:
-                        self.users.remove(uid) # Remove the user from the queue so they dont get paired later
+                        self.exit_enabled.append(uid)
                         self.files_to_write.extend(
-                            [("none", uid, "server", {"type": "update", "action": "set_aux",
-                                                      "message": "Looks like there's no one around to pair with! " +
-                                                      "Sorry about that. You can end the HIT and recieve payment."}),
-                             ("none", uid, "server", {"type": "update", "action": "enable_exit"})])
+                            [("none", uid, "server", {"type": "update", "action": "enable_exit"})])
 
                 # Interrupt games that have had no communication for too long.
                 for gidx in range(len(self.games)):
@@ -263,6 +263,12 @@ class Server:
             if game_over:
                 self.games[self.u2g[uid]] = None
 
+        if d["type"] == "exit":
+            self.users.remove(uid)  # Remove the user from the queue so they dont get paired later
+            self.exit_enabled.remove(uid)
+            self.files_to_write.extend(
+                [("none", uid, "server", {"type": "update", "action": "exit"})])
+
         # Mark this communication for removal.
         self.files_to_remove.append(fn)
 
@@ -277,6 +283,11 @@ class Server:
         while len(unassigned) > 1:
             uid1 = unassigned.pop(0)
             uid2 = unassigned.pop(0)
+
+            if uid1 in self.exit_enabled:
+                self.exit_enabled.remove(uid1)
+            if uid2 in self.exit_enabled:
+                self.exit_enabled.remove(uid2)
 
             # TODO: select a house and tuple from house_targets in some kind of better, active fashion than this.
             house = np.random.choice(list(self.house_targets.keys()))
@@ -354,7 +365,7 @@ def main(args):
     # Hard-coded server and game params.
     server_spin_time = 1
     max_seconds_per_turn = 300
-    max_seconds_unpaired = 300
+    max_seconds_unpaired = 10
 
     print("main: loading house targets from '%s'" % args.house_target_fn)
     with open(args.house_target_fn, 'r') as f:
