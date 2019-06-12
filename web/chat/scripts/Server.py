@@ -189,9 +189,16 @@ class Server:
                 for uid in unassigned:
                     self.time_unpaired[uid] -= 1
                     if self.time_unpaired[uid] == 0:
-                        self.exit_enabled.append(uid)
-                        self.files_to_write.extend(
-                            [("none", uid, "server", {"type": "update", "action": "enable_exit"})])
+                        if uid not in self.exit_enabled:
+                            self.time_unpaired[uid] = self.max_cycles_unpaired  # Let them wait another cycle.
+                            self.exit_enabled.append(uid)
+                            self.files_to_write.extend(
+                                [("none", uid, "server", {"type": "update", "action": "enable_exit"})])
+                        else:  # Either no one is playing or player closed tab.
+                            self.users.remove(uid)  # Remove the user from the queue so they dont get paired later
+                            self.exit_enabled.remove(uid)
+                            self.files_to_write.extend(
+                                [("none", uid, "server", {"type": "update", "action": "exit"})])
 
                 # Interrupt games that have had no communication for too long.
                 for gidx in range(len(self.games)):
@@ -365,7 +372,7 @@ def main(args):
 
     # Hard-coded server and game params.
     server_spin_time = 1
-    max_seconds_per_turn = 420
+    max_seconds_per_turn = 300
     max_seconds_unpaired = 420
 
     print("main: loading house targets from '%s'" % args.house_target_fn)
