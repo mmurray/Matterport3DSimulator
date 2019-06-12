@@ -529,6 +529,7 @@ if (!isset($_POST['uid'])) {
             <button onclick="exit()" style="clear:both;" id="give_up_btn" class="btn btn-danger">Give up and skip to survey</button>
         </div>
       <?php echo $inst;?>
+      <div id="instructions_content">
       <p>
         We are researchers collecting information about how people help one another navigate using language.
         In this HIT, you will be paired with a partner.
@@ -606,12 +607,12 @@ if (!isset($_POST['uid'])) {
         </div>
 
 </div>
+</div>
 
 <button style="float:left;" class="btn btn-success btn-lg" id="start_game_button" onclick="start_task('<?php echo $d;?>', '<?php echo $uid;?>')">Start task</button>
 <p style="color:#00f;float:left; margin-left: 10px;font-size: 18px;line-height:40px;display:none;" class="waiting_message" >Waiting on another player to connect... Please DO NOT refresh the page!</p>
 
 
-      </form>
     </div>
   </div>
   <?php
@@ -626,7 +627,7 @@ if (!isset($_POST['uid'])) {
         <figure style="display: inline-block; width: 100%;"><canvas id="skybox" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
         <p id="nav_inst">
           When you and your partner believe you have found the correct room, click 'Found Room' below.<br/>
-          <button class="btn" disabled id="user_nav_end" onclick="send_user_stop('<?php echo $d;?>', '<?php echo $uid;?>')">Found Room</button>
+          <button class="btn btn-success" disabled id="user_nav_end" onclick="send_user_stop('<?php echo $d;?>', '<?php echo $uid;?>')">Found Room</button>
         </p>
       </div>
       <div id="user_gold_div" style="display:none;">
@@ -639,6 +640,30 @@ if (!isset($_POST['uid'])) {
     <div class="col-md-6">
       <div id="dialog_div" style="display:none;">
         <p id="shared_instructions"></p>
+        <p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewInstModal">
+  Review full instructions
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="reviewInstModal" tabindex="-1" role="dialog" aria-labelledby="reviewInstModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="reviewInstModalLabel">Instructions</h4>
+      </div>
+      <div class="modal-body" id="reviewInstBody">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+        </p>
         <table id="dialog_table" class="dialog_table">
           <thead><th class="chat_header_row">You
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -791,6 +816,8 @@ if (urlv.house_scan && urlv.start_pano && urlv.end_panos && urlv.inst) {
 if (urlv.max_gold_len) {
     window.MAX_GOLD_LENGTH = parseInt(urlv.max_gold_len);
 }
+
+$('#reviewInstBody').html($('#instructions_content').clone().css({fontWeight:'normal', fontSize:'14px'}));
 
 </script>
 
