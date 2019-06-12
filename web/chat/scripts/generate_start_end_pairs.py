@@ -114,7 +114,7 @@ def main(args):
     print("Writing %d tuples across %d houses to file '%s'" %
           (sum([len(house_target_tuple[h]) for h in house_target_tuple]), len(house_target_tuple), args.output_fn))
     with open(args.output_fn, 'w') as f:
-         json.dump(house_target_tuple, f)
+        json.dump(house_target_tuple, f)
     print("... done")
 
 
