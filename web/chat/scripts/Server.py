@@ -201,7 +201,7 @@ class Server:
                             g = self.games[gidx]
                             nav_ms, oracle_ms = g.interrupt(
                                 "Looks like you or your partner took too long to respond. Sorry about that! " +
-                                "You can end the HIT and recieve payment.")
+                                "You can end the HIT and receive payment.")
                             self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
                             self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
 
@@ -217,7 +217,7 @@ class Server:
             # Interrupt games.
             for g in self.games:
                 if g is not None:
-                    nav_ms, oracle_ms = g.interrupt("Unexpected Server Error. You can end the HIT and recieve payment.")
+                    nav_ms, oracle_ms = g.interrupt("Unexpected Server Error. You can end the HIT and receive payment.")
                     self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
                     self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
             # Let unpaired users off the hook.
@@ -225,13 +225,10 @@ class Server:
             for uid in unassigned:
                 self.files_to_write.extend([("none", uid, "server", {"type": "update", "action": "set_aux",
                                                                      "message": "Unexpected Server Error." +
-                                                                     "You can end the HIT and recieve payment."}),
+                                                                     "You can end the HIT and receive payment."}),
                                             ("none", uid, "server", {"type": "update", "action": "enable_exit"})])
-            while (len(self.files_to_write)) > 0:
-                print("Server: Flushing files...")
-                self.flush_files()
-                time.sleep(self.spin_time)
-                self.curr_cycle += 1
+            print("Server: Forcing file flush for shutdown...")
+            self.flush_files(force_overwrite=True)
 
     # Interpret JSON communication from a user.
     # fn - the file path to interpret.
@@ -245,7 +242,7 @@ class Server:
             # Log new user appearance.
             log_fn = os.path.join(self.log_dir, uid + ".log")
             with open(log_fn, 'a') as f:
-                f.write('%d\tclient\t%s\n' % (self.curr_cycle, d))
+                f.write('%d\t%s\tserver\t%s\n' % (self.curr_cycle, uid, d))
         # Game action.
         if d["type"] == "update":
             g = self.games[self.u2g[uid]]
@@ -257,7 +254,7 @@ class Server:
             # Log client updates.
             log_fn = os.path.join(self.log_dir, g.name + ".log")
             with open(log_fn, 'a') as f:
-                f.write('%d\tclient\t%s\n' % (self.curr_cycle, d))
+                f.write('%d\t%s\tserver\t%s\n' % (self.curr_cycle, uid, d))
 
             # If game is over, clear it.
             if game_over:
@@ -320,7 +317,7 @@ class Server:
                     f.write('%d\tserver\t%s\n' % (self.curr_cycle, {"type": "pair", "partner": uido}))
 
     # Removes flagged files, writes queued files, and logs writes as text.
-    def flush_files(self):
+    def flush_files(self, force_overwrite=False):
 
         # Remove flagged files.
         for fn in self.files_to_remove:
@@ -343,14 +340,18 @@ class Server:
         for uid in msgs_for_uid:
             game_name, ext, _ = msgs_for_uid[uid][0]
             fn = os.path.join(self.client_dir, '.'.join([uid, ext, 'json']))
-            if not os.path.isfile(fn):  # only proceed if the client has already processed existing messages.
+            # Only write this communication batch if the client has already processed existing messages.
+            # If force_overwrite is set, the last communications will be lost on the client side; this should ONLY
+            # be used when the communication -must- go through, such as when the Server unexpectedly shuts down (in
+            # which case the previous messages are moot).
+            if force_overwrite or not os.path.isfile(fn):
                 with open(fn, 'w') as f:
                     ss = [msg[2] for msg in msgs_for_uid[uid]]
                     print("Server writing '" + fn + "' with contents: \"" + str(ss) + "\"")
                     json.dump(ss, f)
                 log_fn = os.path.join(self.log_dir, game_name + ".log")
                 with open(log_fn, 'a') as f:
-                    f.write('\n'.join(['%d\tserver\t%s' % (self.curr_cycle, s) for s in ss]) + '\n')
+                    f.write('\n'.join(['%d\tserver\t%s\t%s' % (self.curr_cycle, uid, s) for s in ss]) + '\n')
                 uids_messaged.append(uid)
 
         # Re-queue files to write for users whose clients have not yet processed their files.
