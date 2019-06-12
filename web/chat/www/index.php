@@ -384,7 +384,7 @@ function poll_for_agent_messages() {
         enable_exit();
       }
       else if (comm[idx].action == "exit") {
-        enable_get_code(false);
+        enable_get_code(comm[idx].message);
       }
       else if (comm[idx].action == "enable_gold_view") {
         enable_gold_view();
