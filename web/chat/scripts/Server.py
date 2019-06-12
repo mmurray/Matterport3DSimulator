@@ -364,7 +364,7 @@ def main(args):
 
     # Hard-coded server and game params.
     server_spin_time = 1
-    max_seconds_per_turn = 480
+    max_seconds_per_turn = 420
     max_seconds_unpaired = 420
 
     print("main: loading house targets from '%s'" % args.house_target_fn)
