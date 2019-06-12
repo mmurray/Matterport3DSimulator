@@ -280,7 +280,7 @@ function disable_gold_view() {
 }
 
 function enable_exit() {
-    $('#no_pair_message').show();
+    $('.no_pair_message').show();
 }
 
 function exit() {
@@ -312,6 +312,8 @@ function enable_get_code(msg) {
     if (oracle_mode) {
       $('#rating_label').html("Rate the clarity of your partner's questions and how well they followed your instructions. Higher is better (1 = Very Poor, 10 = Very Good)");
     }
+  } else {
+    $('#helpful_rating').html("");
   }
 }
 
@@ -521,7 +523,7 @@ if (!isset($_POST['uid'])) {
     <div class="col-md-12">
         <p style="color:#00f;font-size: 18px;line-height:40px;display:none;" class="waiting_message" >Waiting on another player to connect... Please DO NOT refresh the page!</p>
 
-        <div style="display:none;" id="no_pair_message">
+        <div style="display:none;" class="no_pair_message" id="no_pair_message">
             <div class="alert alert-warning">
             <p>Looks like there's no one around to pair with! Sorry about that. If you don't want to wait any longer you can end the HIT and receive payment.</p>
             </div>
@@ -694,6 +696,13 @@ if (!isset($_POST['uid'])) {
       <p id="debug_text" style="color:purple;display:none;"></p>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+        <div style="display:none;" class="no_pair_message">
+            <button onclick="exit()" style="clear:both;" id="give_up_btn" class="btn btn-danger">Give up and skip to survey</button>
+        </div>
+    </div>
+   </div>
 </div>
 
 <div id="practice_div" style="display:none;">
@@ -726,7 +735,7 @@ if (!isset($_POST['uid'])) {
   <div class="row">
     <div class="col-md-12">
        <div class="alert alert-success" role="alert" id="finished_auxiliary_text"></div>
-      <form novalidate action="generate_code.php" method="POST">
+      <form action="generate_code.php" method="POST">
       <div class="form-group" id="helpful_rating" style="display:none;">
         <label for="rating">How helpful was your partner?</label>
         <p id="rating_label">Rate the helpfulness of your partner in answering your questions and helping you get to the goal.</p>
