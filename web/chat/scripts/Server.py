@@ -13,7 +13,7 @@ class Game:
 
     # Initialize the game.
     def __init__(self, uid1, uid2,
-                 house, target_obj, start_pano, end_panos):
+                 house, target_obj, start_pano, end_panos, max_seconds_per_turn):
         print("Game: initializing with users %s, %s" % (uid1, uid2))
         print("Game: ... house %s, target %s, start pano %s, end panos " %
               (house, target_obj, start_pano) + str(end_panos))
@@ -24,6 +24,7 @@ class Game:
         self.target_obj = target_obj
         self.start_pano = start_pano
         self.end_panos = end_panos
+        self.max_seconds_per_turn = max_seconds_per_turn
 
         self.partner = {uid1: uid2, uid2: uid1}
 
@@ -50,7 +51,7 @@ class Game:
                  {"type": "update", "action": "hide_instructions"},
                  {"type": "update", "action": "show_chat"},
                  {"type": "update", "action": "show_nav"},
-                 {"type": "update", "action": "enable_chat"},
+                 {"type": "update", "action": "enable_chat", "timeout_at": time.time() + self.max_seconds_per_turn},
                  {"type": "update", "action": "enable_nav"},
                  ],
                 [{"type": "update", "action": "set_house", "value": self.house},
@@ -60,6 +61,7 @@ class Game:
                  {"type": "update", "action": "set_aux", "message": "Another player connected! You are The Oracle."},
                  {"type": "update", "action": "hide_instructions"},
                  {"type": "update", "action": "show_chat"},
+                 {"type": "update", "action": "disable_chat", "timeout_at": time.time() + self.max_seconds_per_turn},
                  {"type": "update", "action": "show_mirror_nav"},
                  {"type": "update", "action": "show_gold_view"},
                  ]
@@ -72,9 +74,9 @@ class Game:
         if action == "chat":
             contents = d["message"]
             speaker_m = [{"type": "update", "action": "add_chat", "speaker": "self", "message": contents},  # the chat
-                         {"type": "update", "action": "disable_chat"}]  # disable chatbox
+                         {"type": "update", "action": "disable_chat", "timeout_at": time.time() + self.max_seconds_per_turn}]  # disable chatbox
             listener_m = [{"type": "update", "action": "add_chat", "speaker": "other", "message": contents},  # the chat
-                          {"type": "update", "action": "enable_chat"}]  # enable chat
+                          {"type": "update", "action": "enable_chat", "timeout_at": time.time() + self.max_seconds_per_turn}]  # enable chat
 
             # Navigator typed a help request chat to the oracle, so disable navigation until response.
             # In addition, enable the oracle to do gold viewing.
@@ -246,7 +248,8 @@ class Server:
         # Game action.
         if d["type"] == "update":
             g = self.games[self.u2g[uid]]
-            self.games_timeout[self.u2g[uid]] = self.max_cycles_per_turn
+            if d["action"] == "chat" or d["action"] == "guess_stop":
+                self.games_timeout[self.u2g[uid]] = self.max_cycles_per_turn
             nav_ms, oracle_ms, game_over = g.update(d, g.oracle, g.navigator)
             self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
             self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
@@ -293,7 +296,7 @@ class Server:
 
             print("Server: assign_pairs pairing users %s and %s to play in house %s with target obj %s (dists=" %
                   (uid1, uid2, house, target_obj) + str(dists) + ")")
-            g = Game(uid1, uid2, house, target_obj, start_pano, end_panos)
+            g = Game(uid1, uid2, house, target_obj, start_pano, end_panos, self.max_cycles_per_turn * self.spin_time)
             if None in self.games:
                 gid = self.games.index(None)
                 self.games[gid] = g
@@ -365,7 +368,7 @@ def main(args):
 
     # Hard-coded server and game params.
     server_spin_time = 1
-    max_seconds_per_turn = 420
+    max_seconds_per_turn = 300
     max_seconds_unpaired = 420
 
     print("main: loading house targets from '%s'" % args.house_target_fn)

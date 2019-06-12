@@ -117,25 +117,50 @@ function show_chat() {
   $('#dialog_div').show();
 }
 
+function fmt_time_secs(s){return(s-(s%=60))/60+(9<s?':':':0')+Math.floor(s)}
+
 // Enable the user text input.
-function enable_chat() {
+function enable_chat(timeout_at) {
   add_debug("enable_chat called");
   $('#user_input').prop("disabled", false);
   $('#user_input').focus();
   $('#user_say').prop("disabled", false);
   $('#user_input_message').hide();
+
+
+  if (timeout_at) {
+      window.timeout_at = timeout_at;
+      var time_left = timeout_at - Math.floor(Date.now() / 1000);
+      $('#time_left_label').html("You have");
+      $('#time_left_value').html(fmt_time_secs(time_left));
+      $('#time_left').show();
+  }
 }
 
 // Disable user text input.
-function disable_chat() {
+function disable_chat(timeout_at) {
   add_debug("disable_chat called");
   $('#user_input').prop("disabled", true);
   $('#user_say').prop("disabled", true);
   $('#user_input_message').show();
+
+  if (timeout_at) {
+      window.timeout_at = timeout_at;
+      var time_left = timeout_at - Math.floor(Date.now() / 1000);
+      $('#time_left_value').html(fmt_time_secs(time_left));
+      $('#time_left_label').html("Your partner has");
+      $('#time_left').show();
+  }
 }
 
 var blinkTimeout = null;
 var animInterval = null;
+var timerInterval = setInterval(function() {
+    if (!window.timeout_at) return;
+    var time_left = window.timeout_at - Math.floor(Date.now() / 1000);
+    if (time_left < 0) time_left = 0;
+    $('#time_left_value').html(fmt_time_secs(time_left));
+}, 1000);
 
 // Add a chat to either the user or partner dialog row and open the next row for typing.
 function add_chat(message, speaker) {
@@ -371,7 +396,7 @@ function poll_for_agent_messages() {
         add_chat(comm[idx].message, comm[idx].speaker);      
       }
       else if (comm[idx].action == "disable_chat") {
-        disable_chat();
+        disable_chat(comm[idx].timeout_at);
       }
       else if (comm[idx].action == "disable_gold_view") {
         disable_gold_view();
@@ -380,7 +405,7 @@ function poll_for_agent_messages() {
         disable_nav();
       }
       else if (comm[idx].action == "enable_chat") {
-        enable_chat();
+        enable_chat(comm[idx].timeout_at);
       }
       else if (comm[idx].action == "enable_exit") {
         enable_exit();
@@ -675,8 +700,11 @@ if (!isset($_POST['uid'])) {
         </table>
         <p>
           <input type="text" disabled id="user_input" style="width:100%;" placeholder="your message..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"><br/>
-          <button class="btn" disabled id="user_say" onclick="send_user_chat('<?php echo $d;?>', '<?php echo $uid;?>')">Send Message and Change Turns</button>
-          <span style="color:#00f;font-size:13px;" id="user_input_message"><span id="user_input_message_val">Waiting for a response from your partner</span>...</span>
+          <button class="btn" disabled id="user_say" onclick="send_user_chat('<?php echo $d;?>', '<?php echo $uid;?>')" style="margin-top:5px;margin-bottom:10px;">Send Message and Change Turns</button>
+          <div style="color:#00f;font-size:13px;" id="user_input_message"><span id="user_input_message_val">Waiting for a response from your partner</span>...</div>
+        </p>
+        <p>
+            <div id="time_left" style="color:#00f;font-size:13px">(<span id="time_left_label">Your partner has</span>&nbsp;<span id="time_left_value"></span> to respond)</div>
         </p>
       </div>
     </div>
