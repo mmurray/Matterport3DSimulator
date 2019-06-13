@@ -113,9 +113,10 @@ class Game:
                 return [nav_m, oracle_m, True]
             else:  # incorrect location, so freeze nav and set aux.
                 nav_m = [{"type": "update", "action": "disable_nav"},
+                         {"type": "update", "action": "enable_chat", "timeout_at": time.time() + self.max_seconds_per_turn},
                          {"type": "update", "action": "set_aux",
                           "message": "You're not yet in the right room. Try asking your partner for directions."}]
-                oracle_m = []
+                oracle_m = [{"type": "update", "action": "disable_chat", "timeout_at": time.time() + self.max_seconds_per_turn}]
             return [nav_m, oracle_m, False]
 
     # Interrupted.
