@@ -620,7 +620,7 @@ if (!isset($_POST['uid'])) {
       <p>The oracle observes as the navigator moves through the house.
       When the navigator asks a question, the oracle is provided with an animated preview of the best next steps to take toward the goal room.
       It is the oracle's job to describe these steps to the navigator by sending a response in the chat.
-      Before responding, they can replay the best path animation as many times as they want by clicking the "<i>Show Best Path</i>" button.</p>
+      Before responding, they can replay the best path animation as many times as they want by clicking the "<i>Show Best Route</i>" button.</p>
 
       <p><b>When the oracle sends a response to the navigator, they will again observe the navigator moving through the house!</b>
         When describing the best path, the oracle should strive to be as helpful as possible, for example:
@@ -660,7 +660,8 @@ if (!isset($_POST['uid'])) {
       <div id="user_gold_div" style="display:none;">
         <figure style="display: inline-block; width: 100%;"><canvas id="skybox_gold" style="width:100%; height:auto; display: none; margin: 0 auto;"> </canvas></figure>
         <p>
-          <button class="btn" style="display:none;" disabled="disabled" id="user_gold_play" onclick="window.play_animation()">Show Best Route</button>
+          <button class="btn" style="display:none;" disabled="disabled" id="user_gold_play" onclick="window.play_animation()"><b>Show Best Route</b><br/>
+          <div style="color:#00f;font-size:13px">If no route is shown when you click, then your partner is in the goal room.</div></button>
         </p>
       </div>
     </div>
