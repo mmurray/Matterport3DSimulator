@@ -704,7 +704,7 @@ if (!isset($_POST['uid'])) {
           <div style="color:#00f;font-size:13px;" id="user_input_message"><span id="user_input_message_val">Waiting for a response from your partner</span>...</div>
         </p>
         <p>
-            <div id="time_left" style="color:#00f;font-size:13px">(<span id="time_left_label">Your partner has</span>&nbsp;<span id="time_left_value"></span> to respond)</div>
+            <div id="time_left" style="color:#00f;font-size:13px">(<span id="time_left_label">Your partner has</span>&nbsp;<span id="time_left_value"></span> to chat.)</div>
         </p>
       </div>
     </div>
