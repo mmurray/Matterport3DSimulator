@@ -340,7 +340,7 @@ function enable_get_code(msg) {
     $('#feedback_oracle_id').val(msg.oracle);
     $('#helpful_rating').show();
     if (oracle_mode) {
-      $('#rating_label').html("Rate the clarity of your partner's questions and how well they followed your instructions. Higher is better (1 = Very Poor, 10 = Very Good)");
+      $('#rating_label').html("Rate the clarity of your partner's questions and how well they followed your instructions.");
     }
   } else {
     $('#helpful_rating').html("");
