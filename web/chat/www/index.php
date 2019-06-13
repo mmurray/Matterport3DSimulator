@@ -18,6 +18,9 @@
 
 
 <script type="text/javascript">
+
+var unloadListener = function(){ return "Please do not reload or close this tab! Doing so will abandon this game and strand your partner, and you will not be able to complete the HIT." };
+
 // Whether to show debug messages.
 var debug = true;
 
@@ -305,6 +308,7 @@ function disable_gold_view() {
 }
 
 function enable_exit() {
+    window.onbeforeunload = null;
     $('.no_pair_message').show();
 }
 
@@ -318,6 +322,7 @@ function exit() {
 
 // Enable the end game/get code button.
 function enable_get_code(msg) {
+  window.onbeforeunload = null;
   add_debug("enable_get_code called");
   $('#interaction_div').hide();
   $('#practice_div').hide();
@@ -476,6 +481,8 @@ function hide_instructions() {
 
 // Start the game.
 function start_task(d, uid) {
+
+  window.onbeforeunload = unloadListener;
 
   // Show display.
   $('#start_game_button').prop("disabled", true);
@@ -647,7 +654,11 @@ if (!isset($_POST['uid'])) {
 ?>
 
 <div id="interaction_div" style="display:none;">
-<div class="alert alert-warning"> Do not navigate away from this page until the task is complete!</div>
+<div class="alert alert-warning" style="display:block;">
+ <p>Do not navigate away from this page until the task is complete!</p>
+ <p style="font-size:12px">Closing or reloading this tab may prevent you or other players from successfully completing this HIT!
+If you have any problems, please email us instead at <a style="background:none;padding:0;margin:0;color:#8a6d3b;text-decoration:underline;font-size:13px" href="mailto:mp-dialog@cs.washington.edu">mp-dialog@cs.washington.edu</a></p>
+</div>
   <div class="row">
     <div class="col-md-6">
       <div id="user_nav_div" style="display:none;">
