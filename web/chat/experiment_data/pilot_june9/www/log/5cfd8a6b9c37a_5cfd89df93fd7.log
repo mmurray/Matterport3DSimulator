@@ -1,0 +1,25 @@
+13026	server	{'type': 'update', 'action': 'set_house', 'value': 'sT4fr6TAbpF'}
+13026	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'toiletpaper'}
+13026	server	{'type': 'update', 'action': 'set_start_pano', 'value': '0f66c6d380084442bc92186bcd20a39f'}
+13026	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+13026	server	{'type': 'update', 'action': 'show_chat'}
+13026	server	{'type': 'update', 'action': 'show_nav'}
+13026	server	{'type': 'update', 'action': 'enable_chat'}
+13026	server	{'type': 'update', 'action': 'enable_nav'}
+13026	server	{'type': 'update', 'action': 'set_house', 'value': 'sT4fr6TAbpF'}
+13026	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'toiletpaper'}
+13026	server	{'type': 'update', 'action': 'set_start_pano', 'value': '0f66c6d380084442bc92186bcd20a39f'}
+13026	server	{'type': 'update', 'action': 'set_end_panos', 'value': '976ad0993bce4c5784da72eb4570d795'}
+13026	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+13026	server	{'type': 'update', 'action': 'show_chat'}
+13026	server	{'type': 'update', 'action': 'show_mirror_nav'}
+13026	server	{'type': 'update', 'action': 'show_gold_view'}
+13029	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '0f66c6d380084442bc92186bcd20a39f'}}
+13047	client	{'type': 'update', 'action': 'chat', 'message': 'hello'}
+13047	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'hello'}
+13047	server	{'type': 'update', 'action': 'disable_chat'}
+13047	server	{'type': 'update', 'action': 'disable_nav'}
+13346	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+13346	server	{'type': 'update', 'action': 'disable_chat'}
+13346	server	{'type': 'update', 'action': 'disable_nav'}
+13346	server	{'type': 'update', 'action': 'enable_exit'}

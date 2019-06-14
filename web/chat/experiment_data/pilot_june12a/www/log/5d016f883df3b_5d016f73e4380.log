@@ -1,0 +1,31 @@
+9066	server	{'type': 'update', 'action': 'set_house', 'value': 'D7G3Y4RVNrH'}
+9066	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'bookcase'}
+9066	server	{'type': 'update', 'action': 'set_start_pano', 'value': '7f7d2a41ca0b44a58c987833692e2791'}
+9066	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+9066	server	{'type': 'update', 'action': 'hide_instructions'}
+9066	server	{'type': 'update', 'action': 'show_chat'}
+9066	server	{'type': 'update', 'action': 'show_nav'}
+9066	server	{'type': 'update', 'action': 'enable_chat'}
+9066	server	{'type': 'update', 'action': 'enable_nav'}
+9066	server	{'type': 'update', 'action': 'set_house', 'value': 'D7G3Y4RVNrH'}
+9066	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'bookcase'}
+9066	server	{'type': 'update', 'action': 'set_start_pano', 'value': '7f7d2a41ca0b44a58c987833692e2791'}
+9066	server	{'type': 'update', 'action': 'set_end_panos', 'value': '24f4450a5eb14381b8ed20ee31ac44ac,3beab818935e4ed8aefd2d4d080130fa,5ca7bfc500ec4d928285e61efee2dde5,9b253c8eec6c40528ee7fbfc011316a1'}
+9066	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+9066	server	{'type': 'update', 'action': 'hide_instructions'}
+9066	server	{'type': 'update', 'action': 'show_chat'}
+9066	server	{'type': 'update', 'action': 'show_mirror_nav'}
+9066	server	{'type': 'update', 'action': 'show_gold_view'}
+9072	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '7f7d2a41ca0b44a58c987833692e2791'}}
+9072	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '7f7d2a41ca0b44a58c987833692e2791'}}
+9126	client	{'type': 'update', 'action': 'guess_stop', 'value': '7f7d2a41ca0b44a58c987833692e2791'}
+9126	server	{'type': 'update', 'action': 'disable_nav'}
+9126	server	{'type': 'update', 'action': 'set_aux', 'message': "You're not yet in the right room. Try asking your partner for directions."}
+9545	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+9545	server	{'type': 'update', 'action': 'disable_chat'}
+9545	server	{'type': 'update', 'action': 'disable_nav'}
+9545	server	{'type': 'update', 'action': 'exit'}
+9545	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+9545	server	{'type': 'update', 'action': 'disable_chat'}
+9545	server	{'type': 'update', 'action': 'disable_gold_view'}
+9545	server	{'type': 'update', 'action': 'exit'}

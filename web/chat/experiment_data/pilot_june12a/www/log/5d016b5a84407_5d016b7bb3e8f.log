@@ -1,0 +1,57 @@
+8023	server	{'type': 'update', 'action': 'set_house', 'value': 'Uxmj2M2itWa'}
+8023	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'desk'}
+8023	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'b9c590fafdba4a7a9762ac6b77e45f21'}
+8023	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+8023	server	{'type': 'update', 'action': 'hide_instructions'}
+8023	server	{'type': 'update', 'action': 'show_chat'}
+8023	server	{'type': 'update', 'action': 'show_nav'}
+8023	server	{'type': 'update', 'action': 'enable_chat'}
+8023	server	{'type': 'update', 'action': 'enable_nav'}
+8023	server	{'type': 'update', 'action': 'set_house', 'value': 'Uxmj2M2itWa'}
+8023	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'desk'}
+8023	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'b9c590fafdba4a7a9762ac6b77e45f21'}
+8023	server	{'type': 'update', 'action': 'set_end_panos', 'value': 'b9f3fbcc0af34a888fc547751f2e2832,a12a4082b6c6428695e8cb00ec69a001,1d2e677ec3d54f62b50958b31a1c7864'}
+8023	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+8023	server	{'type': 'update', 'action': 'hide_instructions'}
+8023	server	{'type': 'update', 'action': 'show_chat'}
+8023	server	{'type': 'update', 'action': 'show_mirror_nav'}
+8023	server	{'type': 'update', 'action': 'show_gold_view'}
+8028	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'b9c590fafdba4a7a9762ac6b77e45f21'}}
+8028	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'b9c590fafdba4a7a9762ac6b77e45f21'}}
+8035	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.4745113903859584, '_y': 1.0809286582629596, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'b9c590fafdba4a7a9762ac6b77e45f21'}}
+8035	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.4745113903859584, '_y': 1.0809286582629596, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'b9c590fafdba4a7a9762ac6b77e45f21'}}
+8039	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5113269292952137, '_y': 1.6259926838125793, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'b9c590fafdba4a7a9762ac6b77e45f21'}}
+8039	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5113269292952137, '_y': 1.6259926838125793, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'b9c590fafdba4a7a9762ac6b77e45f21'}}
+8042	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5113269292952137, '_y': 1.241592804951861, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '78bea3c229344d1eb8ca1ac8366d1c5e'}}
+8042	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5113269292952137, '_y': 1.241592804951861, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '78bea3c229344d1eb8ca1ac8366d1c5e'}}
+8051	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.2740712341022346, '_y': 1.1289002427074248, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '78bea3c229344d1eb8ca1ac8366d1c5e'}}
+8051	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.2740712341022346, '_y': 1.1289002427074248, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '78bea3c229344d1eb8ca1ac8366d1c5e'}}
+8054	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.2740712341022346, '_y': 1.311161104602138, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'b24fe936bb9b4b86be143c0cb4dfff9a'}}
+8054	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.2740712341022346, '_y': 1.311161104602138, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'b24fe936bb9b4b86be143c0cb4dfff9a'}}
+8059	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.2740712341022346, '_y': 1.249042461366782, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '6a5844722dd34235a4fc3270381de880'}}
+8059	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.2740712341022346, '_y': 1.249042461366782, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '6a5844722dd34235a4fc3270381de880'}}
+8066	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.29452431127404305, '_y': 1.1478491401676965, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '6a5844722dd34235a4fc3270381de880'}}
+8066	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.29452431127404305, '_y': 1.1478491401676965, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '6a5844722dd34235a4fc3270381de880'}}
+8070	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.29452431127404305, '_y': 1.1728377566533448, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '51249b2653e1438cb8d455c96fdabf2c'}}
+8070	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.29452431127404305, '_y': 1.1728377566533448, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '51249b2653e1438cb8d455c96fdabf2c'}}
+8074	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.3108867730114898, '_y': 0.27819680332506547, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '51249b2653e1438cb8d455c96fdabf2c'}}
+8074	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.3108867730114898, '_y': 0.27819680332506547, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '51249b2653e1438cb8d455c96fdabf2c'}}
+8078	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.3108867730114898, '_y': 0.16350757816546002, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '5172278505b14dbfba2e900d89ec3d3d'}}
+8078	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.3108867730114898, '_y': 0.16350757816546002, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '5172278505b14dbfba2e900d89ec3d3d'}}
+8082	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.23725569519297898, '_y': -0.6115412682911726, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '5172278505b14dbfba2e900d89ec3d3d'}}
+8082	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.23725569519297898, '_y': -0.6115412682911726, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '5172278505b14dbfba2e900d89ec3d3d'}}
+8096	client	{'type': 'update', 'action': 'chat', 'message': 'Should I go through the door to the right?'}
+8096	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'Should I go through the door to the right?'}
+8096	server	{'type': 'update', 'action': 'disable_chat'}
+8096	server	{'type': 'update', 'action': 'disable_nav'}
+8096	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'Should I go through the door to the right?'}
+8096	server	{'type': 'update', 'action': 'enable_chat'}
+8096	server	{'type': 'update', 'action': 'enable_gold_view'}
+8515	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+8515	server	{'type': 'update', 'action': 'disable_chat'}
+8515	server	{'type': 'update', 'action': 'disable_nav'}
+8515	server	{'type': 'update', 'action': 'exit'}
+8515	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+8515	server	{'type': 'update', 'action': 'disable_chat'}
+8515	server	{'type': 'update', 'action': 'disable_gold_view'}
+8515	server	{'type': 'update', 'action': 'exit'}

@@ -1,0 +1,123 @@
+7383	server	{'type': 'update', 'action': 'set_house', 'value': 'RPmz2sHmrrY'}
+7383	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'trashcan'}
+7383	server	{'type': 'update', 'action': 'set_start_pano', 'value': '299fc72374a2439fa5f668c48f2482e1'}
+7383	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+7383	server	{'type': 'update', 'action': 'hide_instructions'}
+7383	server	{'type': 'update', 'action': 'show_chat'}
+7383	server	{'type': 'update', 'action': 'show_nav'}
+7383	server	{'type': 'update', 'action': 'enable_chat'}
+7383	server	{'type': 'update', 'action': 'enable_nav'}
+7383	server	{'type': 'update', 'action': 'set_house', 'value': 'RPmz2sHmrrY'}
+7383	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'trashcan'}
+7383	server	{'type': 'update', 'action': 'set_start_pano', 'value': '299fc72374a2439fa5f668c48f2482e1'}
+7383	server	{'type': 'update', 'action': 'set_end_panos', 'value': '4a9dca1a243c4c03b8f1016cbf8dd369,dfb6bfa10a1b49c989d10277a7f2dd46,662a6b43a43b47eca87d91c09afd2ad6,8eb93f74874f4081b27dc47758aba48e,d13a3f03aaac49f7ab2b5e549c840b3f'}
+7383	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+7383	server	{'type': 'update', 'action': 'hide_instructions'}
+7383	server	{'type': 'update', 'action': 'show_chat'}
+7383	server	{'type': 'update', 'action': 'show_mirror_nav'}
+7383	server	{'type': 'update', 'action': 'show_gold_view'}
+7388	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7388	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7408	client	{'type': 'update', 'action': 'chat', 'message': 'hi how are you doing'}
+7408	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'hi how are you doing'}
+7408	server	{'type': 'update', 'action': 'disable_chat'}
+7408	server	{'type': 'update', 'action': 'disable_nav'}
+7408	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'hi how are you doing'}
+7408	server	{'type': 'update', 'action': 'enable_chat'}
+7408	server	{'type': 'update', 'action': 'enable_gold_view'}
+7437	client	{'type': 'update', 'action': 'chat', 'message': "Hey! I'm figuring out your best route"}
+7437	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': "Hey! I'm figuring out your best route"}
+7437	server	{'type': 'update', 'action': 'enable_chat'}
+7437	server	{'type': 'update', 'action': 'enable_nav'}
+7437	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': "Hey! I'm figuring out your best route"}
+7437	server	{'type': 'update', 'action': 'disable_chat'}
+7437	server	{'type': 'update', 'action': 'disable_gold_view'}
+7462	client	{'type': 'update', 'action': 'chat', 'message': 'great  need the room with a tashcan'}
+7462	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'great  need the room with a tashcan'}
+7462	server	{'type': 'update', 'action': 'disable_chat'}
+7462	server	{'type': 'update', 'action': 'disable_nav'}
+7462	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'great  need the room with a tashcan'}
+7462	server	{'type': 'update', 'action': 'enable_chat'}
+7462	server	{'type': 'update', 'action': 'enable_gold_view'}
+7494	client	{'type': 'update', 'action': 'chat', 'message': 'Head towards the dining room'}
+7494	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'Head towards the dining room'}
+7494	server	{'type': 'update', 'action': 'enable_chat'}
+7494	server	{'type': 'update', 'action': 'enable_nav'}
+7494	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'Head towards the dining room'}
+7494	server	{'type': 'update', 'action': 'disable_chat'}
+7494	server	{'type': 'update', 'action': 'disable_gold_view'}
+7509	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.0228756746620616, '_y': 0.6836071326706303, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7509	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.0228756746620616, '_y': 0.6836071326706303, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7511	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.10294053597927721, '_y': -0.14572189661944465, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7511	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.10294053597927721, '_y': -0.14572189661944465, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7513	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.05337657421147708, '_y': -0.8464727818335391, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7513	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.05337657421147708, '_y': -0.8464727818335391, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7514	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.06481441154250787, '_y': -1.508650223824839, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7514	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.06481441154250787, '_y': -1.508650223824839, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7515	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5490161918894784, '_y': -2.532989438296819, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7515	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5490161918894784, '_y': -2.532989438296819, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7516	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.38126124436769326, '_y': -3.5744724053122616, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7516	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.38126124436769326, '_y': -3.5744724053122616, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7517	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.4155747563607858, '_y': -4.547380362153844, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7517	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.4155747563607858, '_y': -4.547380362153844, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7518	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.3507603448182779, '_y': -5.295276566862465, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7518	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.3507603448182779, '_y': -5.295276566862465, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7519	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.38507385681137035, '_y': -5.588863329169286, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7519	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.38507385681137035, '_y': -5.588863329169286, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7521	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.4231999812481396, '_y': -5.537432071538892, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7521	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.4231999812481396, '_y': -5.537432071538892, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7524	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.3507603448182779, '_y': -6.222795011876093, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7524	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.3507603448182779, '_y': -6.222795011876093, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '299fc72374a2439fa5f668c48f2482e1'}}
+7525	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.3507603448182779, '_y': -6.222795011876093, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7525	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.3507603448182779, '_y': -6.222795011876093, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7527	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.11437837331030808, '_y': -6.07921608432458, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7527	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.11437837331030808, '_y': -6.07921608432458, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7544	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0.14106666041604643, '_y': -5.834917610580217, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7544	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0.14106666041604643, '_y': -5.834917610580217, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7546	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.003812612443677018, '_y': -5.83706057964815, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7546	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.003812612443677018, '_y': -5.83706057964815, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7563	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.13725404797236965, '_y': -6.098502805935976, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7563	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.13725404797236965, '_y': -6.098502805935976, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7564	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7358342016296482, '_y': -5.558474600816858, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7564	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.7358342016296482, '_y': -5.558474600816858, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7565	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.6328936656503712, '_y': -5.702053528368368, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7565	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.6328936656503712, '_y': -5.702053528368368, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'd53b33e89133452899d757c2eebc5f18'}}
+7568	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5528288043331556, '_y': -5.31517726066514, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '03415d3735154bd3bf7074fd7b343992'}}
+7568	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5528288043331556, '_y': -5.31517726066514, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '03415d3735154bd3bf7074fd7b343992'}}
+7570	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.43082520613549385, '_y': -5.647337466194758, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '03415d3735154bd3bf7074fd7b343992'}}
+7570	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.43082520613549385, '_y': -5.647337466194758, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '03415d3735154bd3bf7074fd7b343992'}}
+7574	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.43082520613549385, '_y': -6.440037819323177, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '96066e55b9c94b23a956ffeaa7e0ad17'}}
+7574	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.43082520613549385, '_y': -6.440037819323177, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '96066e55b9c94b23a956ffeaa7e0ad17'}}
+7575	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.6062053785446327, '_y': -6.005015098532777, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '96066e55b9c94b23a956ffeaa7e0ad17'}}
+7575	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.6062053785446327, '_y': -6.005015098532777, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '96066e55b9c94b23a956ffeaa7e0ad17'}}
+7576	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5299531296710941, '_y': -5.717857243429754, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '96066e55b9c94b23a956ffeaa7e0ad17'}}
+7576	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5299531296710941, '_y': -5.717857243429754, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '96066e55b9c94b23a956ffeaa7e0ad17'}}
+7577	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.4346378185791707, '_y': -5.190686852718233, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '96066e55b9c94b23a956ffeaa7e0ad17'}}
+7577	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.4346378185791707, '_y': -5.190686852718233, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '96066e55b9c94b23a956ffeaa7e0ad17'}}
+7582	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.4346378185791707, '_y': -4.9010065252311055, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '056a847fc47746c797b4d5868466193c'}}
+7582	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.4346378185791707, '_y': -4.9010065252311055, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '056a847fc47746c797b4d5868466193c'}}
+7590	client	{'type': 'update', 'action': 'chat', 'message': 'its in the kitchen'}
+7590	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'its in the kitchen'}
+7590	server	{'type': 'update', 'action': 'disable_chat'}
+7590	server	{'type': 'update', 'action': 'disable_nav'}
+7590	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'its in the kitchen'}
+7590	server	{'type': 'update', 'action': 'enable_chat'}
+7590	server	{'type': 'update', 'action': 'enable_gold_view'}
+7606	client	{'type': 'update', 'action': 'chat', 'message': 'Yes, under the microwave!'}
+7606	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'Yes, under the microwave!'}
+7606	server	{'type': 'update', 'action': 'enable_chat'}
+7606	server	{'type': 'update', 'action': 'enable_nav'}
+7606	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'Yes, under the microwave!'}
+7606	server	{'type': 'update', 'action': 'disable_chat'}
+7606	server	{'type': 'update', 'action': 'disable_gold_view'}
+7611	client	{'type': 'update', 'action': 'guess_stop', 'value': '056a847fc47746c797b4d5868466193c'}
+7611	server	{'type': 'update', 'action': 'disable_nav'}
+7611	server	{'type': 'update', 'action': 'set_aux', 'message': "You're not yet in the right room. Try asking your partner for directions."}
+8030	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+8030	server	{'type': 'update', 'action': 'disable_chat'}
+8030	server	{'type': 'update', 'action': 'disable_nav'}
+8030	server	{'type': 'update', 'action': 'exit'}
+8030	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+8030	server	{'type': 'update', 'action': 'disable_chat'}
+8030	server	{'type': 'update', 'action': 'disable_gold_view'}
+8030	server	{'type': 'update', 'action': 'exit'}

@@ -1,0 +1,200 @@
+5593	server	5d01b554b2aa7	{'type': 'update', 'action': 'set_house', 'value': '82sE5b5pLXE'}
+5593	server	5d01b554b2aa7	{'type': 'update', 'action': 'set_target_obj', 'value': 'trashcan'}
+5593	server	5d01b554b2aa7	{'type': 'update', 'action': 'set_start_pano', 'value': 'c1d33aa653f146dc8f13b6e713c7dc0e'}
+5593	server	5d01b554b2aa7	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+5593	server	5d01b554b2aa7	{'type': 'update', 'action': 'hide_instructions'}
+5593	server	5d01b554b2aa7	{'type': 'update', 'action': 'show_chat'}
+5593	server	5d01b554b2aa7	{'type': 'update', 'action': 'show_nav'}
+5593	server	5d01b554b2aa7	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393442.3298495}
+5593	server	5d01b554b2aa7	{'type': 'update', 'action': 'enable_nav'}
+5593	server	5d01b4e132804	{'type': 'update', 'action': 'set_house', 'value': '82sE5b5pLXE'}
+5593	server	5d01b4e132804	{'type': 'update', 'action': 'set_target_obj', 'value': 'trashcan'}
+5593	server	5d01b4e132804	{'type': 'update', 'action': 'set_start_pano', 'value': 'c1d33aa653f146dc8f13b6e713c7dc0e'}
+5593	server	5d01b4e132804	{'type': 'update', 'action': 'set_end_panos', 'value': '89eeae92b2fe4b68abb274970a931608,a903bfca12df44cd9dad5a2ccb79d7bc,586320dcac014267ac7fe23ec4792550,302e8ac8ecf8469280b2fccb3d50569b'}
+5593	server	5d01b4e132804	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+5593	server	5d01b4e132804	{'type': 'update', 'action': 'hide_instructions'}
+5593	server	5d01b4e132804	{'type': 'update', 'action': 'show_chat'}
+5593	server	5d01b4e132804	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393442.3298576}
+5593	server	5d01b4e132804	{'type': 'update', 'action': 'show_mirror_nav'}
+5593	server	5d01b4e132804	{'type': 'update', 'action': 'show_gold_view'}
+5597	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5597	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5606	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.8853579296480326, '_y': -1.1351009952751445, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5606	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.8853579296480326, '_y': -1.1351009952751445, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5607	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.6527984734732039, '_y': -1.5914345267089907, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5607	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.6527984734732039, '_y': -1.5914345267089907, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5610	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.4528789409720351, '_y': -1.465312193900641, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5610	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.4528789409720351, '_y': -1.465312193900641, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5613	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5467187215338081, '_y': -1.3391898610922917, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5613	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5467187215338081, '_y': -1.3391898610922917, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5615	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5467187215338081, '_y': -1.2840053503307876, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5615	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5467187215338081, '_y': -1.2840053503307876, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5616	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.47327889326807265, '_y': -0.8391374855158825, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5616	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.47327889326807265, '_y': -0.8391374855158825, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5618	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.6527984734732042, '_y': -0.5777202866040312, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5618	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.6527984734732042, '_y': -0.5777202866040312, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5619	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -0.7519984192119323, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5619	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -0.7519984192119323, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5620	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -2.1072402135707407, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5621	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -2.1072402135707407, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5625	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -3.7835206732598934, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5625	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -3.7835206732598934, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5626	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -5.62032046561422, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5627	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -6.544453195100852, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5627	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -5.62032046561422, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5627	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -6.544453195100852, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '764f4e2d11c24b8f9a16cb1b37dfc78d'}}
+5630	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -6.963288812288506, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '7e0c327f89f0498da5dbd9e4bddc0e8a'}}
+5630	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -6.963288812288506, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '7e0c327f89f0498da5dbd9e4bddc0e8a'}}
+5631	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7792781777086369, '_y': -5.9451376165265595, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '7e0c327f89f0498da5dbd9e4bddc0e8a'}}
+5631	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.7792781777086369, '_y': -5.9451376165265595, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '7e0c327f89f0498da5dbd9e4bddc0e8a'}}
+5634	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7792781777086369, '_y': -5.300465297802839, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '32e4ddd0286947ef997ebd13f076fca2'}}
+5634	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.7792781777086369, '_y': -5.300465297802839, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '32e4ddd0286947ef997ebd13f076fca2'}}
+5635	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5099988074009407, '_y': -3.47054490541988, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '32e4ddd0286947ef997ebd13f076fca2'}}
+5636	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.48959885510490314, '_y': -3.1426268401181714, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '32e4ddd0286947ef997ebd13f076fca2'}}
+5636	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5099988074009407, '_y': -3.47054490541988, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '32e4ddd0286947ef997ebd13f076fca2'}}
+5636	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.48959885510490314, '_y': -3.1426268401181714, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '32e4ddd0286947ef997ebd13f076fca2'}}
+5637	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.48959885510490314, '_y': -3.097419656738508, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '9023e810675e4d209d14bbae08584441'}}
+5638	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.48959885510490314, '_y': -3.097419656738508, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '9023e810675e4d209d14bbae08584441'}}
+5640	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.48959885510490314, '_y': -3.6875898405898733, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '5718221ad03f453b957caddfa136a2f9'}}
+5640	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.48959885510490314, '_y': -3.6875898405898733, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '5718221ad03f453b957caddfa136a2f9'}}
+5641	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5426387310746009, '_y': -3.3826031085260473, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '5718221ad03f453b957caddfa136a2f9'}}
+5641	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5426387310746009, '_y': -3.3826031085260473, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '5718221ad03f453b957caddfa136a2f9'}}
+5643	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5426387310746009, '_y': -3.3617209813096625, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '239a6c22079a4668bd1df0fb3720c962'}}
+5643	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5426387310746009, '_y': -3.3617209813096625, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '239a6c22079a4668bd1df0fb3720c962'}}
+5644	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.48959885510490314, '_y': -4.017557111913077, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '239a6c22079a4668bd1df0fb3720c962'}}
+5644	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.48959885510490314, '_y': -4.017557111913077, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '239a6c22079a4668bd1df0fb3720c962'}}
+5646	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.44063896959441284, '_y': -4.259546160299944, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '49693be7929a42b0978bdcb6b0862073'}}
+5646	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.44063896959441284, '_y': -4.259546160299944, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '49693be7929a42b0978bdcb6b0862073'}}
+5647	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.44063896959441284, '_y': -4.215353331252945, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '91e9df140eed4de79b2350a13880ac85'}}
+5648	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.44063896959441284, '_y': -4.215353331252945, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '91e9df140eed4de79b2350a13880ac85'}}
+5649	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.44063896959441284, '_y': -4.285194952895974, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '03b95e03d2724a4fad746c4716c38fe8'}}
+5649	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.44063896959441284, '_y': -4.285194952895974, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '03b95e03d2724a4fad746c4716c38fe8'}}
+5650	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.44063896959441284, '_y': -4.421468889373225, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '8ce00b6bb78348f08464752ecf264a87'}}
+5650	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.44063896959441284, '_y': -4.421468889373225, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '8ce00b6bb78348f08464752ecf264a87'}}
+5652	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.44063896959441284, '_y': -4.5271414822961065, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5652	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.44063896959441284, '_y': -4.5271414822961065, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5653	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.8078381109230901, '_y': -5.467326145049258, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5653	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.8078381109230901, '_y': -5.467326145049258, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5656	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.6527984734732041, '_y': -5.499430011582296, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5656	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.6527984734732041, '_y': -5.499430011582296, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5668	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.6487184830139966, '_y': -6.288267874965426, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5668	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.6487184830139966, '_y': -6.288267874965426, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5676	5d01b554b2aa7	server	{'type': 'update', 'action': 'chat', 'message': 'Should I go up the stairs or toward the toilet?'}
+5676	server	5d01b554b2aa7	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'Should I go up the stairs or toward the toilet?'}
+5676	server	5d01b554b2aa7	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393525.5468867}
+5676	server	5d01b554b2aa7	{'type': 'update', 'action': 'disable_nav'}
+5676	server	5d01b4e132804	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'Should I go up the stairs or toward the toilet?'}
+5676	server	5d01b4e132804	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393525.5468903}
+5676	server	5d01b4e132804	{'type': 'update', 'action': 'enable_gold_view'}
+5702	5d01b4e132804	server	{'type': 'update', 'action': 'chat', 'message': 'yes i believe so'}
+5702	server	5d01b554b2aa7	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'yes i believe so'}
+5702	server	5d01b554b2aa7	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393551.593819}
+5702	server	5d01b554b2aa7	{'type': 'update', 'action': 'enable_nav'}
+5702	server	5d01b4e132804	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'yes i believe so'}
+5702	server	5d01b4e132804	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393551.5938153}
+5702	server	5d01b4e132804	{'type': 'update', 'action': 'disable_gold_view'}
+5709	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7955981395454674, '_y': -5.825054943560216, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5709	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.7955981395454674, '_y': -5.825054943560216, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5732	5d01b554b2aa7	server	{'type': 'update', 'action': 'chat', 'message': 'Can you be more specific. Up the stairs or move toward the toilet?'}
+5732	server	5d01b554b2aa7	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'Can you be more specific. Up the stairs or move toward the toilet?'}
+5732	server	5d01b554b2aa7	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393581.640132}
+5732	server	5d01b554b2aa7	{'type': 'update', 'action': 'disable_nav'}
+5732	server	5d01b4e132804	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'Can you be more specific. Up the stairs or move toward the toilet?'}
+5732	server	5d01b4e132804	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393581.6401358}
+5732	server	5d01b4e132804	{'type': 'update', 'action': 'enable_gold_view'}
+5784	5d01b4e132804	server	{'type': 'update', 'action': 'chat', 'message': "don't go up the stairs look to your right and it's not in the bathroom find a couch"}
+5784	server	5d01b554b2aa7	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': "don't go up the stairs look to your right and it's not in the bathroom find a couch"}
+5784	server	5d01b554b2aa7	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393633.7230268}
+5784	server	5d01b554b2aa7	{'type': 'update', 'action': 'enable_nav'}
+5784	server	5d01b4e132804	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': "don't go up the stairs look to your right and it's not in the bathroom find a couch"}
+5784	server	5d01b4e132804	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393633.7230227}
+5784	server	5d01b4e132804	{'type': 'update', 'action': 'disable_gold_view'}
+5794	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7955981395454674, '_y': -6.658485550056341, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '846c8d973a1a460ca942e15733cddc71'}}
+5794	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.7955981395454674, '_y': -6.658485550056341, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '846c8d973a1a460ca942e15733cddc71'}}
+5796	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.8486380155151653, '_y': -7.110232814842609, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '846c8d973a1a460ca942e15733cddc71'}}
+5796	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.8486380155151653, '_y': -7.110232814842609, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '846c8d973a1a460ca942e15733cddc71'}}
+5799	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7547982349533917, '_y': -6.819004882721512, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '846c8d973a1a460ca942e15733cddc71'}}
+5799	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.7547982349533917, '_y': -6.819004882721512, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '846c8d973a1a460ca942e15733cddc71'}}
+5803	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7547982349533917, '_y': -6.842001813637778, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5803	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.7547982349533917, '_y': -6.842001813637778, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5804	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7262383017389392, '_y': -8.19265734134901, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5804	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.7262383017389392, '_y': -8.19265734134901, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5805	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.8608779868927876, '_y': -10.77013919728691, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5805	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.8608779868927876, '_y': -10.77013919728691, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5806	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -11.579615260584138, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5806	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -11.579615260584138, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5807	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9016778914848628, '_y': -13.439346386176343, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5807	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9016778914848628, '_y': -13.439346386176343, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5810	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9016778914848628, '_y': -13.770027911657179, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'e9ed6ef28a5d4524b567d23c47f07a74'}}
+5810	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9016778914848628, '_y': -13.770027911657179, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'e9ed6ef28a5d4524b567d23c47f07a74'}}
+5812	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -12.93986733686886, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'dfce0b29de62478583bbffdd7cbb419b'}}
+5812	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -12.93986733686886, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'dfce0b29de62478583bbffdd7cbb419b'}}
+5813	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -13.446649801426043, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'dfce0b29de62478583bbffdd7cbb419b'}}
+5813	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -13.446649801426043, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'dfce0b29de62478583bbffdd7cbb419b'}}
+5814	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -16.214461723238358, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'dfce0b29de62478583bbffdd7cbb419b'}}
+5814	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -16.214461723238358, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'dfce0b29de62478583bbffdd7cbb419b'}}
+5817	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -16.739074415629258, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'e9ed6ef28a5d4524b567d23c47f07a74'}}
+5817	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -16.739074415629258, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'e9ed6ef28a5d4524b567d23c47f07a74'}}
+5818	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.85679799643358, '_y': -15.537472553964255, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'e9ed6ef28a5d4524b567d23c47f07a74'}}
+5818	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.85679799643358, '_y': -15.537472553964255, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'e9ed6ef28a5d4524b567d23c47f07a74'}}
+5821	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -15.899274601598695, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '55114b5620a54b688fa3d093bf276c25'}}
+5821	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9424777960769379, '_y': -15.899274601598695, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '55114b5620a54b688fa3d093bf276c25'}}
+5822	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.6731984257692414, '_y': -17.467777795069807, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '55114b5620a54b688fa3d093bf276c25'}}
+5822	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.6731984257692414, '_y': -17.467777795069807, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '55114b5620a54b688fa3d093bf276c25'}}
+5823	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.685438397146864, '_y': -17.944749526417752, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '55114b5620a54b688fa3d093bf276c25'}}
+5823	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.685438397146864, '_y': -17.944749526417752, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '55114b5620a54b688fa3d093bf276c25'}}
+5825	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.4569589314312428, '_y': -17.194573614051404, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'e9ed6ef28a5d4524b567d23c47f07a74'}}
+5825	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.4569589314312428, '_y': -17.194573614051404, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'e9ed6ef28a5d4524b567d23c47f07a74'}}
+5826	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.4610389218904503, '_y': -16.646514749666032, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'e9ed6ef28a5d4524b567d23c47f07a74'}}
+5826	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.4610389218904503, '_y': -16.646514749666032, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'e9ed6ef28a5d4524b567d23c47f07a74'}}
+5828	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.43247898867599766, '_y': -16.483624119409967, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5828	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.43247898867599766, '_y': -16.483624119409967, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '20747c304a264be785fb31ed0c320295'}}
+5830	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.43247898867599766, '_y': -16.279924638358693, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '846c8d973a1a460ca942e15733cddc71'}}
+5830	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.43247898867599766, '_y': -16.279924638358693, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '846c8d973a1a460ca942e15733cddc71'}}
+5831	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.43247898867599766, '_y': -16.266192968867625, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5831	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.43247898867599766, '_y': -16.266192968867625, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5832	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.36311915086946966, '_y': -16.786734233367543, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5832	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.36311915086946966, '_y': -16.786734233367543, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ad3a2912de974a5690af5050e6ade942'}}
+5834	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.36311915086946966, '_y': -17.221292654047733, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '18e3c05b91774b1b9200fa4b1966bf74'}}
+5834	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.36311915086946966, '_y': -17.221292654047733, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '18e3c05b91774b1b9200fa4b1966bf74'}}
+5835	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.558958692911431, '_y': -18.17294298341982, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '18e3c05b91774b1b9200fa4b1966bf74'}}
+5835	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.558958692911431, '_y': -18.17294298341982, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '18e3c05b91774b1b9200fa4b1966bf74'}}
+5836	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5711986642890535, '_y': -18.386204382532117, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '18e3c05b91774b1b9200fa4b1966bf74'}}
+5836	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5711986642890535, '_y': -18.386204382532117, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '18e3c05b91774b1b9200fa4b1966bf74'}}
+5837	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.575278654748261, '_y': -18.271547716342706, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '18e3c05b91774b1b9200fa4b1966bf74'}}
+5837	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.575278654748261, '_y': -18.271547716342706, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '18e3c05b91774b1b9200fa4b1966bf74'}}
+5839	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5752786547482609, '_y': -18.113321517001317, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '18e3c05b91774b1b9200fa4b1966bf74'}}
+5839	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5752786547482609, '_y': -18.113321517001317, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '18e3c05b91774b1b9200fa4b1966bf74'}}
+5844	5d01b554b2aa7	server	{'type': 'update', 'action': 'chat', 'message': 'Is that the couch I am looking for?'}
+5844	server	5d01b554b2aa7	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'Is that the couch I am looking for?'}
+5844	server	5d01b554b2aa7	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393693.8946474}
+5844	server	5d01b554b2aa7	{'type': 'update', 'action': 'disable_nav'}
+5844	server	5d01b4e132804	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'Is that the couch I am looking for?'}
+5844	server	5d01b4e132804	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393693.8946512}
+5844	server	5d01b4e132804	{'type': 'update', 'action': 'enable_gold_view'}
+5867	5d01b4e132804	server	{'type': 'update', 'action': 'chat', 'message': 'it is blue in color has many pillows on it'}
+5867	server	5d01b554b2aa7	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'it is blue in color has many pillows on it'}
+5867	server	5d01b554b2aa7	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393716.9278426}
+5867	server	5d01b554b2aa7	{'type': 'update', 'action': 'enable_nav'}
+5867	server	5d01b4e132804	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'it is blue in color has many pillows on it'}
+5867	server	5d01b4e132804	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393716.927839}
+5867	server	5d01b4e132804	{'type': 'update', 'action': 'disable_gold_view'}
+5872	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5752786547482609, '_y': -18.529931231994244, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '89eeae92b2fe4b68abb274970a931608'}}
+5872	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5752786547482609, '_y': -18.529931231994244, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '89eeae92b2fe4b68abb274970a931608'}}
+5875	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5752786547482609, '_y': -18.029423502310927, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '586320dcac014267ac7fe23ec4792550'}}
+5875	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5752786547482609, '_y': -18.029423502310927, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '586320dcac014267ac7fe23ec4792550'}}
+5876	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5671186738298458, '_y': -19.015470831539844, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '586320dcac014267ac7fe23ec4792550'}}
+5876	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5671186738298458, '_y': -19.015470831539844, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '586320dcac014267ac7fe23ec4792550'}}
+5878	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.9016778914848628, '_y': -20.148765396328578, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'a903bfca12df44cd9dad5a2ccb79d7bc'}}
+5878	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.9016778914848628, '_y': -20.148765396328578, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'a903bfca12df44cd9dad5a2ccb79d7bc'}}
+5879	5d01b554b2aa7	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.8282380632191274, '_y': -20.985759059511256, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'a903bfca12df44cd9dad5a2ccb79d7bc'}}
+5879	server	5d01b4e132804	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.8282380632191274, '_y': -20.985759059511256, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'a903bfca12df44cd9dad5a2ccb79d7bc'}}
+5881	5d01b554b2aa7	server	{'type': 'update', 'action': 'guess_stop', 'value': 'a903bfca12df44cd9dad5a2ccb79d7bc'}
+5881	server	5d01b554b2aa7	{'type': 'update', 'action': 'set_aux', 'message': 'Congrats, you found the room!'}
+5881	server	5d01b554b2aa7	{'type': 'update', 'action': 'disable_chat'}
+5881	server	5d01b554b2aa7	{'type': 'update', 'action': 'disable_nav'}
+5881	server	5d01b554b2aa7	{'type': 'update', 'action': 'exit', 'message': {'oracle': '5d01b4e132804', 'navigator': '5d01b554b2aa7'}}
+5881	server	5d01b4e132804	{'type': 'update', 'action': 'set_aux', 'message': 'Congrats, you helped your partner find the room!'}
+5881	server	5d01b4e132804	{'type': 'update', 'action': 'disable_chat'}
+5881	server	5d01b4e132804	{'type': 'update', 'action': 'disable_gold_view'}
+5881	server	5d01b4e132804	{'type': 'update', 'action': 'exit', 'message': {'oracle': '5d01b4e132804', 'navigator': '5d01b554b2aa7'}}

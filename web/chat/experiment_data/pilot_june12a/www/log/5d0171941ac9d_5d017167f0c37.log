@@ -1,0 +1,27 @@
+9627	server	{'type': 'update', 'action': 'set_house', 'value': 'jh4fc5c5qoQ'}
+9627	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'fridge'}
+9627	server	{'type': 'update', 'action': 'set_start_pano', 'value': '30cdb6fe9aa6449788e271f2e24d76ec'}
+9627	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+9627	server	{'type': 'update', 'action': 'hide_instructions'}
+9627	server	{'type': 'update', 'action': 'show_chat'}
+9627	server	{'type': 'update', 'action': 'show_nav'}
+9627	server	{'type': 'update', 'action': 'enable_chat'}
+9627	server	{'type': 'update', 'action': 'enable_nav'}
+9627	server	{'type': 'update', 'action': 'set_house', 'value': 'jh4fc5c5qoQ'}
+9627	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'fridge'}
+9627	server	{'type': 'update', 'action': 'set_start_pano', 'value': '30cdb6fe9aa6449788e271f2e24d76ec'}
+9627	server	{'type': 'update', 'action': 'set_end_panos', 'value': '07e7a24c5ff449229aa0c72216829072,d2600c4cac6445a7b7f0eef51a074043'}
+9627	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+9627	server	{'type': 'update', 'action': 'hide_instructions'}
+9627	server	{'type': 'update', 'action': 'show_chat'}
+9627	server	{'type': 'update', 'action': 'show_mirror_nav'}
+9627	server	{'type': 'update', 'action': 'show_gold_view'}
+9632	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '30cdb6fe9aa6449788e271f2e24d76ec'}}
+9676	client	{'type': 'update', 'action': 'chat', 'message': 'We are looking for the room with a fridge.'}
+9676	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'We are looking for the room with a fridge.'}
+9676	server	{'type': 'update', 'action': 'disable_chat'}
+9676	server	{'type': 'update', 'action': 'disable_nav'}
+10095	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+10095	server	{'type': 'update', 'action': 'disable_chat'}
+10095	server	{'type': 'update', 'action': 'disable_nav'}
+10095	server	{'type': 'update', 'action': 'exit'}

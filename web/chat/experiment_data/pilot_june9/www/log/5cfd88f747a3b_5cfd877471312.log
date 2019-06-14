@@ -1,0 +1,27 @@
+12652	server	{'type': 'update', 'action': 'set_house', 'value': '17DRP5sb8fy'}
+12652	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'pillow'}
+12652	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'f4d03f729dfc49068db327584455e975'}
+12652	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+12652	server	{'type': 'update', 'action': 'show_chat'}
+12652	server	{'type': 'update', 'action': 'show_nav'}
+12652	server	{'type': 'update', 'action': 'enable_chat'}
+12652	server	{'type': 'update', 'action': 'enable_nav'}
+12652	server	{'type': 'update', 'action': 'set_house', 'value': '17DRP5sb8fy'}
+12652	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'pillow'}
+12652	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'f4d03f729dfc49068db327584455e975'}
+12652	server	{'type': 'update', 'action': 'set_end_panos', 'value': '23ec8bbec8eb40478411cba2e55b732e,50c241453dfd45c1ba95b5d7191982ef,51857544c192476faebf212acb1b3d90,5b9b2794954e4694a45fc424a8643081,902e65564f81489687878425d9b3cb55,db145474a5fa476d95c2cc7f09e7c83a,e34dcf54d26a4a95869cc8a0c01cd2be'}
+12652	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+12652	server	{'type': 'update', 'action': 'show_chat'}
+12652	server	{'type': 'update', 'action': 'show_mirror_nav'}
+12652	server	{'type': 'update', 'action': 'show_gold_view'}
+12659	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'f4d03f729dfc49068db327584455e975'}}
+12674	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7282089767422943, '_y': -0.20600607564523238, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'f4d03f729dfc49068db327584455e975'}}
+12675	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7396468140733251, '_y': -0.4613677735804683, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'f4d03f729dfc49068db327584455e975'}}
+12679	client	{'type': 'update', 'action': 'chat', 'message': 'hello'}
+12679	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'hello'}
+12679	server	{'type': 'update', 'action': 'disable_chat'}
+12679	server	{'type': 'update', 'action': 'disable_nav'}
+12978	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+12978	server	{'type': 'update', 'action': 'disable_chat'}
+12978	server	{'type': 'update', 'action': 'disable_nav'}
+12978	server	{'type': 'update', 'action': 'enable_exit'}

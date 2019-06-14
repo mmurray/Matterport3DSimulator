@@ -1,0 +1,20 @@
+13640	server	{'type': 'update', 'action': 'set_house', 'value': '17DRP5sb8fy'}
+13640	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'toilet'}
+13640	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'f4d03f729dfc49068db327584455e975'}
+13640	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+13640	server	{'type': 'update', 'action': 'show_chat'}
+13640	server	{'type': 'update', 'action': 'show_nav'}
+13640	server	{'type': 'update', 'action': 'enable_chat'}
+13640	server	{'type': 'update', 'action': 'enable_nav'}
+13640	server	{'type': 'update', 'action': 'set_house', 'value': '17DRP5sb8fy'}
+13640	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'toilet'}
+13640	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'f4d03f729dfc49068db327584455e975'}
+13640	server	{'type': 'update', 'action': 'set_end_panos', 'value': 'c341c46acf7044d1a712d622cbc94a27,d160d2229e4148839ef3a43dbc0ecdc4'}
+13640	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+13640	server	{'type': 'update', 'action': 'show_chat'}
+13640	server	{'type': 'update', 'action': 'show_mirror_nav'}
+13640	server	{'type': 'update', 'action': 'show_gold_view'}
+13939	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+13939	server	{'type': 'update', 'action': 'disable_chat'}
+13939	server	{'type': 'update', 'action': 'disable_gold_view'}
+13939	server	{'type': 'update', 'action': 'enable_exit'}

@@ -1,0 +1,71 @@
+6727	server	5d01ba156b129	{'type': 'update', 'action': 'set_house', 'value': 'TbHJrupSAjP'}
+6727	server	5d01ba156b129	{'type': 'update', 'action': 'set_target_obj', 'value': 'vase'}
+6727	server	5d01ba156b129	{'type': 'update', 'action': 'set_start_pano', 'value': '511f5f966b5347ee8245e818d13fccf8'}
+6727	server	5d01ba156b129	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+6727	server	5d01ba156b129	{'type': 'update', 'action': 'hide_instructions'}
+6727	server	5d01ba156b129	{'type': 'update', 'action': 'show_chat'}
+6727	server	5d01ba156b129	{'type': 'update', 'action': 'show_nav'}
+6727	server	5d01ba156b129	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560394579.2693985}
+6727	server	5d01ba156b129	{'type': 'update', 'action': 'enable_nav'}
+6727	server	5d01b92b8b1ee	{'type': 'update', 'action': 'set_house', 'value': 'TbHJrupSAjP'}
+6727	server	5d01b92b8b1ee	{'type': 'update', 'action': 'set_target_obj', 'value': 'vase'}
+6727	server	5d01b92b8b1ee	{'type': 'update', 'action': 'set_start_pano', 'value': '511f5f966b5347ee8245e818d13fccf8'}
+6727	server	5d01b92b8b1ee	{'type': 'update', 'action': 'set_end_panos', 'value': 'a17b80e0e3d04c6a901df849fb70c914,6bd070dd165942438e43b4294652094e,8d7d690182ad4ad2b898b8b221cbaf36,a8311575bf3d485a81af8350aa25bddb,6f74aff5213145d989f9a30bcd69a978,6d97e8fa98a24eb5b8b9bf01f940d323'}
+6727	server	5d01b92b8b1ee	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+6727	server	5d01b92b8b1ee	{'type': 'update', 'action': 'hide_instructions'}
+6727	server	5d01b92b8b1ee	{'type': 'update', 'action': 'show_chat'}
+6727	server	5d01b92b8b1ee	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560394579.2694066}
+6727	server	5d01b92b8b1ee	{'type': 'update', 'action': 'show_mirror_nav'}
+6727	server	5d01b92b8b1ee	{'type': 'update', 'action': 'show_gold_view'}
+6786	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6786	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6804	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.3880790925022686, '_y': -0.6257221731530085, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6804	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.3880790925022686, '_y': -0.6257221731530085, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6805	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5220587791994803, '_y': -0.9892122322460427, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6805	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.5220587791994803, '_y': -0.9892122322460427, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6806	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0.03233992437518911, '_y': -1.2774079219555192, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6806	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0.03233992437518911, '_y': -1.2774079219555192, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6807	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.03233992437518898, '_y': -1.6850360596527072, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6807	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.03233992437518898, '_y': -1.6850360596527072, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6808	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.10163976232202264, '_y': -2.6327065708595447, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6808	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.10163976232202264, '_y': -2.6327065708595447, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6810	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.2910593193767012, '_y': -2.637899285989445, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6810	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.2910593193767012, '_y': -2.637899285989445, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6812	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.17555958946531175, '_y': -2.3159509479356166, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6812	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.17555958946531175, '_y': -2.3159509479356166, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6815	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.20789951384050076, '_y': -2.456154256442929, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6815	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.20789951384050076, '_y': -2.456154256442929, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6816	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.14783965428657825, '_y': -2.2095002877726557, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6816	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.14783965428657825, '_y': -2.2095002877726557, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6817	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0.06005985955392276, '_y': -1.8356247984198208, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6817	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0.06005985955392276, '_y': -1.8356247984198208, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6819	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.2956793085731567, '_y': -1.5214655330608429, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6819	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.2956793085731567, '_y': -1.5214655330608429, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6820	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.40193906009163494, '_y': -1.3449132186442267, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6820	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.40193906009163494, '_y': -1.3449132186442267, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6823	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.3742191249129015, '_y': -0.8931470023428842, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6823	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.3742191249129015, '_y': -0.8931470023428842, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6825	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7992581309868145, '_y': -1.2150953403967135, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6825	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.7992581309868145, '_y': -1.2150953403967135, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6827	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.11087974071493334, '_y': -1.8356247984198213, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6827	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.11087974071493334, '_y': -1.8356247984198213, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6829	5d01ba156b129	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.29105931937670093, '_y': -1.8901483072837755, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6829	server	5d01b92b8b1ee	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.29105931937670093, '_y': -1.8901483072837755, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '511f5f966b5347ee8245e818d13fccf8'}}
+6852	5d01ba156b129	server	{'type': 'update', 'action': 'chat', 'message': 'keep walking until your towards the back of the couch, and in front of the dining table'}
+6852	server	5d01ba156b129	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'keep walking until your towards the back of the couch, and in front of the dining table'}
+6852	server	5d01ba156b129	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560394704.6757529}
+6852	server	5d01ba156b129	{'type': 'update', 'action': 'disable_nav'}
+6852	server	5d01b92b8b1ee	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'keep walking until your towards the back of the couch, and in front of the dining table'}
+6852	server	5d01b92b8b1ee	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560394704.6757567}
+6852	server	5d01b92b8b1ee	{'type': 'update', 'action': 'enable_gold_view'}
+6898	5d01b92b8b1ee	server	{'type': 'update', 'action': 'chat', 'message': "Sorry man i gotta bail this is just to vague and i can't risk a rejection."}
+6898	server	5d01ba156b129	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': "Sorry man i gotta bail this is just to vague and i can't risk a rejection."}
+6898	server	5d01ba156b129	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560394750.7967546}
+6898	server	5d01ba156b129	{'type': 'update', 'action': 'enable_nav'}
+6898	server	5d01b92b8b1ee	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': "Sorry man i gotta bail this is just to vague and i can't risk a rejection."}
+6898	server	5d01b92b8b1ee	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560394750.7967505}
+6898	server	5d01b92b8b1ee	{'type': 'update', 'action': 'disable_gold_view'}
+7197	server	5d01b92b8b1ee	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and receive payment.'}
+7197	server	5d01b92b8b1ee	{'type': 'update', 'action': 'disable_chat'}
+7197	server	5d01b92b8b1ee	{'type': 'update', 'action': 'disable_gold_view'}
+7197	server	5d01b92b8b1ee	{'type': 'update', 'action': 'exit'}

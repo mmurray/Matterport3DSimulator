@@ -1,0 +1,13 @@
+706	server	5d01a0f0e0452	{'type': 'update', 'action': 'enable_exit'}
+1126	server	5d01a0f0e0452	{'type': 'update', 'action': 'exit'}
+2278	server	5d01a6c392ef4	{'type': 'update', 'action': 'enable_exit'}
+3326	server	5d01aa6308092	{'type': 'update', 'action': 'enable_exit'}
+3872	server	5d01ab02e996b	{'type': 'update', 'action': 'enable_exit'}
+4292	server	5d01ab02e996b	{'type': 'update', 'action': 'exit'}
+8053	server	5d01bda41db4c	{'type': 'update', 'action': 'enable_exit'}
+8473	server	5d01bda41db4c	{'type': 'update', 'action': 'exit'}
+11321	server	5d01ca3cdc682	{'type': 'update', 'action': 'enable_exit'}
+11741	server	5d01ca3cdc682	{'type': 'update', 'action': 'exit'}
+14104	server	5d01d4d15350f	{'type': 'update', 'action': 'enable_exit'}
+15266	server	5d01d9b8d711b	{'type': 'update', 'action': 'enable_exit'}
+15559	server	5d01d9b8d711b	{'type': 'update', 'action': 'exit'}

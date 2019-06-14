@@ -1,0 +1,28 @@
+8440	server	{'type': 'update', 'action': 'set_house', 'value': 'aayBHfsNo7d'}
+8440	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'nightstand'}
+8440	server	{'type': 'update', 'action': 'set_start_pano', 'value': '4d495340c0d8412f8665e58ecf3cb59f'}
+8440	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+8440	server	{'type': 'update', 'action': 'hide_instructions'}
+8440	server	{'type': 'update', 'action': 'show_chat'}
+8440	server	{'type': 'update', 'action': 'show_nav'}
+8440	server	{'type': 'update', 'action': 'enable_chat'}
+8440	server	{'type': 'update', 'action': 'enable_nav'}
+8440	server	{'type': 'update', 'action': 'set_house', 'value': 'aayBHfsNo7d'}
+8440	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'nightstand'}
+8440	server	{'type': 'update', 'action': 'set_start_pano', 'value': '4d495340c0d8412f8665e58ecf3cb59f'}
+8440	server	{'type': 'update', 'action': 'set_end_panos', 'value': 'd1af2f90794243db807d60a07050941c,354da2e072004e458216f8a9b11e8d3d,505ca3ca13414b7884dd6332040ca52c,648bb87f6b844a088376ef700d77aa5d,5ab3ffcf9e124111bd2fa931badc3c83,0fa45532f291420e9275811772f05e49'}
+8440	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+8440	server	{'type': 'update', 'action': 'hide_instructions'}
+8440	server	{'type': 'update', 'action': 'show_chat'}
+8440	server	{'type': 'update', 'action': 'show_mirror_nav'}
+8440	server	{'type': 'update', 'action': 'show_gold_view'}
+8442	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '4d495340c0d8412f8665e58ecf3cb59f'}}
+8442	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '4d495340c0d8412f8665e58ecf3cb59f'}}
+8861	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+8861	server	{'type': 'update', 'action': 'disable_chat'}
+8861	server	{'type': 'update', 'action': 'disable_nav'}
+8861	server	{'type': 'update', 'action': 'exit'}
+8861	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+8861	server	{'type': 'update', 'action': 'disable_chat'}
+8861	server	{'type': 'update', 'action': 'disable_gold_view'}
+8861	server	{'type': 'update', 'action': 'exit'}

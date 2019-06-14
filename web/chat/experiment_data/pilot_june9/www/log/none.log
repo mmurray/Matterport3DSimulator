@@ -1,0 +1,24 @@
+2145	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+2145	server	{'type': 'update', 'action': 'enable_exit'}
+3874	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+3874	server	{'type': 'update', 'action': 'enable_exit'}
+6051	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+6051	server	{'type': 'update', 'action': 'enable_exit'}
+6769	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+6769	server	{'type': 'update', 'action': 'enable_exit'}
+8030	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+8030	server	{'type': 'update', 'action': 'enable_exit'}
+8809	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+8809	server	{'type': 'update', 'action': 'enable_exit'}
+9227	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+9227	server	{'type': 'update', 'action': 'enable_exit'}
+9593	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+9593	server	{'type': 'update', 'action': 'enable_exit'}
+11155	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+11155	server	{'type': 'update', 'action': 'enable_exit'}
+14562	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+14562	server	{'type': 'update', 'action': 'enable_exit'}
+15176	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+15176	server	{'type': 'update', 'action': 'enable_exit'}
+15863	server	{'type': 'update', 'action': 'set_aux', 'message': "Looks like there's no one around to pair with! Sorry about that. You can end the HIT and recieve payment."}
+15863	server	{'type': 'update', 'action': 'enable_exit'}

@@ -1,0 +1,40 @@
+8736	server	{'type': 'update', 'action': 'set_house', 'value': 'VFuaQ6m2Qom'}
+8736	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'trashcan'}
+8736	server	{'type': 'update', 'action': 'set_start_pano', 'value': '2ec09f20daf84addb9e0887baf55dd72'}
+8736	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+8736	server	{'type': 'update', 'action': 'hide_instructions'}
+8736	server	{'type': 'update', 'action': 'show_chat'}
+8736	server	{'type': 'update', 'action': 'show_nav'}
+8736	server	{'type': 'update', 'action': 'enable_chat'}
+8736	server	{'type': 'update', 'action': 'enable_nav'}
+8736	server	{'type': 'update', 'action': 'set_house', 'value': 'VFuaQ6m2Qom'}
+8736	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'trashcan'}
+8736	server	{'type': 'update', 'action': 'set_start_pano', 'value': '2ec09f20daf84addb9e0887baf55dd72'}
+8736	server	{'type': 'update', 'action': 'set_end_panos', 'value': 'a91897cc32dc4237a0f30e85b24acb63,1e22a3e1700e467c9d34b698b9179bd5,850c9e83d9c24e13ba5f6f42a012acfe,bca0486e4beb451bbf664125686cf719,9274d3cfed1b4878bd02cfb0f09052b1,99ba273387664672ad3fd0684d708324,e214d30a52af4f16825d844263fa708a,1b20fc68847848d7865e785d06f73d37,d388f2f22c5a4b5da34d891c4d22064c,d9949a8a8f38433c9615e28762dc4ca0'}
+8736	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+8736	server	{'type': 'update', 'action': 'hide_instructions'}
+8736	server	{'type': 'update', 'action': 'show_chat'}
+8736	server	{'type': 'update', 'action': 'show_mirror_nav'}
+8736	server	{'type': 'update', 'action': 'show_gold_view'}
+8742	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '2ec09f20daf84addb9e0887baf55dd72'}}
+8742	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '2ec09f20daf84addb9e0887baf55dd72'}}
+8768	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0.04496554370596081, '_y': 0.04550590217109679, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '2ec09f20daf84addb9e0887baf55dd72'}}
+8768	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0.04496554370596081, '_y': 0.04550590217109679, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '2ec09f20daf84addb9e0887baf55dd72'}}
+8783	client	{'type': 'update', 'action': 'chat', 'message': 'If you see stairs go up them'}
+8783	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'If you see stairs go up them'}
+8783	server	{'type': 'update', 'action': 'disable_chat'}
+8783	server	{'type': 'update', 'action': 'disable_nav'}
+8783	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'If you see stairs go up them'}
+8783	server	{'type': 'update', 'action': 'enable_chat'}
+8783	server	{'type': 'update', 'action': 'enable_gold_view'}
+9011	client	{'type': 'update', 'action': 'chat', 'message': 'turn around to your left until you see the hallway door, walk straight out the door,head straight through the hallway until you see the stairs'}
+9011	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'turn around to your left until you see the hallway door, walk straight out the door,head straight through the hallway until you see the stairs'}
+9011	server	{'type': 'update', 'action': 'enable_chat'}
+9011	server	{'type': 'update', 'action': 'enable_nav'}
+9011	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'turn around to your left until you see the hallway door, walk straight out the door,head straight through the hallway until you see the stairs'}
+9011	server	{'type': 'update', 'action': 'disable_chat'}
+9011	server	{'type': 'update', 'action': 'disable_gold_view'}
+9430	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+9430	server	{'type': 'update', 'action': 'disable_chat'}
+9430	server	{'type': 'update', 'action': 'disable_gold_view'}
+9430	server	{'type': 'update', 'action': 'exit'}

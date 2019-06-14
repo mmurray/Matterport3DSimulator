@@ -1,0 +1,79 @@
+7291	server	{'type': 'update', 'action': 'set_house', 'value': 'YFuZgdQ5vWj'}
+7291	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'bed'}
+7291	server	{'type': 'update', 'action': 'set_start_pano', 'value': '7b1823f17d6847bf919601ec50af36a4'}
+7291	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+7291	server	{'type': 'update', 'action': 'hide_instructions'}
+7291	server	{'type': 'update', 'action': 'show_chat'}
+7291	server	{'type': 'update', 'action': 'show_nav'}
+7291	server	{'type': 'update', 'action': 'enable_chat'}
+7291	server	{'type': 'update', 'action': 'enable_nav'}
+7291	server	{'type': 'update', 'action': 'set_house', 'value': 'YFuZgdQ5vWj'}
+7291	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'bed'}
+7291	server	{'type': 'update', 'action': 'set_start_pano', 'value': '7b1823f17d6847bf919601ec50af36a4'}
+7291	server	{'type': 'update', 'action': 'set_end_panos', 'value': '8ab379f6f864479d82fa3192acf1cdcb,1996ca8e5bf041169b37246f8c42f3fd,d4a5366f06314f5fb46e05107dae0a0d,222af42f94714ba7899da7d4a62660f0'}
+7291	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+7291	server	{'type': 'update', 'action': 'hide_instructions'}
+7291	server	{'type': 'update', 'action': 'show_chat'}
+7291	server	{'type': 'update', 'action': 'show_mirror_nav'}
+7291	server	{'type': 'update', 'action': 'show_gold_view'}
+7297	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '7b1823f17d6847bf919601ec50af36a4'}}
+7297	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '7b1823f17d6847bf919601ec50af36a4'}}
+7321	client	{'type': 'update', 'action': 'chat', 'message': 'go through the door'}
+7321	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'go through the door'}
+7321	server	{'type': 'update', 'action': 'disable_chat'}
+7321	server	{'type': 'update', 'action': 'disable_nav'}
+7321	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'go through the door'}
+7321	server	{'type': 'update', 'action': 'enable_chat'}
+7321	server	{'type': 'update', 'action': 'enable_gold_view'}
+7328	client	{'type': 'update', 'action': 'chat', 'message': 'hi'}
+7328	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'hi'}
+7328	server	{'type': 'update', 'action': 'enable_chat'}
+7328	server	{'type': 'update', 'action': 'enable_nav'}
+7328	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'hi'}
+7328	server	{'type': 'update', 'action': 'disable_chat'}
+7328	server	{'type': 'update', 'action': 'disable_gold_view'}
+7354	client	{'type': 'update', 'action': 'guess_stop', 'value': '7b1823f17d6847bf919601ec50af36a4'}
+7354	server	{'type': 'update', 'action': 'disable_nav'}
+7354	server	{'type': 'update', 'action': 'set_aux', 'message': "You're not yet in the right room. Try asking your partner for directions."}
+7373	client	{'type': 'update', 'action': 'chat', 'message': 'should I go through the door?'}
+7373	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'should I go through the door?'}
+7373	server	{'type': 'update', 'action': 'disable_chat'}
+7373	server	{'type': 'update', 'action': 'disable_nav'}
+7373	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'should I go through the door?'}
+7373	server	{'type': 'update', 'action': 'enable_chat'}
+7373	server	{'type': 'update', 'action': 'enable_gold_view'}
+7402	client	{'type': 'update', 'action': 'chat', 'message': 'yes'}
+7402	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'yes'}
+7402	server	{'type': 'update', 'action': 'enable_chat'}
+7402	server	{'type': 'update', 'action': 'enable_nav'}
+7402	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'yes'}
+7402	server	{'type': 'update', 'action': 'disable_chat'}
+7402	server	{'type': 'update', 'action': 'disable_gold_view'}
+7415	client	{'type': 'update', 'action': 'guess_stop', 'value': '7b1823f17d6847bf919601ec50af36a4'}
+7415	server	{'type': 'update', 'action': 'disable_nav'}
+7415	server	{'type': 'update', 'action': 'set_aux', 'message': "You're not yet in the right room. Try asking your partner for directions."}
+7416	client	{'type': 'update', 'action': 'guess_stop', 'value': '7b1823f17d6847bf919601ec50af36a4'}
+7416	server	{'type': 'update', 'action': 'disable_nav'}
+7416	server	{'type': 'update', 'action': 'set_aux', 'message': "You're not yet in the right room. Try asking your partner for directions."}
+7493	client	{'type': 'update', 'action': 'chat', 'message': 'it wont let me get in'}
+7493	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'it wont let me get in'}
+7493	server	{'type': 'update', 'action': 'disable_chat'}
+7493	server	{'type': 'update', 'action': 'disable_nav'}
+7493	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'it wont let me get in'}
+7493	server	{'type': 'update', 'action': 'enable_chat'}
+7493	server	{'type': 'update', 'action': 'enable_gold_view'}
+7539	client	{'type': 'update', 'action': 'chat', 'message': 'private'}
+7539	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'private'}
+7539	server	{'type': 'update', 'action': 'enable_chat'}
+7539	server	{'type': 'update', 'action': 'enable_nav'}
+7539	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'private'}
+7539	server	{'type': 'update', 'action': 'disable_chat'}
+7539	server	{'type': 'update', 'action': 'disable_gold_view'}
+7958	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+7958	server	{'type': 'update', 'action': 'disable_chat'}
+7958	server	{'type': 'update', 'action': 'disable_nav'}
+7958	server	{'type': 'update', 'action': 'exit'}
+7958	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+7958	server	{'type': 'update', 'action': 'disable_chat'}
+7958	server	{'type': 'update', 'action': 'disable_gold_view'}
+7958	server	{'type': 'update', 'action': 'exit'}

@@ -1,0 +1,20 @@
+13751	server	{'type': 'update', 'action': 'set_house', 'value': 'wc2JMjhGNzB'}
+13751	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'nightstand'}
+13751	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'dc4a9f470b834de1983c7e605ff06b2e'}
+13751	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+13751	server	{'type': 'update', 'action': 'show_chat'}
+13751	server	{'type': 'update', 'action': 'show_nav'}
+13751	server	{'type': 'update', 'action': 'enable_chat'}
+13751	server	{'type': 'update', 'action': 'enable_nav'}
+13751	server	{'type': 'update', 'action': 'set_house', 'value': 'wc2JMjhGNzB'}
+13751	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'nightstand'}
+13751	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'dc4a9f470b834de1983c7e605ff06b2e'}
+13751	server	{'type': 'update', 'action': 'set_end_panos', 'value': '03c1aca95e254bf4b0db303a28d79aee,1d8917d25abb4a77a0da9583dc82c17c,3848b1ba65fa49308c3d0a79f63782b3,3a035012369c4eb58295238d946fbc66,52ed6a0219e84a0bb6db8037ae700366,a8bee39766144657b1eb5a9346804366,c7c84bf01a834489ad11d8450a7dc2bc,e6693f97b36545f7a76e03c3fe32ba8c,ec04ef10a0664e94878aa2d0f1720c2f'}
+13751	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+13751	server	{'type': 'update', 'action': 'show_chat'}
+13751	server	{'type': 'update', 'action': 'show_mirror_nav'}
+13751	server	{'type': 'update', 'action': 'show_gold_view'}
+14050	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+14050	server	{'type': 'update', 'action': 'disable_chat'}
+14050	server	{'type': 'update', 'action': 'disable_gold_view'}
+14050	server	{'type': 'update', 'action': 'enable_exit'}

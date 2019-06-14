@@ -1,0 +1,22 @@
+9586	server	{'type': 'update', 'action': 'set_house', 'value': 'Z6MFQCViBuw'}
+9586	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'chandelier'}
+9586	server	{'type': 'update', 'action': 'set_start_pano', 'value': '3d15cf8b5bd54efd95f7fd3324b61b30'}
+9586	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+9586	server	{'type': 'update', 'action': 'hide_instructions'}
+9586	server	{'type': 'update', 'action': 'show_chat'}
+9586	server	{'type': 'update', 'action': 'show_nav'}
+9586	server	{'type': 'update', 'action': 'enable_chat'}
+9586	server	{'type': 'update', 'action': 'enable_nav'}
+9586	server	{'type': 'update', 'action': 'set_house', 'value': 'Z6MFQCViBuw'}
+9586	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'chandelier'}
+9586	server	{'type': 'update', 'action': 'set_start_pano', 'value': '3d15cf8b5bd54efd95f7fd3324b61b30'}
+9586	server	{'type': 'update', 'action': 'set_end_panos', 'value': '9dd1efeee9034a408ebdeabf77b7ec63,e4036dde06194ebea30d87431ccafff2,89498b7440a54033b6b1b6ed8d9ec03a,d825fe05575245e7b0b636832a6d707d,8c72bf8a785344e493f1fd2b1ca9e1a3,0eeeec62f5884cf396e3822ad3a1d5d7,fe0787eb7f0348f0a0b0e84c25833fd7,a5b1629e7b544797a6a18c6c924e2166,8b80d44af6624e14958b89141b482bd4,c5d43b5b8ff340929fd1a2347cce88b9,5d464337597c487c8bad21065c565a18,a063f9faee924b5488d4f9208ebfda6f,798e1b9501874ce599d1d0d1905c721e'}
+9586	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+9586	server	{'type': 'update', 'action': 'hide_instructions'}
+9586	server	{'type': 'update', 'action': 'show_chat'}
+9586	server	{'type': 'update', 'action': 'show_mirror_nav'}
+9586	server	{'type': 'update', 'action': 'show_gold_view'}
+10005	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+10005	server	{'type': 'update', 'action': 'disable_chat'}
+10005	server	{'type': 'update', 'action': 'disable_gold_view'}
+10005	server	{'type': 'update', 'action': 'exit'}

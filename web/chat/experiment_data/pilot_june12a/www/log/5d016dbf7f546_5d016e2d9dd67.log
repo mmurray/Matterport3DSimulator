@@ -1,0 +1,33 @@
+8678	server	{'type': 'update', 'action': 'set_house', 'value': 'XcA2TqTSSAj'}
+8678	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'faucet'}
+8678	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'ec480cf25f5d4f869ff93e455aa707e5'}
+8678	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+8678	server	{'type': 'update', 'action': 'hide_instructions'}
+8678	server	{'type': 'update', 'action': 'show_chat'}
+8678	server	{'type': 'update', 'action': 'show_nav'}
+8678	server	{'type': 'update', 'action': 'enable_chat'}
+8678	server	{'type': 'update', 'action': 'enable_nav'}
+8678	server	{'type': 'update', 'action': 'set_house', 'value': 'XcA2TqTSSAj'}
+8678	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'faucet'}
+8678	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'ec480cf25f5d4f869ff93e455aa707e5'}
+8678	server	{'type': 'update', 'action': 'set_end_panos', 'value': '51303f65f927488da25d420f328ce63b'}
+8678	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+8678	server	{'type': 'update', 'action': 'hide_instructions'}
+8678	server	{'type': 'update', 'action': 'show_chat'}
+8678	server	{'type': 'update', 'action': 'show_mirror_nav'}
+8678	server	{'type': 'update', 'action': 'show_gold_view'}
+8682	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ec480cf25f5d4f869ff93e455aa707e5'}}
+8682	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ec480cf25f5d4f869ff93e455aa707e5'}}
+8703	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0.44653685902838824, '_y': 0.784506678535477, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ec480cf25f5d4f869ff93e455aa707e5'}}
+8710	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.8867398619003442, '_y': 0.8219490427383068, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ec480cf25f5d4f869ff93e455aa707e5'}}
+8713	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.3040250955086888, '_y': 0.9164464381073529, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ec480cf25f5d4f869ff93e455aa707e5'}}
+8714	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.3388613043690593, '_y': 0.30132188334658166, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ec480cf25f5d4f869ff93e455aa707e5'}}
+8715	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.6048832629391627, '_y': 0.2620965494198079, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'ec480cf25f5d4f869ff93e455aa707e5'}}
+8728	client	{'type': 'update', 'action': 'chat', 'message': 'Is the room behind me?'}
+8728	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'Is the room behind me?'}
+8728	server	{'type': 'update', 'action': 'disable_chat'}
+8728	server	{'type': 'update', 'action': 'disable_nav'}
+9147	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+9147	server	{'type': 'update', 'action': 'disable_chat'}
+9147	server	{'type': 'update', 'action': 'disable_nav'}
+9147	server	{'type': 'update', 'action': 'exit'}

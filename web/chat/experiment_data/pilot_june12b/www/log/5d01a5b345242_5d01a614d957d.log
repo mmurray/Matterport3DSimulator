@@ -1,0 +1,33 @@
+1695	server	5d01a5b345242	{'type': 'update', 'action': 'set_house', 'value': 'zsNo4HB9uLZ'}
+1695	server	5d01a5b345242	{'type': 'update', 'action': 'set_target_obj', 'value': 'sofa'}
+1695	server	5d01a5b345242	{'type': 'update', 'action': 'set_start_pano', 'value': '4c0aab63a4434cf4878e6f5b3ce9a70b'}
+1695	server	5d01a5b345242	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+1695	server	5d01a5b345242	{'type': 'update', 'action': 'hide_instructions'}
+1695	server	5d01a5b345242	{'type': 'update', 'action': 'show_chat'}
+1695	server	5d01a5b345242	{'type': 'update', 'action': 'show_nav'}
+1695	server	5d01a5b345242	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560389537.582201}
+1695	server	5d01a5b345242	{'type': 'update', 'action': 'enable_nav'}
+1695	server	5d01a614d957d	{'type': 'update', 'action': 'set_house', 'value': 'zsNo4HB9uLZ'}
+1695	server	5d01a614d957d	{'type': 'update', 'action': 'set_target_obj', 'value': 'sofa'}
+1695	server	5d01a614d957d	{'type': 'update', 'action': 'set_start_pano', 'value': '4c0aab63a4434cf4878e6f5b3ce9a70b'}
+1695	server	5d01a614d957d	{'type': 'update', 'action': 'set_end_panos', 'value': '0cf178fb23754cc0ac3b93398b112ddc,11bdfcf0a0984901a1d6f60fdd8ee4a6'}
+1695	server	5d01a614d957d	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+1695	server	5d01a614d957d	{'type': 'update', 'action': 'hide_instructions'}
+1695	server	5d01a614d957d	{'type': 'update', 'action': 'show_chat'}
+1695	server	5d01a614d957d	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560389537.5822108}
+1695	server	5d01a614d957d	{'type': 'update', 'action': 'show_mirror_nav'}
+1695	server	5d01a614d957d	{'type': 'update', 'action': 'show_gold_view'}
+1703	5d01a5b345242	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '4c0aab63a4434cf4878e6f5b3ce9a70b'}}
+1707	5d01a5b345242	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0.030184632611545765, '_y': -0.9610522202344469, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '4c0aab63a4434cf4878e6f5b3ce9a70b'}}
+1708	5d01a5b345242	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.17519041224641713, '_y': -2.65247625106041, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '4c0aab63a4434cf4878e6f5b3ce9a70b'}}
+1709	5d01a5b345242	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.3977198918756942, '_y': -3.3789695522030496, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '4c0aab63a4434cf4878e6f5b3ce9a70b'}}
+1714	5d01a5b345242	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.2875609257309836, '_y': -3.764547932960479, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '4c0aab63a4434cf4878e6f5b3ce9a70b'}}
+1720	5d01a5b345242	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.1828411706113238, '_y': -4.217939627363101, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '4c0aab63a4434cf4878e6f5b3ce9a70b'}}
+1737	5d01a5b345242	server	{'type': 'update', 'action': 'chat', 'message': 'Should I go toward the shower in the bathroom?'}
+1737	server	5d01a5b345242	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'Should I go toward the shower in the bathroom?'}
+1737	server	5d01a5b345242	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560389579.6576374}
+1737	server	5d01a5b345242	{'type': 'update', 'action': 'disable_nav'}
+2036	server	5d01a5b345242	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and receive payment.'}
+2036	server	5d01a5b345242	{'type': 'update', 'action': 'disable_chat'}
+2036	server	5d01a5b345242	{'type': 'update', 'action': 'disable_nav'}
+2036	server	5d01a5b345242	{'type': 'update', 'action': 'exit'}

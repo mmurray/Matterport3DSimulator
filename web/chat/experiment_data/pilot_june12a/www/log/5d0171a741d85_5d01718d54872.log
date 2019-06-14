@@ -1,0 +1,28 @@
+9553	server	{'type': 'update', 'action': 'set_house', 'value': '5q7pvUzZiYa'}
+9553	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'rug'}
+9553	server	{'type': 'update', 'action': 'set_start_pano', 'value': '7dc12a67ddfc4a4a849ce620db5b777b'}
+9553	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+9553	server	{'type': 'update', 'action': 'hide_instructions'}
+9553	server	{'type': 'update', 'action': 'show_chat'}
+9553	server	{'type': 'update', 'action': 'show_nav'}
+9553	server	{'type': 'update', 'action': 'enable_chat'}
+9553	server	{'type': 'update', 'action': 'enable_nav'}
+9553	server	{'type': 'update', 'action': 'set_house', 'value': '5q7pvUzZiYa'}
+9553	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'rug'}
+9553	server	{'type': 'update', 'action': 'set_start_pano', 'value': '7dc12a67ddfc4a4a849ce620db5b777b'}
+9553	server	{'type': 'update', 'action': 'set_end_panos', 'value': 'ffbed768a549496c9752a736bff9efd5,468345e4a74c432290ed59865e01d9e0,32073c62923f40c590dcac826c72e2a7,7939ba3afc934e268aec59027819ae4b,fc40a29412bd43d58978091b6ff4141a'}
+9553	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+9553	server	{'type': 'update', 'action': 'hide_instructions'}
+9553	server	{'type': 'update', 'action': 'show_chat'}
+9553	server	{'type': 'update', 'action': 'show_mirror_nav'}
+9553	server	{'type': 'update', 'action': 'show_gold_view'}
+9563	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '7dc12a67ddfc4a4a849ce620db5b777b'}}
+9563	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': '7dc12a67ddfc4a4a849ce620db5b777b'}}
+9982	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+9982	server	{'type': 'update', 'action': 'disable_chat'}
+9982	server	{'type': 'update', 'action': 'disable_nav'}
+9982	server	{'type': 'update', 'action': 'exit'}
+9982	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+9982	server	{'type': 'update', 'action': 'disable_chat'}
+9982	server	{'type': 'update', 'action': 'disable_gold_view'}
+9982	server	{'type': 'update', 'action': 'exit'}

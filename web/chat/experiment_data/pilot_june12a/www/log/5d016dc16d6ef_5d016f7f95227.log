@@ -1,0 +1,28 @@
+9036	server	{'type': 'update', 'action': 'set_house', 'value': 'p5wJjkQkbXX'}
+9036	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'desk'}
+9036	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'df88585cb6e44ab8a086931ae4c42988'}
+9036	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+9036	server	{'type': 'update', 'action': 'hide_instructions'}
+9036	server	{'type': 'update', 'action': 'show_chat'}
+9036	server	{'type': 'update', 'action': 'show_nav'}
+9036	server	{'type': 'update', 'action': 'enable_chat'}
+9036	server	{'type': 'update', 'action': 'enable_nav'}
+9036	server	{'type': 'update', 'action': 'set_house', 'value': 'p5wJjkQkbXX'}
+9036	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'desk'}
+9036	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'df88585cb6e44ab8a086931ae4c42988'}
+9036	server	{'type': 'update', 'action': 'set_end_panos', 'value': 'e87237996a4e4c71a6aac65c3ef77b26,a2c880331c3d4e0294d048252dca60f1,1de487421e4a43dea07d1bd3c073e62a,eec88eb9fe534ed79ef172a3e115f54a'}
+9036	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+9036	server	{'type': 'update', 'action': 'hide_instructions'}
+9036	server	{'type': 'update', 'action': 'show_chat'}
+9036	server	{'type': 'update', 'action': 'show_mirror_nav'}
+9036	server	{'type': 'update', 'action': 'show_gold_view'}
+9057	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'df88585cb6e44ab8a086931ae4c42988'}}
+9057	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'df88585cb6e44ab8a086931ae4c42988'}}
+9067	client	{'type': 'update', 'action': 'chat', 'message': 'hi, I hope we do well! Sounds fun'}
+9067	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'hi, I hope we do well! Sounds fun'}
+9067	server	{'type': 'update', 'action': 'disable_chat'}
+9067	server	{'type': 'update', 'action': 'disable_nav'}
+9486	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+9486	server	{'type': 'update', 'action': 'disable_chat'}
+9486	server	{'type': 'update', 'action': 'disable_nav'}
+9486	server	{'type': 'update', 'action': 'exit'}

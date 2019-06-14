@@ -1,0 +1,28 @@
+7008	server	{'type': 'update', 'action': 'set_house', 'value': 'vyrNrziPKCB'}
+7008	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'candle'}
+7008	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'b0a61cd9082f482e9aea623121f5d34d'}
+7008	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+7008	server	{'type': 'update', 'action': 'hide_instructions'}
+7008	server	{'type': 'update', 'action': 'show_chat'}
+7008	server	{'type': 'update', 'action': 'show_nav'}
+7008	server	{'type': 'update', 'action': 'enable_chat'}
+7008	server	{'type': 'update', 'action': 'enable_nav'}
+7008	server	{'type': 'update', 'action': 'set_house', 'value': 'vyrNrziPKCB'}
+7008	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'candle'}
+7008	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'b0a61cd9082f482e9aea623121f5d34d'}
+7008	server	{'type': 'update', 'action': 'set_end_panos', 'value': 'cfa7edd3cdea4c428cd1b2e2bdb4aa31,a7c413edfeba4661930406b501a30131'}
+7008	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+7008	server	{'type': 'update', 'action': 'hide_instructions'}
+7008	server	{'type': 'update', 'action': 'show_chat'}
+7008	server	{'type': 'update', 'action': 'show_mirror_nav'}
+7008	server	{'type': 'update', 'action': 'show_gold_view'}
+7023	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'b0a61cd9082f482e9aea623121f5d34d'}}
+7023	server	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'b0a61cd9082f482e9aea623121f5d34d'}}
+7442	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+7442	server	{'type': 'update', 'action': 'disable_chat'}
+7442	server	{'type': 'update', 'action': 'disable_nav'}
+7442	server	{'type': 'update', 'action': 'exit'}
+7442	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+7442	server	{'type': 'update', 'action': 'disable_chat'}
+7442	server	{'type': 'update', 'action': 'disable_gold_view'}
+7442	server	{'type': 'update', 'action': 'exit'}

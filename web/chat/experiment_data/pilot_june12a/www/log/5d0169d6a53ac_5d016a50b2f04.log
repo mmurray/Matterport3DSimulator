@@ -1,0 +1,22 @@
+7775	server	{'type': 'update', 'action': 'set_house', 'value': 'YVUC4YcDtcY'}
+7775	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'desk'}
+7775	server	{'type': 'update', 'action': 'set_start_pano', 'value': '34f4f7c661e845fa9729246b873874a7'}
+7775	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+7775	server	{'type': 'update', 'action': 'hide_instructions'}
+7775	server	{'type': 'update', 'action': 'show_chat'}
+7775	server	{'type': 'update', 'action': 'show_nav'}
+7775	server	{'type': 'update', 'action': 'enable_chat'}
+7775	server	{'type': 'update', 'action': 'enable_nav'}
+7775	server	{'type': 'update', 'action': 'set_house', 'value': 'YVUC4YcDtcY'}
+7775	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'desk'}
+7775	server	{'type': 'update', 'action': 'set_start_pano', 'value': '34f4f7c661e845fa9729246b873874a7'}
+7775	server	{'type': 'update', 'action': 'set_end_panos', 'value': '7cd287c5d5db4a6f812e1a5236cb63dc,b71c82404a724450bb725f3406109e81,87cff1a8b93146819bfae6ca3561b968'}
+7775	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+7775	server	{'type': 'update', 'action': 'hide_instructions'}
+7775	server	{'type': 'update', 'action': 'show_chat'}
+7775	server	{'type': 'update', 'action': 'show_mirror_nav'}
+7775	server	{'type': 'update', 'action': 'show_gold_view'}
+8194	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+8194	server	{'type': 'update', 'action': 'disable_chat'}
+8194	server	{'type': 'update', 'action': 'disable_gold_view'}
+8194	server	{'type': 'update', 'action': 'exit'}

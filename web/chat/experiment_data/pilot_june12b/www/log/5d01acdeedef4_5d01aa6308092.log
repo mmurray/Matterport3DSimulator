@@ -1,0 +1,31 @@
+3338	server	5d01acdeedef4	{'type': 'update', 'action': 'set_house', 'value': 'r1Q1Z4BcV1o'}
+3338	server	5d01acdeedef4	{'type': 'update', 'action': 'set_target_obj', 'value': 'desk'}
+3338	server	5d01acdeedef4	{'type': 'update', 'action': 'set_start_pano', 'value': 'fe54393af51b4820a3bd826798803127'}
+3338	server	5d01acdeedef4	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+3338	server	5d01acdeedef4	{'type': 'update', 'action': 'hide_instructions'}
+3338	server	5d01acdeedef4	{'type': 'update', 'action': 'show_chat'}
+3338	server	5d01acdeedef4	{'type': 'update', 'action': 'show_nav'}
+3338	server	5d01acdeedef4	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560391183.8732414}
+3338	server	5d01acdeedef4	{'type': 'update', 'action': 'enable_nav'}
+3338	server	5d01aa6308092	{'type': 'update', 'action': 'set_house', 'value': 'r1Q1Z4BcV1o'}
+3338	server	5d01aa6308092	{'type': 'update', 'action': 'set_target_obj', 'value': 'desk'}
+3338	server	5d01aa6308092	{'type': 'update', 'action': 'set_start_pano', 'value': 'fe54393af51b4820a3bd826798803127'}
+3338	server	5d01aa6308092	{'type': 'update', 'action': 'set_end_panos', 'value': '70818f4e2da640a095ab59094b7508f2,ea0d50a98d7e47c9a528c364b08bfacd,d08536af13b44cf486b3d906d76cfaf8'}
+3338	server	5d01aa6308092	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+3338	server	5d01aa6308092	{'type': 'update', 'action': 'hide_instructions'}
+3338	server	5d01aa6308092	{'type': 'update', 'action': 'show_chat'}
+3338	server	5d01aa6308092	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560391183.8732479}
+3338	server	5d01aa6308092	{'type': 'update', 'action': 'show_mirror_nav'}
+3338	server	5d01aa6308092	{'type': 'update', 'action': 'show_gold_view'}
+3345	5d01acdeedef4	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'fe54393af51b4820a3bd826798803127'}}
+3357	5d01acdeedef4	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0.6950697196538822, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'fe54393af51b4820a3bd826798803127'}}
+3358	5d01acdeedef4	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0.20110541208100752, '_y': 1.7483912331381795, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'fe54393af51b4820a3bd826798803127'}}
+3363	5d01acdeedef4	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.44025779401517845, '_y': 2.700667368875434, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'fe54393af51b4820a3bd826798803127'}}
+3386	5d01acdeedef4	server	{'type': 'update', 'action': 'chat', 'message': 'I guess I only have one choice... No questions yet...'}
+3386	server	5d01acdeedef4	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'I guess I only have one choice... No questions yet...'}
+3386	server	5d01acdeedef4	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560391231.951526}
+3386	server	5d01acdeedef4	{'type': 'update', 'action': 'disable_nav'}
+3685	server	5d01acdeedef4	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and receive payment.'}
+3685	server	5d01acdeedef4	{'type': 'update', 'action': 'disable_chat'}
+3685	server	5d01acdeedef4	{'type': 'update', 'action': 'disable_nav'}
+3685	server	5d01acdeedef4	{'type': 'update', 'action': 'exit'}

@@ -1,0 +1,29 @@
+13352	server	{'type': 'update', 'action': 'set_house', 'value': '17DRP5sb8fy'}
+13352	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'toilet'}
+13352	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'f4d03f729dfc49068db327584455e975'}
+13352	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+13352	server	{'type': 'update', 'action': 'show_chat'}
+13352	server	{'type': 'update', 'action': 'show_nav'}
+13352	server	{'type': 'update', 'action': 'enable_chat'}
+13352	server	{'type': 'update', 'action': 'enable_nav'}
+13352	server	{'type': 'update', 'action': 'set_house', 'value': '17DRP5sb8fy'}
+13352	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'toilet'}
+13352	server	{'type': 'update', 'action': 'set_start_pano', 'value': 'f4d03f729dfc49068db327584455e975'}
+13352	server	{'type': 'update', 'action': 'set_end_panos', 'value': 'c341c46acf7044d1a712d622cbc94a27,d160d2229e4148839ef3a43dbc0ecdc4'}
+13352	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+13352	server	{'type': 'update', 'action': 'show_chat'}
+13352	server	{'type': 'update', 'action': 'show_mirror_nav'}
+13352	server	{'type': 'update', 'action': 'show_gold_view'}
+13359	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'f4d03f729dfc49068db327584455e975'}}
+13363	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.7008168227238774, '_y': -0.20887345750894293, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'f4d03f729dfc49068db327584455e975'}}
+13367	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.5799863360473467, '_y': -1.0970101914697334, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'f4d03f729dfc49068db327584455e975'}}
+13369	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.909249412240892, '_y': -0.7132264402744398, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'f4d03f729dfc49068db327584455e975'}}
+13370	client	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.6645676767209177, '_y': -0.6164314233800516, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'f4d03f729dfc49068db327584455e975'}}
+13400	client	{'type': 'update', 'action': 'chat', 'message': 'do i go though the door?'}
+13400	server	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'do i go though the door?'}
+13400	server	{'type': 'update', 'action': 'disable_chat'}
+13400	server	{'type': 'update', 'action': 'disable_nav'}
+13699	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+13699	server	{'type': 'update', 'action': 'disable_chat'}
+13699	server	{'type': 'update', 'action': 'disable_nav'}
+13699	server	{'type': 'update', 'action': 'enable_exit'}

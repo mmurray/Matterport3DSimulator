@@ -1,0 +1,20 @@
+10350	server	{'type': 'update', 'action': 'set_house', 'value': 'sT4fr6TAbpF'}
+10350	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'bathtub'}
+10350	server	{'type': 'update', 'action': 'set_start_pano', 'value': '976ad0993bce4c5784da72eb4570d795'}
+10350	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+10350	server	{'type': 'update', 'action': 'show_chat'}
+10350	server	{'type': 'update', 'action': 'show_nav'}
+10350	server	{'type': 'update', 'action': 'enable_chat'}
+10350	server	{'type': 'update', 'action': 'enable_nav'}
+10350	server	{'type': 'update', 'action': 'set_house', 'value': 'sT4fr6TAbpF'}
+10350	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'bathtub'}
+10350	server	{'type': 'update', 'action': 'set_start_pano', 'value': '976ad0993bce4c5784da72eb4570d795'}
+10350	server	{'type': 'update', 'action': 'set_end_panos', 'value': '6ae4a52e16074a7f9e8cbbba2bf16eac,ffacb35a54514b50933640577802d946'}
+10350	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+10350	server	{'type': 'update', 'action': 'show_chat'}
+10350	server	{'type': 'update', 'action': 'show_mirror_nav'}
+10350	server	{'type': 'update', 'action': 'show_gold_view'}
+10649	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+10649	server	{'type': 'update', 'action': 'disable_chat'}
+10649	server	{'type': 'update', 'action': 'disable_gold_view'}
+10649	server	{'type': 'update', 'action': 'enable_exit'}

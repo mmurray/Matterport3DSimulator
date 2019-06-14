@@ -1,0 +1,13 @@
+11264	server	{'type': 'update', 'action': 'set_house', 'value': '7y3sRwLe3Va'}
+11264	server	{'type': 'update', 'action': 'set_target_obj', 'value': 'vase'}
+11264	server	{'type': 'update', 'action': 'set_start_pano', 'value': '7d9664bc035641d995b523a19650d178'}
+11264	server	{'type': 'update', 'action': 'set_end_panos', 'value': 'f6a03fba4dfd415a8b65cce84ee21c19,112edb40f34e470da3a5b04599e71211,b4ac79acffd24a838cc44bb094d0a5cb,1e7c16e6cb054c9fbbeb15160bc11f73,f0db0d83f9d646b997d099d7eae80dd1,8bb3222421334f02a07273f14a9b2d32,47f3befaf16a43449e3456cd8b9be9a4,543bd11ef03b4d3e87b0d9572db01ee2,725d4645400a47ef9b9beaa6e8f56f2b,afad225acfbe48f39cf2894c61d9e714'}
+11264	server	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+11264	server	{'type': 'update', 'action': 'hide_instructions'}
+11264	server	{'type': 'update', 'action': 'show_chat'}
+11264	server	{'type': 'update', 'action': 'show_mirror_nav'}
+11264	server	{'type': 'update', 'action': 'show_gold_view'}
+11683	server	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and recieve payment.'}
+11683	server	{'type': 'update', 'action': 'disable_chat'}
+11683	server	{'type': 'update', 'action': 'disable_gold_view'}
+11683	server	{'type': 'update', 'action': 'exit'}

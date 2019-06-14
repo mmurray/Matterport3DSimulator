@@ -1,0 +1,108 @@
+5179	server	5d01b3aa81a22	{'type': 'update', 'action': 'set_house', 'value': '82sE5b5pLXE'}
+5179	server	5d01b3aa81a22	{'type': 'update', 'action': 'set_target_obj', 'value': 'bottle'}
+5179	server	5d01b3aa81a22	{'type': 'update', 'action': 'set_start_pano', 'value': 'c1d33aa653f146dc8f13b6e713c7dc0e'}
+5179	server	5d01b3aa81a22	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Navigator.'}
+5179	server	5d01b3aa81a22	{'type': 'update', 'action': 'hide_instructions'}
+5179	server	5d01b3aa81a22	{'type': 'update', 'action': 'show_chat'}
+5179	server	5d01b3aa81a22	{'type': 'update', 'action': 'show_nav'}
+5179	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393027.5370998}
+5179	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_nav'}
+5179	server	5d01b3ff9999a	{'type': 'update', 'action': 'set_house', 'value': '82sE5b5pLXE'}
+5179	server	5d01b3ff9999a	{'type': 'update', 'action': 'set_target_obj', 'value': 'bottle'}
+5179	server	5d01b3ff9999a	{'type': 'update', 'action': 'set_start_pano', 'value': 'c1d33aa653f146dc8f13b6e713c7dc0e'}
+5179	server	5d01b3ff9999a	{'type': 'update', 'action': 'set_end_panos', 'value': '89eeae92b2fe4b68abb274970a931608,a903bfca12df44cd9dad5a2ccb79d7bc,586320dcac014267ac7fe23ec4792550,302e8ac8ecf8469280b2fccb3d50569b'}
+5179	server	5d01b3ff9999a	{'type': 'update', 'action': 'set_aux', 'message': 'Another player connected! You are The Oracle.'}
+5179	server	5d01b3ff9999a	{'type': 'update', 'action': 'hide_instructions'}
+5179	server	5d01b3ff9999a	{'type': 'update', 'action': 'show_chat'}
+5179	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393027.5371063}
+5179	server	5d01b3ff9999a	{'type': 'update', 'action': 'show_mirror_nav'}
+5179	server	5d01b3ff9999a	{'type': 'update', 'action': 'show_gold_view'}
+5198	5d01b3aa81a22	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5198	server	5d01b3ff9999a	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': 0, '_y': 0, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5252	5d01b3aa81a22	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.15923140846961964, '_y': -1.0835585772798124, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5252	server	5d01b3ff9999a	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.15923140846961964, '_y': -1.0835585772798124, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5288	5d01b3aa81a22	server	{'type': 'update', 'action': 'chat', 'message': 'go out the shower door and slightly turn left and walk a little forward'}
+5288	server	5d01b3aa81a22	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'go out the shower door and slightly turn left and walk a little forward'}
+5288	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393136.728028}
+5288	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_nav'}
+5288	server	5d01b3ff9999a	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'go out the shower door and slightly turn left and walk a little forward'}
+5288	server	5d01b3ff9999a	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393136.7280316}
+5288	server	5d01b3ff9999a	{'type': 'update', 'action': 'enable_gold_view'}
+5364	5d01b3ff9999a	server	{'type': 'update', 'action': 'chat', 'message': 'go through the door and walk left toward the windows, then turn left and go to the bed'}
+5364	server	5d01b3aa81a22	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'go through the door and walk left toward the windows, then turn left and go to the bed'}
+5364	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393212.855048}
+5364	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_nav'}
+5364	server	5d01b3ff9999a	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'go through the door and walk left toward the windows, then turn left and go to the bed'}
+5364	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393212.8550441}
+5364	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_gold_view'}
+5447	5d01b3aa81a22	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.8521032128914782, '_y': -1.3308135546456752, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5447	server	5d01b3ff9999a	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.8521032128914782, '_y': -1.3308135546456752, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5448	5d01b3aa81a22	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.8391925581506983, '_y': -1.3356616914567705, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5448	server	5d01b3ff9999a	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.8391925581506983, '_y': -1.3356616914567705, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5449	5d01b3aa81a22	server	{'type': 'update', 'action': 'nav', 'message': {'rot': {'_x': -0.37871253906287944, '_y': -1.4883780010062737, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5449	server	5d01b3ff9999a	{'type': 'update', 'action': 'update_mirror_nav', 'message': {'rot': {'_x': -0.37871253906287944, '_y': -1.4883780010062737, '_z': 0, '_order': 'YXZ'}, 'pos': {'x': 0, 'y': 0, 'z': 0}, 'img_id': 'c1d33aa653f146dc8f13b6e713c7dc0e'}}
+5480	5d01b3aa81a22	server	{'type': 'update', 'action': 'chat', 'message': 'walk out of the shower door and look at the ground'}
+5480	server	5d01b3aa81a22	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'walk out of the shower door and look at the ground'}
+5480	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393329.10793}
+5480	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_nav'}
+5480	server	5d01b3ff9999a	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'walk out of the shower door and look at the ground'}
+5480	server	5d01b3ff9999a	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393329.1079338}
+5480	server	5d01b3ff9999a	{'type': 'update', 'action': 'enable_gold_view'}
+5497	5d01b3ff9999a	server	{'type': 'update', 'action': 'chat', 'message': 'continue through the door and go to the left'}
+5497	server	5d01b3aa81a22	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'continue through the door and go to the left'}
+5497	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393346.1548078}
+5497	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_nav'}
+5497	server	5d01b3ff9999a	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'continue through the door and go to the left'}
+5497	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393346.1548042}
+5497	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_gold_view'}
+5575	5d01b3aa81a22	server	{'type': 'update', 'action': 'guess_stop', 'value': 'c1d33aa653f146dc8f13b6e713c7dc0e'}
+5575	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_nav'}
+5575	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393424.2972317}
+5575	server	5d01b3aa81a22	{'type': 'update', 'action': 'set_aux', 'message': "You're not yet in the right room. Try asking your partner for directions."}
+5575	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393424.297235}
+5623	5d01b3aa81a22	server	{'type': 'update', 'action': 'chat', 'message': 'I see the block but cannot click to go anywhere or see different'}
+5623	server	5d01b3aa81a22	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'I see the block but cannot click to go anywhere or see different'}
+5623	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393472.3997917}
+5623	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_nav'}
+5623	server	5d01b3ff9999a	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'I see the block but cannot click to go anywhere or see different'}
+5623	server	5d01b3ff9999a	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393472.3997958}
+5623	server	5d01b3ff9999a	{'type': 'update', 'action': 'enable_gold_view'}
+5674	5d01b3ff9999a	server	{'type': 'update', 'action': 'chat', 'message': ":/ I'm not sure what we're supposed to do if you can't move.. did you try to Right-click on a blue cylinder to move to that position (note: sometimes the blue cylinders are close to your feet, so you may need to look down)."}
+5674	server	5d01b3aa81a22	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': ":/ I'm not sure what we're supposed to do if you can't move.. did you try to Right-click on a blue cylinder to move to that position (note: sometimes the blue cylinders are close to your feet, so you may need to look down)."}
+5674	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393523.5412705}
+5674	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_nav'}
+5674	server	5d01b3ff9999a	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': ":/ I'm not sure what we're supposed to do if you can't move.. did you try to Right-click on a blue cylinder to move to that position (note: sometimes the blue cylinders are close to your feet, so you may need to look down)."}
+5674	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393523.5412667}
+5674	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_gold_view'}
+5746	5d01b3aa81a22	server	{'type': 'update', 'action': 'chat', 'message': "Yes it's not working, I sent them an email cause i'm using a trackpad on my laptop"}
+5746	server	5d01b3aa81a22	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': "Yes it's not working, I sent them an email cause i'm using a trackpad on my laptop"}
+5746	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393595.66238}
+5746	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_nav'}
+5746	server	5d01b3ff9999a	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': "Yes it's not working, I sent them an email cause i'm using a trackpad on my laptop"}
+5746	server	5d01b3ff9999a	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393595.6623838}
+5746	server	5d01b3ff9999a	{'type': 'update', 'action': 'enable_gold_view'}
+5835	5d01b3ff9999a	server	{'type': 'update', 'action': 'chat', 'message': 'even their example is messed up.. I guess we just return the HIT?'}
+5835	server	5d01b3aa81a22	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'even their example is messed up.. I guess we just return the HIT?'}
+5835	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393684.8707418}
+5835	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_nav'}
+5835	server	5d01b3ff9999a	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'even their example is messed up.. I guess we just return the HIT?'}
+5835	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393684.8707383}
+5835	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_gold_view'}
+5903	5d01b3aa81a22	server	{'type': 'update', 'action': 'chat', 'message': 'yea i guess so. sorry for wasting your time didnt know it wouldnt work'}
+5903	server	5d01b3aa81a22	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'yea i guess so. sorry for wasting your time didnt know it wouldnt work'}
+5903	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393753.0028074}
+5903	server	5d01b3aa81a22	{'type': 'update', 'action': 'disable_nav'}
+5903	server	5d01b3ff9999a	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'yea i guess so. sorry for wasting your time didnt know it wouldnt work'}
+5903	server	5d01b3ff9999a	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393753.0028114}
+5903	server	5d01b3ff9999a	{'type': 'update', 'action': 'enable_gold_view'}
+6076	5d01b3ff9999a	server	{'type': 'update', 'action': 'chat', 'message': 'no worries'}
+6076	server	5d01b3aa81a22	{'type': 'update', 'action': 'add_chat', 'speaker': 'other', 'message': 'no worries'}
+6076	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_chat', 'timeout_at': 1560393926.516311}
+6076	server	5d01b3aa81a22	{'type': 'update', 'action': 'enable_nav'}
+6076	server	5d01b3ff9999a	{'type': 'update', 'action': 'add_chat', 'speaker': 'self', 'message': 'no worries'}
+6076	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_chat', 'timeout_at': 1560393926.5163066}
+6076	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_gold_view'}
+6375	server	5d01b3ff9999a	{'type': 'update', 'action': 'set_aux', 'message': 'Looks like you or your partner took too long to respond. Sorry about that! You can end the HIT and receive payment.'}
+6375	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_chat'}
+6375	server	5d01b3ff9999a	{'type': 'update', 'action': 'disable_gold_view'}
+6375	server	5d01b3ff9999a	{'type': 'update', 'action': 'exit'}
