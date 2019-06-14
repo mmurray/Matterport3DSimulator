@@ -99,7 +99,7 @@ function set_house(v) {
 function set_target_obj(v) {
   add_debug("set_target_obj called with '" + v + "'");
   target_obj = v;
-  inst = "Hint: Go to the room with the " + target_obj + ".";
+  inst = "Hint: The goal room contains a " + target_obj + ".";
 }
 
 function set_start_pano(v) {
