@@ -17,6 +17,16 @@
 <link id="favicon" rel="shortcut icon" href="/favicon.ico">
 
 
+<script>
+    function setup_page(){
+        // Check that Chrome is the browser and allow the HIT to load if it is.
+        var is_chrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        if(!is_chrome) {
+            $('#body_container').html("<div class=\"center\" style=\"font-size:130%;padding-top:100px\">This HIT requires <b><a href=\"https://www.google.com/chrome/\" target=\"_blank\">Google Chrome</a></b>.<br/>Please return the HIT and then accept it using the <b><a href=\"https://www.google.com/chrome/\" target=\"_blank\">Google Chrome</a></b> browser.</div>");
+        }
+    }
+</script>
+
 <script type="text/javascript">
 
 var unloadListener = function(){ return "Please do not reload or close this tab! Doing so will abandon this game and strand your partner, and you will not be able to complete the HIT." };
@@ -537,8 +547,8 @@ window.MAX_GOLD_LENGTH=<? echo(getenv("MAX_GOLD_LENGTH") ?: 5); ?>;
 
 </head>
 
-<body>
-<div id="container">
+<body onload="setup_page()" id="body_container">
+<div id="body_container">
 
 <?php
 require_once('functions.php');
