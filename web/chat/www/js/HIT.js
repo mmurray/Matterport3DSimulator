@@ -461,7 +461,7 @@ function move_to(image_id, cylinder_frame, world_frame, isInitial=false, isGold=
   // Adjust cylinder visibility
   var cylinders = cylinder_frame.children;
   for (var i = 0; i < cylinders.length; ++i){
-    cylinders[i].visible = isGold && playing ? false : connections[id_to_ix[image_id]]['unobstructed'][i];
+    cylinders[i].visible = isGold && playing ? false : connections[id_to_ix[image_id]]['unobstructed'][i] && cylinders[i].included;
   }
   // Correct world frame for individual skybox camera rotation
   var inv = new THREE.Matrix4();
@@ -503,7 +503,7 @@ function move_to_demo(image_id, isInitial=false, isGold=false) {
   // Adjust cylinder visibility
   var cylinders = cylinder_frame_demo.children;
   for (var i = 0; i < cylinders.length; ++i){
-    cylinders[i].visible = connections_demo[id_to_ix_demo[image_id]]['unobstructed'][i];
+    cylinders[i].visible = connections_demo[id_to_ix_demo[image_id]]['unobstructed'][i] && cylinders[i].included;
   }
   // Correct world frame for individual skybox camera rotation
   var inv = new THREE.Matrix4();
