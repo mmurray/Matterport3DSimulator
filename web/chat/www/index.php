@@ -245,9 +245,10 @@ function show_mirror_nav() {
   window.setOracleMode();
   $('.rating_adj').html('cooperative');
   $('.rating_verb').html('following');
-  $('#user_input_message_val').html("Waiting for your partner to ask a question");
+  $('#user_input_message_val').html("Your partner is navigating and can ask you for directions");
   add_debug("show_mirror_nav called");
   $('#user_nav_div').show();
+  $('#user_nav_end').hide();
   init_nav(scan, start_pano, end_panos, inst);
   $('#shared_instructions').text(inst);
 }
@@ -261,6 +262,7 @@ function enable_nav() {
   $('#user_nav').prop("disabled", false);
   $('#user_nav_end').prop("disabled", false);
   window.enable_nav_controls();
+  $('#nav_inst').html("Try to find the goal room given the hint [left click and drag to move camera, right click blue cylinders to move]. Ask your partner for help using the chat. Your partner can see your movements on their screen.<br/>");
 }
 
 function disable_nav() {
@@ -295,7 +297,7 @@ function enable_gold_view() {
   $('#user_gold_play').prop("disabled", false);
   $('#skybox_gold').css({display:'block'});
   $('#user_gold_play').show();
-  $('#nav_inst').html("Your partner has asked for help! View their correspondence in the chat and view the best route by clicking \"Show Best Route\" below.<br/>");
+  $('#nav_inst').html("Your partner has asked for help in the chat window! View the best next few steps by clicking \"Show Best Route\" below, and write an answer back to them.<br/>");
 }
 
 function disable_gold_view() {
@@ -304,7 +306,7 @@ function disable_gold_view() {
   $('#user_gold_play').prop("disabled", true);
   $('#skybox_gold').css({display:'none'});
   $('#user_gold_play').hide();
-  $('#nav_inst').html("Your partner is navigating through this scene. When they ask you for help you will be able to view the best route by clicking \"Show Best Route\" below.<br/>");
+  $('#nav_inst').html("Your partner is navigating through this house. When they ask you for help you will be able to view the next few steps they should take and answer their question.<br/>");
 }
 
 function enable_exit() {
@@ -525,7 +527,7 @@ if (urlv.house_scan) {
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Detector.js"></script>
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/PTZCameraControls.js"></script>
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Matterport3D.js"></script>
-<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/HIT.js?v4"></script>
+<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/HIT.js?v5"></script>
 <script type="text/javascript">
 window.R2R_DATA_PREFIX="<? echo(getenv("R2R_DATA_PREFIX") ?: "R2R_data/"); ?>";
 window.CONNECTIVITY_DATA_PREFIX="<? echo(getenv("CONNECTIVITY_DATA_PREFIX") ?: "connectivity/"); ?>";
@@ -574,7 +576,7 @@ if (!isset($_POST['uid'])) {
       <p><b>The goal room won’t be specified exactly</b>, for example, "Find the room with a plant."
         There can be lots of plants in a house!
         Figuring out <i>which</i> room in the house is the challenge, and will require <i>both</i> players to solve.
-        The oracle can view the future path the navigator should take, enabling them to give guidance.
+        The oracle can view the next few steps the navigator should take, enabling them to give guidance.
       </p>
 
         <div class="show" id="collapseExample">
@@ -589,19 +591,20 @@ if (!isset($_POST['uid'])) {
         <ul>
         <li><strong>Left-click and drag the image</strong> to look around.</li>
         <li><strong>Right-click on a blue cylinder</strong> to move to that position (note: sometimes the blue cylinders are close to your feet, so you may need to look down).</li>
-        <li><strong>Click "Found Room"</strong> when you think you have found the target room.</strong></li>
        </ul>
 
 
+<p>Please practice navigation below, and <b>return this HIT if you are unable to move the camera [left click and drag] and move around [right click on blue cylinders].</b>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#practice_modal" style="margin-bottom:10px">
   Click here to practice navigation
 </button>
+</p>
 
 
 
-      <p>The target room will often be far away from the starting pint, and the hint alone will not be enough.
+      <p>The target room can be far away from the starting pint, so the hint alone will not be enough.
       The navigator should communicate with their oracle partner using the chat interface.
-      The oracle is provided with a preview of the best path towards the room so they can answer questions to guide the navigator.
+      The oracle is provided with a preview of the next best steps towards the room so they can answer questions to guide the navigator.
       </p>
 
       <p>
@@ -618,19 +621,19 @@ if (!isset($_POST['uid'])) {
         </div>
 <br/>
 
-      <p>After asking a question, the scene will pause until the oracle has enough time to respond. But once the oracle has sent their response the navigator can continue moving throughout the scene.</p>
+      <p>After asking a question, the scene will pause until the oracle responds. Then, the navigator can continue moving throughout the scene.</p>
 
-      <p>When the navigator has finally located the room, they will click the "<i>Found Room</i>" button to complete the task.</p>
+      <p>When the navigator thinks they have located the room, they will click the "<i>Guess This Room</i>" button. If correct, the task will end. Otherwise, the navigator will have to ask the oracle for help.</p>
 
       <h3>Partner 2: Oracle</h3>
 
       <p>The oracle observes as the navigator moves through the house.
-      When the navigator asks a question, the oracle is provided with an animated preview of the best next steps to take toward the goal room.
+      When the navigator asks a question, the oracle is provided with a preview of the best next steps to take toward the goal room.
       It is the oracle's job to describe these steps to the navigator by sending a response in the chat.
-      Before responding, they can replay the best path animation as many times as they want by clicking the "<i>Show Best Route</i>" button.</p>
+      Before responding, they can replay the next best steps as many times as they want by clicking the "<i>Show Best Route</i>" button.</p>
 
       <p><b>When the oracle sends a response to the navigator, they will again observe the navigator moving through the house!</b>
-        When describing the best path, the oracle should strive to be as helpful as possible, for example:
+        When describing the best path, the oracle should be as helpful as possible, for example:
 
          <div class="row">
           <!--<div class="col-md-3"><img src="img/nav_example_1.png" width="100%" /></div>-->
@@ -664,8 +667,10 @@ If you have any problems, please email us instead at <a style="background:none;p
       <div id="user_nav_div" style="display:none;">
         <figure style="display: inline-block; width: 100%;"><canvas id="skybox" style="width:100%; height:auto; display: block; margin: 0 auto;"> </canvas></figure>
         <p id="nav_inst">
-          When you and your partner believe you have found the correct room, click 'Found Room' below.<br/>
-          <button class="btn btn-success" disabled id="user_nav_end" onclick="send_user_stop('<?php echo $d;?>', '<?php echo $uid;?>')">Found Room</button>
+        </p>
+        <p>
+          <button class="btn btn-success" disabled id="user_nav_end" onclick="send_user_stop('<?php echo $d;?>', '<?php echo $uid;?>')"><b>Guess This Room</b><br/>
+          <div style="font-size:13px">If you are incorrect, you will have to ask your partner a question.</div></button>
         </p>
       </div>
       <div id="user_gold_div" style="display:none;">
@@ -713,7 +718,7 @@ If you have any problems, please email us instead at <a style="background:none;p
         <p>
           <input type="text" disabled id="user_input" style="width:100%;" placeholder="your message..." onkeydown="if (event.keyCode == 13) {$('#user_say').click();}"><br/>
           <button class="btn" disabled id="user_say" onclick="send_user_chat('<?php echo $d;?>', '<?php echo $uid;?>')" style="margin-top:5px;margin-bottom:10px;">Send Message and Change Turns</button>
-          <div style="color:#00f;font-size:13px;" id="user_input_message"><span id="user_input_message_val">Waiting for a response from your partner</span>...</div>
+          <div style="color:#00f;font-size:13px;" id="user_input_message"><span id="user_input_message_val">Your partner is viewing your next best steps and answering your question</span>...</div>
         </p>
         <p>
             <div id="time_left" style="color:#00f;font-size:13px">(<span id="time_left_label">Your partner has</span>&nbsp;<span id="time_left_value"></span> to chat.)</div>

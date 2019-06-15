@@ -43,7 +43,7 @@ window.setOracleMode = function() {
   oracle_mode = true;
   window.oracle_mode = true;
   gold_skybox_init();
-  $('#nav_inst').html("Your partner is navigating through this scene. When they ask you for help you will be able to view the best route by clicking \"Show Best Route\" below.<br/>");
+  $('#nav_inst').html("Your partner is navigating through this house. When they ask you for help you will be able to view the next few steps they should take and answer their question.<br/>");
 };
 
 window.setDebugMode = function() {
