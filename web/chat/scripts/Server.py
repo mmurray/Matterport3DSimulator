@@ -150,6 +150,16 @@ class Server:
         self.log_dir = log_dir
         self.house_targets = house_targets
 
+        # Order in which to assign house targets.
+        self.house_indexes = list(range(len(self.house_targets)))
+        np.random.shuffle(self.house_indexes)
+        self.curr_house_idx = 0
+        self.house_target_indexes = {house: list(range(len(self.house_targets[house])))
+                                     for house in list(self.house_targets.keys())}
+        for house in list(self.house_targets.keys()):
+            np.random.shuffle(self.house_target_indexes[house])
+        self.curr_house_target_idx = {house: 0 for house in list(self.house_targets.keys())}
+
         # State and message information.
         self.users = []  # list of user ids, uid
         self.time_unpaired = {}  # map from uid -> int indicating how long a user has waited unpaired.
@@ -297,10 +307,21 @@ class Server:
             if uid2 in self.exit_enabled:
                 self.exit_enabled.remove(uid2)
 
-            # TODO: select a house and tuple from house_targets in some kind of better, active fashion than this.
-            house = np.random.choice(list(self.house_targets.keys()))
-            pair_idx = np.random.randint(0, len(self.house_targets[house]))
-            target_obj, start_pano, _, end_panos, dists = self.house_targets[house][pair_idx]
+            # TODO: when we have enough data, select tuple by reading games dataframe in and selecting from among
+            # TODO: those with least representation for the run.
+            # For now, sample a new house (in fixed, random order) and assign its targets in fixed order but change
+            # houses after each game.
+            house = list(self.house_targets.keys())[self.house_indexes[self.curr_house_idx]]
+            tuple_idx = self.house_target_indexes[house][self.curr_house_target_idx[house]]
+            target_obj, start_pano, _, end_panos, dists = self.house_targets[house][tuple_idx]
+            # Revolve to next target.
+            self.curr_house_target_idx[house] += 1
+            if self.curr_house_target_idx[house] == len(self.house_target_indexes[house]):
+                self.curr_house_target_idx[house] = 0
+            # Revolve to the next house.
+            self.curr_house_idx += 1
+            if self.curr_house_idx == len(self.house_indexes):
+                self.curr_house_idx = 0
 
             print("Server: assign_pairs pairing users %s and %s to play in house %s with target obj %s (dists=" %
                   (uid1, uid2, house, target_obj) + str(dists) + ")")
