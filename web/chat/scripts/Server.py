@@ -73,13 +73,13 @@ class Game:
         try:
             action = d["action"]
         except KeyError:
-            print("Server: WARNING - message missing 'action' field; interrupting game")
+            print("Game: WARNING - message missing 'action' field; interrupting game")
             return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
         if action == "chat":
             try:
                 contents = d["message"]
             except KeyError:
-                print("Server: WARNING - message missing 'message' field; interrupting game")
+                print("Game: WARNING - message missing 'message' field; interrupting game")
                 return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
             speaker_m = [{"type": "update", "action": "add_chat", "speaker": "self", "message": contents},  # the chat
                          {"type": "update", "action": "disable_chat", "timeout_at": time.time() + self.max_seconds_per_turn}]  # disable chatbox
@@ -105,7 +105,7 @@ class Game:
             try:
                 contents = d["message"]
             except KeyError:
-                print("Server: WARNING - message missing 'message' field; interrupting game")
+                print("Game: WARNING - message missing 'message' field; interrupting game")
                 return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
             nav_m = []
             oracle_m = [{"type": "update", "action": "update_mirror_nav", "message": contents}]
@@ -114,7 +114,7 @@ class Game:
             try:
                 curr_pano = d["value"]
             except KeyError:
-                print("Server: WARNING - message missing 'value' field; interrupting game")
+                print("Game: WARNING - message missing 'value' field; interrupting game")
                 return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
             if curr_pano in self.end_panos:  # correct location, so end task.
                 nav_m = [{"type": "update", "action": "set_aux", "message": "Congrats, you found the room!"},
@@ -158,7 +158,7 @@ class Server:
     # client_dir - directory to use for IPC with web server via JSON file reads/writes.
     # log_dir - directory to store interaction logs.
     def __init__(self, spin_time, max_seconds_per_turn, max_seconds_unpaired, client_dir, log_dir,
-                 house_targets):
+                 house_targets, verbose=False):
         self.spin_time = spin_time
         self.max_cycles_per_turn = max_seconds_per_turn / float(spin_time)
         self.max_cycles_unpaired = max_seconds_unpaired / float(spin_time)
@@ -166,6 +166,7 @@ class Server:
         self.client_dir = client_dir
         self.log_dir = log_dir
         self.house_targets = house_targets
+        self.verbose = verbose
 
         # Order in which to assign house targets.
         self.house_indexes = list(range(len(self.house_targets)))
@@ -377,7 +378,8 @@ class Server:
         for fn in self.files_to_remove:
             path = os.path.join(fn)
             cmd = "rm -f " + path
-            print("Server executing: " + cmd)
+            if self.verbose:
+                print("Server executing: " + cmd)
             os.system(cmd)
         self.files_to_remove = []
 
@@ -401,7 +403,8 @@ class Server:
             if force_overwrite or not os.path.isfile(fn):
                 with open(fn, 'w') as f:
                     ss = [msg[2] for msg in msgs_for_uid[uid]]
-                    print("Server writing '" + fn + "' with contents: \"" + str(ss) + "\"")
+                    if self.verbose:
+                        print("Server writing '" + fn + "' with contents: \"" + str(ss) + "\"")
                     json.dump(ss, f)
                 log_fn = os.path.join(self.log_dir, game_name + ".log")
                 with open(log_fn, 'a') as f:
