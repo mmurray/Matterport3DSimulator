@@ -146,6 +146,7 @@ class Server:
         self.spin_time = spin_time
         self.max_cycles_per_turn = max_seconds_per_turn / float(spin_time)
         self.max_cycles_unpaired = max_seconds_unpaired / float(spin_time)
+        self.timeouts_since_last_game_start = 0
         self.client_dir = client_dir
         self.log_dir = log_dir
         self.house_targets = house_targets
@@ -207,11 +208,15 @@ class Server:
                             self.exit_enabled.append(uid)
                             self.files_to_write.extend(
                                 [("none", uid, "server", {"type": "update", "action": "enable_exit"})])
+                            print("Server: uid %s has been waiting for a full unpaired cycle" % uid)
+                            self.timeouts_since_last_game_start += 1
+                            print("Server: %d timeouts since last game start" % self.timeouts_since_last_game_start)
                         else:  # Either no one is playing or player closed tab.
                             self.users.remove(uid)  # Remove the user from the queue so they dont get paired later
                             self.exit_enabled.remove(uid)
                             self.files_to_write.extend(
                                 [("none", uid, "server", {"type": "update", "action": "exit"})])
+                            print("Server: removed uid %s after two full unpaired cycles" % uid)
 
                 # Interrupt games that have had no communication for too long.
                 for gidx in range(len(self.games)):
@@ -299,6 +304,7 @@ class Server:
     def start_games(self):
         unassigned = [uid for uid in self.users if uid not in self.u2g]
         while len(unassigned) > 1:
+            self.timeouts_since_last_game_start = 0
             uid1 = unassigned.pop(0)
             uid2 = unassigned.pop(0)
 
