@@ -194,6 +194,7 @@ class Server:
         # File upkeep is done at the end of each cycle; changes to be made stored in these structures.
         self.files_to_remove = []
         self.files_to_write = []
+        self.files_to_archive = []
 
         # Current cycle.
         self.curr_cycle = 0
@@ -287,12 +288,14 @@ class Server:
                 d = json.load(f)
         except:
             print("Server: WARNING - JSON decoding issue with '%s'; ignoring communication" % fn)
+            self.files_to_archive.append(fn)
             return
         # New client connecting.
         try:
             comm_type = d["type"]
         except KeyError:
             print("Server: WARNING - message missing 'type' field in '%s'; ignoring communication" % fn)
+            self.files_to_archive.append(fn)
             return
         if comm_type == "new":
             self.create_new_user(uid)
@@ -304,10 +307,18 @@ class Server:
         # Game action.
         if comm_type == "update":
             g = self.games[self.u2g[uid]]
+            if not g:
+                print("Server: WARNING - Game not found for user ID: {}".format(uid))
+                print("Game ID: {}".format(self.u2g[uid]))
+                print("Game ID finished: {}".format(self.games_finished[self.u2g[uid]]))
+                print("Length of games: {}".format(len(self.games)))
+                self.files_to_archive.append(fn)
+                return
             try:
                 comm_action = d["action"]
             except KeyError:
                 print("Server: WARNING - message missing 'type' field in '%s'; ignoring communication" % fn)
+                self.files_to_archive.append(fn)
                 return
             if comm_action == "chat" or comm_action == "guess_stop":
                 self.games_timeout[self.u2g[uid]] = self.max_cycles_per_turn
@@ -390,6 +401,15 @@ class Server:
 
     # Removes flagged files, writes queued files, and logs writes as text.
     def flush_files(self, force_overwrite=False):
+
+        # Move files flagged for archive
+        for fn in self.files_to_archive:
+            path = os.path.join(fn)
+            cmd = "mv " + path + " " + path + ".archived"
+            if self.verbose:
+                print("Server executing: " + cmd)
+            os.system(cmd)
+        self.files_to_archive = []
 
         # Remove flagged files.
         for fn in self.files_to_remove:
