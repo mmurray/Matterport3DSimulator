@@ -70,9 +70,17 @@ class Game:
     # Update the game from a client communication.
     # Returns (nav_m, oracle_m)
     def update(self, d, oracle, navigator):
-        action = d["action"]
+        try:
+            action = d["action"]
+        except KeyError:
+            print("Server: WARNING - message missing 'action' field; interrupting game")
+            return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
         if action == "chat":
-            contents = d["message"]
+            try:
+                contents = d["message"]
+            except KeyError:
+                print("Server: WARNING - message missing 'message' field; interrupting game")
+                return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
             speaker_m = [{"type": "update", "action": "add_chat", "speaker": "self", "message": contents},  # the chat
                          {"type": "update", "action": "disable_chat", "timeout_at": time.time() + self.max_seconds_per_turn}]  # disable chatbox
             listener_m = [{"type": "update", "action": "add_chat", "speaker": "other", "message": contents},  # the chat
@@ -94,12 +102,20 @@ class Game:
                 self.turn = "navigator"
                 return [listener_m, speaker_m, False]
         elif action == "nav":
-            contents = d["message"]
+            try:
+                contents = d["message"]
+            except KeyError:
+                print("Server: WARNING - message missing 'message' field; interrupting game")
+                return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
             nav_m = []
             oracle_m = [{"type": "update", "action": "update_mirror_nav", "message": contents}]
             return [nav_m, oracle_m, False]
         elif action == "guess_stop":
-            curr_pano = d["value"]
+            try:
+                curr_pano = d["value"]
+            except KeyError:
+                print("Server: WARNING - message missing 'value' field; interrupting game")
+                return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
             if curr_pano in self.end_panos:  # correct location, so end task.
                 nav_m = [{"type": "update", "action": "set_aux", "message": "Congrats, you found the room!"},
                          {"type": "update", "action": "disable_chat"},
