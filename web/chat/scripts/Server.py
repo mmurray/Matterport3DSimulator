@@ -5,7 +5,6 @@ import argparse
 import json
 import numpy as np
 import os
-import sys
 import time
 
 
@@ -74,13 +73,15 @@ class Game:
             action = d["action"]
         except KeyError:
             print("Game: WARNING - message missing 'action' field; interrupting game")
-            return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
+            nav_m, oracle_m = self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
+            return [nav_m, oracle_m, True]
         if action == "chat":
             try:
                 contents = d["message"]
             except KeyError:
                 print("Game: WARNING - message missing 'message' field; interrupting game")
-                return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
+                nav_m, oracle_m = self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
+                return [nav_m, oracle_m, True]
             speaker_m = [{"type": "update", "action": "add_chat", "speaker": "self", "message": contents},  # the chat
                          {"type": "update", "action": "disable_chat", "timeout_at": time.time() + self.max_seconds_per_turn}]  # disable chatbox
             listener_m = [{"type": "update", "action": "add_chat", "speaker": "other", "message": contents},  # the chat
@@ -106,7 +107,8 @@ class Game:
                 contents = d["message"]
             except KeyError:
                 print("Game: WARNING - message missing 'message' field; interrupting game")
-                return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
+                nav_m, oracle_m = self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
+                return [nav_m, oracle_m, True]
             nav_m = []
             oracle_m = [{"type": "update", "action": "update_mirror_nav", "message": contents}]
             return [nav_m, oracle_m, False]
@@ -115,7 +117,8 @@ class Game:
                 curr_pano = d["value"]
             except KeyError:
                 print("Game: WARNING - message missing 'value' field; interrupting game")
-                return self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
+                nav_m, oracle_m = self.interrupt("An unexpected server hiccup occurred! Sorry about that.")
+                return [nav_m, oracle_m, True]
             if curr_pano in self.end_panos:  # correct location, so end task.
                 nav_m = [{"type": "update", "action": "set_aux", "message": "Congrats, you found the room!"},
                          {"type": "update", "action": "disable_chat"},
@@ -183,6 +186,7 @@ class Server:
         self.time_unpaired = {}  # map from uid -> int indicating how long a user has waited unpaired.
         self.games = []  # list of games indexed by game id gid
         self.games_timeout = []  # list of games' remaining times
+        self.games_finished = []  # list of bools indicating whether game is done
         self.logs = []  # list of log file names parallel to games list
         self.u2g = {}  # assignment of users to games, uid -> gid
         self.exit_enabled = []
@@ -237,7 +241,7 @@ class Server:
 
                 # Interrupt games that have had no communication for too long.
                 for gidx in range(len(self.games)):
-                    if self.games[gidx] is not None:
+                    if not self.games_finished[gidx]:
                         self.games_timeout[gidx] -= 1
                         if self.games_timeout[gidx] == 0:
                             g = self.games[gidx]
@@ -246,6 +250,7 @@ class Server:
                                 "You can end the HIT and receive payment.")
                             self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
                             self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
+                            self.games_finished[gidx] = True
 
                 # Remove flagged files and write new ones.
                 self.flush_files()
@@ -257,11 +262,13 @@ class Server:
         except KeyboardInterrupt:
             print("Server: caught interrupt signal; ending games and messaging unpaired users")
             # Interrupt games.
-            for g in self.games:
-                if g is not None:
+            for gidx in range(len(self.games)):
+                if not self.games_finished[gidx]:
+                    g = self.games[gidx]
                     nav_ms, oracle_ms = g.interrupt("Unexpected Server Error. You can end the HIT and receive payment.")
                     self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
                     self.files_to_write.extend([(g.name, g.oracle, "server", m) for m in oracle_ms])
+                    self.games_finished[gidx] = True
             # Let unpaired users off the hook.
             unassigned = [uid for uid in self.users if uid not in self.u2g]
             for uid in unassigned:
@@ -315,7 +322,7 @@ class Server:
 
             # If game is over, clear it.
             if game_over:
-                self.games[self.u2g[uid]] = None
+                self.games_finished[self.u2g[uid]] = True
 
         if comm_type == "exit":
             self.users.remove(uid)  # Remove the user from the queue so they dont get paired later
@@ -363,14 +370,10 @@ class Server:
             print("Server: assign_pairs pairing users %s and %s to play in house %s with target obj %s (dists=" %
                   (uid1, uid2, house, target_obj) + str(dists) + ")")
             g = Game(uid1, uid2, house, target_obj, start_pano, end_panos, self.max_cycles_per_turn * self.spin_time)
-            if None in self.games:
-                gid = self.games.index(None)
-                self.games[gid] = g
-                self.games_timeout[gid] = self.max_cycles_per_turn
-            else:
-                gid = len(self.games)
-                self.games.append(g)
-                self.games_timeout.append(self.max_cycles_per_turn)
+            gid = len(self.games)
+            self.games.append(g)
+            self.games_timeout.append(self.max_cycles_per_turn)
+            self.games_finished.append(False)
             self.u2g[uid1] = gid
             self.u2g[uid2] = gid
 
