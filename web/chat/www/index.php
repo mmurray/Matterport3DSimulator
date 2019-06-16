@@ -548,7 +548,7 @@ window.MAX_GOLD_LENGTH=<? echo(getenv("MAX_GOLD_LENGTH") ?: 5); ?>;
 </head>
 
 <body onload="setup_page()" id="body_container">
-<div id="body_container">
+<div id="container">
 
 <?php
 require_once('functions.php');
