@@ -275,10 +275,19 @@ class Server:
     # Interpret JSON communication from a user.
     # fn - the file path to interpret.
     def interpret_client_comm(self, fn, uid):
-        with open(fn, 'r') as f:
-            d = json.load(f)
+        try:
+            with open(fn, 'r') as f:
+                d = json.load(f)
+        except:
+            print("Server: WARNING - JSON decoding issue with '%s'; ignoring communication" % fn)
+            return
         # New client connecting.
-        if d["type"] == "new":
+        try:
+            comm_type = d["type"]
+        except KeyError:
+            print("Server: WARNING - message missing 'type' field in '%s'; ignoring communication" % fn)
+            return
+        if comm_type == "new":
             self.create_new_user(uid)
 
             # Log new user appearance.
@@ -286,9 +295,14 @@ class Server:
             with open(log_fn, 'a') as f:
                 f.write('%d\t%s\tserver\t%s\n' % (self.curr_cycle, uid, d))
         # Game action.
-        if d["type"] == "update":
+        if comm_type == "update":
             g = self.games[self.u2g[uid]]
-            if d["action"] == "chat" or d["action"] == "guess_stop":
+            try:
+                comm_action = d["action"]
+            except KeyError:
+                print("Server: WARNING - message missing 'type' field in '%s'; ignoring communication" % fn)
+                return
+            if comm_action == "chat" or comm_action == "guess_stop":
                 self.games_timeout[self.u2g[uid]] = self.max_cycles_per_turn
             nav_ms, oracle_ms, game_over = g.update(d, g.oracle, g.navigator)
             self.files_to_write.extend([(g.name, g.navigator, "server", m) for m in nav_ms])
@@ -303,7 +317,7 @@ class Server:
             if game_over:
                 self.games[self.u2g[uid]] = None
 
-        if d["type"] == "exit":
+        if comm_type == "exit":
             self.users.remove(uid)  # Remove the user from the queue so they dont get paired later
             self.exit_enabled.remove(uid)
             self.files_to_write.extend(

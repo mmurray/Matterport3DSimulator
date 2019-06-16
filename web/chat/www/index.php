@@ -115,6 +115,7 @@ function set_target_obj(v) {
 function set_start_pano(v) {
   add_debug("set_start_pano called with '" + v + "'");
   start_pano = v;
+  curr_location_img_id = v;
 }
 
 function set_end_panos(v) {
