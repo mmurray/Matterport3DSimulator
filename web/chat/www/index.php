@@ -187,7 +187,6 @@ function add_chat(message, speaker) {
     window.playSound(440.0, 'sine');
     clearTimeout(blinkTimeout);
     clearInterval(animInterval);
-    $('#favicon').attr('href', '/favicon-blink.ico');
     blinkTimeout = setTimeout(function() {
         clearInterval(animInterval);
         $('#favicon').attr('href', '/favicon.ico');
