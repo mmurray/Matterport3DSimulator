@@ -199,7 +199,6 @@ function add_chat(message, speaker) {
         }
     }, 500);
   }
-
 }
 
 function send_user_chat() {
@@ -604,7 +603,7 @@ if (!isset($_POST['uid'])) {
        </ul>
 
 
-<p>Please practice navigation below, and <b>return this HIT if you are unable to move the camera [left click and drag] and move around [right click on blue cylinders].</b>
+<p class="practice_instructions">Please practice navigation below, and <b>return this HIT if you are unable to move the camera [left click and drag] and move around [right click on blue cylinders].</b>
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#practice_modal" style="margin-bottom:10px">
   Click here to practice navigation
 </button>
@@ -881,6 +880,7 @@ if (urlv.max_gold_len) {
 }
 
 $('#reviewInstBody').html($('#instructions_content').clone().css({fontWeight:'normal', fontSize:'14px'}));
+$('#reviewInstBody').find('.practice_instructions').remove();
 
 </script>
 
