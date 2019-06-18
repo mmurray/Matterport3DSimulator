@@ -826,7 +826,7 @@ If you have any problems, please email us instead at <a style="background:none;p
         </div>
       </div>
       <div class="form-group">
-        <input type="checkbox" name="problem" value="true"> Check this box if you experienced technical errors in your HIT (e.g., navigation stopped worker, oracle was unable to view steps, etc.).
+        <input type="checkbox" name="problem" value="true"> Check this box if you experienced technical errors in your HIT (e.g., navigation stopped working, oracle was unable to view steps, etc.).
       </div>
       <div class="form-group">
         <label for="free_form_feedback">Please provide any additional feedback you have:</label>
