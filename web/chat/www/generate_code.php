@@ -31,7 +31,7 @@ else {
 
   # Show exit instructions.
   $uid = $_POST['uid'];
-  $mturk_code = $uid."_".substr(sha1("phm_salted_hash".$uid."thowpbr_main0"), 0, 13);
+  $mturk_code = $uid."_".substr(sha1("phm_salted_hash".$uid."thowpbr_main1"), 0, 13);
   ?>
   <div class="row">
     <div class="col-md-12">
@@ -51,6 +51,7 @@ else {
     "oracle" => $_POST['oracle'],
     "navigator" => $_POST['navigator'],
     "rating" => $_POST['rating'],
+    "problem" => $_POST['problem'],
     "free_form_feedback" => $_POST['free_form_feedback'],
   );
   write_file('feedback/' . $_POST['uid'] . '_' . $pid . '.json', json_encode($data) . "\n", 'Could not create file to save feedback.');

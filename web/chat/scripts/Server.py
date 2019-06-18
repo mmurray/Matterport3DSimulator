@@ -5,6 +5,7 @@ import argparse
 import json
 import numpy as np
 import os
+import pandas as pd
 import time
 
 
@@ -160,8 +161,9 @@ class Server:
     # max_seconds_unpaired - how many seconds to let a client sit unpaired before aborting the dialog.
     # client_dir - directory to use for IPC with web server via JSON file reads/writes.
     # log_dir - directory to store interaction logs.
+    # house_targets - scan-indexed tuples of potential targets, start pano, end_panos, and distances
     def __init__(self, spin_time, max_seconds_per_turn, max_seconds_unpaired, client_dir, log_dir,
-                 house_targets, verbose=False):
+                 house_targets, existing_game_counts, verbose=False):
         self.spin_time = spin_time
         self.max_cycles_per_turn = max_seconds_per_turn / float(spin_time)
         self.max_cycles_unpaired = max_seconds_unpaired / float(spin_time)
@@ -169,17 +171,54 @@ class Server:
         self.client_dir = client_dir
         self.log_dir = log_dir
         self.house_targets = house_targets
+        self.house_targets_l = list(self.house_targets.keys())
+        existing_game_counts = existing_game_counts
         self.verbose = verbose
 
-        # Order in which to assign house targets.
-        self.house_indexes = list(range(len(self.house_targets)))
-        np.random.shuffle(self.house_indexes)
+        # Order in which to assign house targets is based on the game count stats when the server was instantiated.
+
+        # First, organize existing counts per scan into indices.
+        scan_indexes_by_count = {}
+        for scan in self.house_targets_l:
+            c = existing_game_counts['scan'][scan]
+            if c not in scan_indexes_by_count:
+                scan_indexes_by_count[c] = []
+            scan_indexes_by_count[c].append(self.house_targets_l.index(scan))
+        # Shuffle scan order for each count and add them back in in that order, favoring lower counts.
+        self.house_indexes = []
+        for c in range(min(scan_indexes_by_count), max(scan_indexes_by_count) + 1):
+            if c in scan_indexes_by_count:
+                np.random.shuffle(scan_indexes_by_count[c])
+                self.house_indexes.extend(scan_indexes_by_count[c])
         self.curr_house_idx = 0
-        self.house_target_indexes = {house: list(range(len(self.house_targets[house])))
-                                     for house in list(self.house_targets.keys())}
-        for house in list(self.house_targets.keys()):
-            np.random.shuffle(self.house_target_indexes[house])
-        self.curr_house_target_idx = {house: 0 for house in list(self.house_targets.keys())}
+
+        # Next, order tuples within houses based on target and full tuple frequency.
+        self.house_target_indexes = {}
+        for scan in self.house_targets_l:
+            tuple_indexes_by_count = {}
+            for idx in range(len(self.house_targets[scan])):
+                c = existing_game_counts['house_targets'][scan][idx]
+                if c not in tuple_indexes_by_count:
+                    tuple_indexes_by_count[c] = []
+                tuple_indexes_by_count[c].append(idx)
+            # Among available targets in this scan, at each frequency, order by least-seen targets first.
+            self.house_target_indexes[scan] = []
+            for c in range(min(tuple_indexes_by_count), max(tuple_indexes_by_count) + 1):
+                if c in tuple_indexes_by_count:
+                    target_indexes_by_count = {}
+                    for idx in tuple_indexes_by_count[c]:
+                        tc = existing_game_counts['target'][self.house_targets[scan][idx][0]]
+                        if tc not in target_indexes_by_count:
+                            target_indexes_by_count[tc] = []
+                        target_indexes_by_count[tc].append(idx)
+                    # Shuffle remaining tied idxs and add them in that order.
+                    tuple_indexes_by_count[c] = []
+                    for tc in range(min(target_indexes_by_count), max(target_indexes_by_count) + 1):
+                        if tc in target_indexes_by_count:
+                            np.random.shuffle(target_indexes_by_count[tc])
+                            tuple_indexes_by_count[c].extend(target_indexes_by_count[tc])
+                    self.house_target_indexes[scan].extend(tuple_indexes_by_count[c])
+        self.curr_house_target_idx = {house: 0 for house in self.house_targets_l}
 
         # State and message information.
         self.users = []  # list of user ids, uid
@@ -234,7 +273,7 @@ class Server:
                             self.timeouts_since_last_game_start += 1
                             print("Server: %d timeouts since last game start" % self.timeouts_since_last_game_start)
                         else:  # Either no one is playing or player closed tab.
-                            self.users.remove(uid)  # Remove the user from the queue so they dont get paired later
+                            self.users.remove(uid)  # Remove the user from the queue so they don't get paired later.
                             self.exit_enabled.remove(uid)
                             self.files_to_write.extend(
                                 [("none", uid, "server", {"type": "update", "action": "exit"})])
@@ -276,7 +315,7 @@ class Server:
                 self.files_to_write.extend([("none", uid, "server", {"type": "update", "action": "set_aux",
                                                                      "message": "Unexpected Server Error." +
                                                                      "You can end the HIT and receive payment."}),
-                                            ("none", uid, "server", {"type": "update", "action": "enable_exit"})])
+                                            ("none", uid, "server", {"type": "update", "action": "exit"})])
             print("Server: Forcing file flush for shutdown...")
             self.flush_files(force_overwrite=True)
 
@@ -336,7 +375,7 @@ class Server:
                 self.games_finished[self.u2g[uid]] = True
 
         if comm_type == "exit":
-            self.users.remove(uid)  # Remove the user from the queue so they dont get paired later
+            self.users.remove(uid)  # Remove the user from the queue so they don't get paired later.
             self.exit_enabled.remove(uid)
             self.files_to_write.extend(
                 [("none", uid, "server", {"type": "update", "action": "exit"})])
@@ -362,8 +401,6 @@ class Server:
             if uid2 in self.exit_enabled:
                 self.exit_enabled.remove(uid2)
 
-            # TODO: when we have enough data, select tuple by reading games dataframe in and selecting from among
-            # TODO: those with least representation for the run.
             # For now, sample a new house (in fixed, random order) and assign its targets in fixed order but change
             # houses after each game.
             house = list(self.house_targets.keys())[self.house_indexes[self.curr_house_idx]]
@@ -467,10 +504,44 @@ def main(args):
         house_targets = json.load(f)
     print("main: ... done; loaded %d houses of targets" % len(house_targets))
 
+    if args.existing_games_fn is not None:
+        print("main: loading existing games from '%s'" % args.existing_games_fn)
+        with open(args.existing_games_fn, 'r') as f:
+            games = pd.read_json(json.load(f))
+        print("main: ... done; loaded %d games" % len(games))
+    else:
+        games = []
+
+    # Calculate starting counts of games in scans, by target, and then by actual task pair represented.
+    print("main: calculating existing game counts to decide ordering for tuple assignments...")
+    existing_game_counts = {'scan': {},
+                            'target': {},
+                            'house_targets': {}}
+    targets = set()
+    for scan in house_targets:
+        existing_game_counts['scan'][scan] = len(games.loc[games['scan'] == scan])
+        existing_game_counts['house_targets'][scan] = []
+        for tuple_idx in range(len(house_targets[scan])):
+            target_obj, start_pano, _, end_panos, _ = house_targets[scan][tuple_idx]
+            set_end = set(end_panos)
+            candidates = games.loc[(games['scan'] == scan) &
+                              (games['target'] == target_obj) &
+                              (games['start_pano'] == start_pano)]
+            matching_end = 0
+            for cidx in candidates.index:
+                set_end_c = set(candidates['end_panos'][cidx])
+                if set_end == set_end_c:
+                    matching_end += 1
+            existing_game_counts['house_targets'][scan].append(matching_end)
+            targets.add(target_obj)
+    for target in targets:
+        existing_game_counts['target'][target] = len(games.loc[games['target'] == target])
+    print("... done")
+
     # Start the Server.
     print("main: instantiated server...")
     s = Server(server_spin_time, max_seconds_per_turn, max_seconds_unpaired,
-               args.client_dir, args.log_dir, house_targets)
+               args.client_dir, args.log_dir, house_targets, existing_game_counts)
     print("main: ... done")
 
     print("main: spinning server...")
@@ -485,4 +556,6 @@ if __name__ == '__main__':
                         help="the directory to write logfiles to")
     parser.add_argument('--house_target_fn', type=str, required=True,
                         help="the file containing house targets for data collection")
+    parser.add_argument('--existing_games_fn', type=str, required=True,
+                        help="existing games played")
     main(parser.parse_args())
