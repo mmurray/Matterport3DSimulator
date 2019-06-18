@@ -21,8 +21,9 @@
     function setup_page(){
         // Check that Chrome is the browser and allow the HIT to load if it is.
         var is_chrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-        if(!is_chrome) {
-            $('#body_container').html("<div class=\"center\" style=\"font-size:130%;padding-top:100px\">This HIT requires <b><a href=\"https://www.google.com/chrome/\" target=\"_blank\">Google Chrome</a></b>.<br/>Please return the HIT and then accept it using the <b><a href=\"https://www.google.com/chrome/\" target=\"_blank\">Google Chrome</a></b> browser.</div>");
+        var is_firefox = /Firefox/.test(navigator.userAgent);
+        if(!(is_chrome || is_firefox)) {
+            $('#body_container').html("<div class=\"center\" style=\"font-size:130%;padding-top:100px\">This HIT requires <b><a href=\"https://www.google.com/chrome/\" target=\"_blank\">Google Chrome</a></b> or <b><a href=\"https://www.mozilla.org/en-US/firefox/new/\" target=\"_blank\">Firefox</a></b>.<br/>Please return the HIT and accept it using a compatible browser.</div>");
         }
     }
 </script>
