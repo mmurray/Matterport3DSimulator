@@ -833,7 +833,8 @@ window.reset_gold = function() {
   cancelAnimationFrame(id);
 
   gold_skybox_reinit();
-  reinitialize_data(scan, path[0]);
+  reinitialize_data(scan, curr_image_id);
+  curr_image_id_gold = curr_image_id;
 
   camera_pose_gold.rotation.x = camera_pose.rotation.x;
   camera_pose_gold.rotation.y = camera_pose.rotation.y;
