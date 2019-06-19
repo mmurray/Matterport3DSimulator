@@ -92,18 +92,6 @@ window.update_oracle_camera = function(msg, gold_only = false) {
     return;
   }
 
-  if (msg.rot) {
-    controls.camera.rotation.x = msg.rot._x;
-    controls.camera.rotation.y = msg.rot._y;
-    render(renderer, scene, camera);
-
-    if (!playing) {
-      controls_gold.camera.rotation.x = msg.rot._x;
-      controls_gold.camera.rotation.y = msg.rot._y;
-      render(renderer_gold, scene_gold, camera_gold);
-    }
-  }
-
   function animateCylinderTransition(cylinder_frame, camera, camera_pose, renderer, scene, world_frame, is_gold) {
       var cylinder = cylinder_frame.getObjectByName(msg.img_id);
       if (cylinder) {
@@ -125,6 +113,18 @@ window.update_oracle_camera = function(msg, gold_only = false) {
   }
   if (msg.img_id != curr_image_id_gold && (gold_only || !playing)) {
     animateCylinderTransition(cylinder_frame_gold, camera_gold, camera_pose_gold, renderer_gold, scene_gold, world_frame_gold, true);
+  }
+
+  if (msg.rot) {
+    controls.camera.rotation.x = msg.rot._x;
+    controls.camera.rotation.y = msg.rot._y;
+    render(renderer, scene, camera);
+
+    if (!playing) {
+      controls_gold.camera.rotation.x = msg.rot._x;
+      controls_gold.camera.rotation.y = msg.rot._y;
+      render(renderer_gold, scene_gold, camera_gold);
+    }
   }
 };
 
@@ -555,36 +555,22 @@ Math.degrees = function(radians) {
 };
 
 function log_pose() {
-  var pose = get_pose_string();
-  if (pose !== last_pose) {
-    if (!oracle_mode) window.send_user_action("update", "nav", {
-      rot: camera.rotation,
-      pos: camera.position,
-      img_id: curr_image_id
-    });
-    $('#traj').val($('#traj').val()+','+pose);
-    last_pose = pose;
+  var pose = get_pose();
+  var pose_str = JSON.stringify(pose);
+  if (pose_str !== last_pose) {
+    if (!oracle_mode) window.send_user_action("update", "nav", pose);
+    last_pose = pose_str;
   }
 }
 
-function get_pose_string(){
-  var m = get_camera_pose(camera, camera_pose);
-
-  // calculate heading
-  var rot = new THREE.Matrix3();
-  rot.setFromMatrix4(m);
-  var cam_look = new THREE.Vector3(0,0,1); // based on matterport camera
-  cam_look.applyMatrix3(rot);
-  heading = Math.PI/2.0 -Math.atan2(cam_look.y, cam_look.x);
-  if (heading < 0) {
-    heading += 2.0*Math.PI;
-  }
-
-  // calculate elevation
-  elevation = -Math.atan2(cam_look.z, Math.sqrt(Math.pow(cam_look.x,2) + Math.pow(cam_look.y,2)))
-  
-  return "("+curr_image_id+","+Math.degrees(heading)+","+Math.degrees(elevation)+")";
+function get_pose() {
+  return {
+    rot: camera.rotation,
+    pos: camera.position,
+    img_id: curr_image_id
+  };
 }
+
 
 function take_action_no_anim(image_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, isGold) {
   var texture_promise = matt.loadCubeTexture(cube_urls(scan, image_id)); // start fetching textures
@@ -703,6 +689,7 @@ function take_action(image_id, cylinder_frame, camera, camera_pose, renderer, sc
       camera.fov = VFOV;
       camera.updateProjectionMatrix();
       // move_to(image_id);
+      log_pose();
       move_to(image_id, cylinder_frame, world_frame, false, isGold)
     });
   });
@@ -836,6 +823,31 @@ window.play_animation = function() {
     playing = true;
     step_forward();
   }
+};
+
+window.reset_gold = function() {
+  if (!path) return;
+  step = 0;
+  playing = false;
+
+  cancelAnimationFrame(id);
+
+  gold_skybox_reinit();
+  reinitialize_data(scan, path[0]);
+
+  camera_pose_gold.rotation.x = camera_pose.rotation.x;
+  camera_pose_gold.rotation.y = camera_pose.rotation.y;
+  camera_pose_gold.rotation.z = camera_pose.rotation.z;
+  camera_pose_gold.rotation.order = camera_pose.rotation.order;
+
+  camera_gold.fov = VFOV;
+  camera_gold.rotation.x = camera.rotation.x;
+  camera_gold.rotation.y = camera.rotation.y;
+  camera_gold.rotation.z = camera.rotation.z;
+  camera_gold.rotation.order = camera.rotation.order;
+  render(renderer_gold, scene_gold, camera_gold);
+  document.getElementById("user_gold_play").disabled = false;
+
 };
 
 function step_forward(){
