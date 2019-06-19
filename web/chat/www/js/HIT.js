@@ -853,7 +853,7 @@ window.reset_gold = function() {
 };
 
 function step_forward(){
-  if (step >= (window.MAX_GOLD_LENGTH > 0 ? window.MAX_GOLD_LENGTH : path.length-1)) {
+  if (step >= window.MAX_GOLD_LENGTH || step >= path.length-1) {
     playing = false;
     step = 0;
 
