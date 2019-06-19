@@ -112,7 +112,11 @@ window.update_oracle_camera = function(msg, gold_only = false) {
         setTimeout(function () {
           cylinder.material.emissive.setHex(cylinder.currentHex);
         }, 200);
-        take_action(msg.img_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, is_gold);
+        if (is_gold) {
+          take_action(msg.img_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, is_gold);
+        } else {
+          take_action_no_anim(msg.img_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, is_gold);
+        }
       }
     }
 
@@ -580,6 +584,61 @@ function get_pose_string(){
   elevation = -Math.atan2(cam_look.z, Math.sqrt(Math.pow(cam_look.x,2) + Math.pow(cam_look.y,2)))
   
   return "("+curr_image_id+","+Math.degrees(heading)+","+Math.degrees(elevation)+")";
+}
+
+function take_action_no_anim(image_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, isGold) {
+  var texture_promise = matt.loadCubeTexture(cube_urls(scan, image_id)); // start fetching textures
+  var target = cylinder_frame.getObjectByName(image_id);
+
+  // Camera up vector
+  var camera_up = new THREE.Vector3(0,1,0);
+  var camera_look = new THREE.Vector3(0,0,-1);
+  var camera_m = get_camera_pose(camera, camera_pose);
+  var zero = new THREE.Vector3(0,0,0);
+  camera_m.setPosition(zero);
+  camera_up.applyMatrix4(camera_m);
+  camera_up.normalize();
+  camera_look.applyMatrix4(camera_m);
+  camera_look.normalize();
+
+  // look direction
+  var look = target.position.clone();
+  look.sub(camera_pose.position);
+  look.projectOnPlane(camera_up);
+  look.normalize();
+  // Simplified - assumes z is zero
+  var rotate = Math.atan2(look.y,look.x) - Math.atan2(camera_look.y,camera_look.x);
+  if (rotate < -Math.PI) rotate += 2*Math.PI;
+  if (rotate > Math.PI) rotate -= 2*Math.PI;
+
+  var target_y = camera.rotation.y + rotate;
+
+  // camera.rotation.x = camera.rotation.x,
+  camera.rotation.y = target_y;
+  camera.rotation.z = 0;
+
+  render(renderer, scene, camera);
+  // var new_vfov = VFOV*0.95;
+  // var zoom_tween = new TWEEN.Tween({
+  //   vfov: VFOV})
+  // .to( {vfov: new_vfov }, 500 )
+  // .easing(TWEEN.Easing.Cubic.InOut)
+  // .onUpdate(function() {
+  //   camera.fov = this.vfov;
+  //   camera.updateProjectionMatrix();
+  //   render(renderer, scene, camera);
+  // })
+  // .onComplete(function(){
+  //   cancelAnimationFrame(isGold ? id_gold : id);
+    // cancelAnimationFrame(id);
+  texture_promise.then(function(texture) {
+    scene.background = texture;
+    camera.fov = VFOV;
+    camera.updateProjectionMatrix();
+
+    move_to(image_id, cylinder_frame, world_frame, false, isGold)
+  });
+  // });
 }
 
 function take_action(image_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, isGold) {

@@ -537,7 +537,7 @@ if (urlv.house_scan) {
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Detector.js"></script>
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/PTZCameraControls.js"></script>
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Matterport3D.js"></script>
-<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/HIT.js?v5"></script>
+<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/HIT.js?v10"></script>
 <script type="text/javascript">
 window.R2R_DATA_PREFIX="<? echo(getenv("R2R_DATA_PREFIX") ?: "R2R_data/"); ?>";
 window.CONNECTIVITY_DATA_PREFIX="<? echo(getenv("CONNECTIVITY_DATA_PREFIX") ?: "connectivity/"); ?>";
