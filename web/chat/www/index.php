@@ -316,6 +316,7 @@ function disable_gold_view() {
   $('#user_gold_play').prop("disabled", true);
   $('#skybox_gold').css({display:'none'});
   $('#user_gold_play').hide();
+  window.reset_gold();
   $('#nav_inst').html("Your partner is navigating through this house. When they ask you for help you will be able to view the next few steps they should take and answer their question.<br/>");
 }
 
@@ -537,7 +538,7 @@ if (urlv.house_scan) {
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Detector.js"></script>
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/PTZCameraControls.js"></script>
 <script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/Matterport3D.js"></script>
-<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/HIT.js?v11"></script>
+<script type="text/javascript" src="<? echo(getenv("JS_PREFIX")); ?>js/HIT.js?v26"></script>
 <script type="text/javascript">
 window.R2R_DATA_PREFIX="<? echo(getenv("R2R_DATA_PREFIX") ?: "R2R_data/"); ?>";
 window.CONNECTIVITY_DATA_PREFIX="<? echo(getenv("CONNECTIVITY_DATA_PREFIX") ?: "connectivity/"); ?>";
