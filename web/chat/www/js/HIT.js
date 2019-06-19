@@ -112,7 +112,7 @@ window.update_oracle_camera = function(msg, gold_only = false) {
         setTimeout(function () {
           cylinder.material.emissive.setHex(cylinder.currentHex);
         }, 200);
-        if (is_gold) {
+        if (is_gold && playing) {
           take_action(msg.img_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, is_gold);
         } else {
           take_action_no_anim(msg.img_id, cylinder_frame, camera, camera_pose, renderer, scene, world_frame, is_gold);
