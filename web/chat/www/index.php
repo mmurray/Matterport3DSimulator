@@ -363,6 +363,9 @@ function enable_get_code(msg) {
 // Display an auxiliary information message below the dialog interface.
 function display_aux_message(msg) {
   add_debug("display_aux_message called with " + msg);
+  if (msg.includes("Another player connected!")) {
+    window.playSound(440.0, 'sine');
+  }
   $('#auxiliary_text').html(msg);
 }
 
@@ -385,12 +388,6 @@ function end_game(msg) {
   enable_get_code();
   clearInterval(iv);
 
-}
-
-// Enable user typing and remove auxiliary info about waiting for a partner.
-function begin_game() {
-  display_aux_message('Another player connected! Type a word above to start.');
-  enable_user_text();
 }
 
 // All the logic for communicating with the server goes here.
