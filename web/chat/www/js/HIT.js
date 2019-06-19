@@ -794,6 +794,7 @@ function animate_gold() {
 // Gold path animation
 window.play_animation = function() {
   if (!playing){
+    window.reset_gold();
     var cylinders = cylinder_frame_gold.children;
     for (var i = 0; i < cylinders.length; ++i){
       cylinders[i].visible = false;
