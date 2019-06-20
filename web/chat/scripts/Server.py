@@ -192,7 +192,7 @@ class Server:
                 self.house_indexes.extend(scan_indexes_by_count[c])
         self.curr_house_idx = 0
 
-        # Next, order tuples within houses based on target and full tuple frequency.
+        # Next, order tuples within houses based on full tuple freq, breaking ties with start_pano, then target.
         self.house_target_indexes = {}
         for scan in self.house_targets_l:
             tuple_indexes_by_count = {}
@@ -201,23 +201,37 @@ class Server:
                 if c not in tuple_indexes_by_count:
                     tuple_indexes_by_count[c] = []
                 tuple_indexes_by_count[c].append(idx)
-            # Among available targets in this scan, at each frequency, order by least-seen targets first.
+            # Among available start_panos in this scan, at each frequency, order by least-seen first.
             self.house_target_indexes[scan] = []
             for c in range(min(tuple_indexes_by_count), max(tuple_indexes_by_count) + 1):
                 if c in tuple_indexes_by_count:
-                    target_indexes_by_count = {}
+                    start_indexes_by_count = {}
                     for idx in tuple_indexes_by_count[c]:
-                        tc = existing_game_counts['target'][self.house_targets[scan][idx][0]]
-                        if tc not in target_indexes_by_count:
-                            target_indexes_by_count[tc] = []
-                        target_indexes_by_count[tc].append(idx)
-                    # Shuffle remaining tied idxs and add them in that order.
-                    tuple_indexes_by_count[c] = []
-                    for tc in range(min(target_indexes_by_count), max(target_indexes_by_count) + 1):
-                        if tc in target_indexes_by_count:
-                            np.random.shuffle(target_indexes_by_count[tc])
-                            tuple_indexes_by_count[c].extend(target_indexes_by_count[tc])
+                        sc = existing_game_counts['house_starts'][scan][self.house_targets[scan][idx][1]]
+                        if sc not in start_indexes_by_count:
+                            start_indexes_by_count[sc] = []
+                        start_indexes_by_count[sc].append(idx)
+
+                    # Among available targets at this start_pano frequency,
+                    # order by target frequency with least-seen first.
+                    tuple_indexes_by_count[c] = []  # Flush previous accounting.
+                    for sc in range(min(start_indexes_by_count), max(start_indexes_by_count) + 1):
+                        if sc in start_indexes_by_count:
+                            target_indexes_by_count = {}
+                            for idx in start_indexes_by_count[sc]:
+                                tc = existing_game_counts['target'][self.house_targets[scan][idx][0]]
+                                if tc not in target_indexes_by_count:
+                                    target_indexes_by_count[tc] = []
+                                target_indexes_by_count[tc].append(idx)
+                            # Shuffle remaining tied idxs and add them in that order.
+                            start_indexes_by_count[sc] = []  # Flush previous accounting and re-order by target+shuffle.
+                            for tc in range(min(target_indexes_by_count), max(target_indexes_by_count) + 1):
+                                if tc in target_indexes_by_count:
+                                    np.random.shuffle(target_indexes_by_count[tc])
+                                    start_indexes_by_count[sc].extend(target_indexes_by_count[tc])
+                            tuple_indexes_by_count[c].extend(start_indexes_by_count[sc])
                     self.house_target_indexes[scan].extend(tuple_indexes_by_count[c])
+
         self.curr_house_target_idx = {house: 0 for house in self.house_targets_l}
 
         # State and message information.
@@ -516,24 +530,37 @@ def main(args):
     print("main: calculating existing game counts to decide ordering for tuple assignments...")
     existing_game_counts = {'scan': {},
                             'target': {},
+                            'house_starts': {},
                             'house_targets': {}}
     targets = set()
     for scan in house_targets:
-        existing_game_counts['scan'][scan] = len(games.loc[games['scan'] == scan])
+        existing_game_counts['scan'][scan] = 0
         existing_game_counts['house_targets'][scan] = []
+        existing_game_counts['house_starts'][scan] = {}
         for tuple_idx in range(len(house_targets[scan])):
             target_obj, start_pano, _, end_panos, _ = house_targets[scan][tuple_idx]
+            if start_pano not in existing_game_counts['house_starts'][scan]:
+                existing_game_counts['house_starts'][scan][start_pano] = 0
             set_end = set(end_panos)
             candidates = games.loc[(games['scan'] == scan) &
-                              (games['target'] == target_obj) &
-                              (games['start_pano'] == start_pano)]
+                                   (games['target'] == target_obj) &
+                                   (games['start_pano'] == start_pano)]
             matching_end = 0
             for cidx in candidates.index:
                 set_end_c = set(candidates['end_panos'][cidx])
                 if set_end == set_end_c:
                     matching_end += 1
             existing_game_counts['house_targets'][scan].append(matching_end)
+            existing_game_counts['house_starts'][scan][start_pano] += matching_end
+            existing_game_counts['scan'][scan] += matching_end
             targets.add(target_obj)
+        games_seen = existing_game_counts['scan'][scan]
+        starts_seen = sum([existing_game_counts['house_starts'][scan][p]
+                           for p in existing_game_counts['house_starts'][scan]])
+        instances_seen = sum(existing_game_counts['house_targets'][scan])
+        if games_seen != starts_seen or starts_seen != instances_seen:
+            print("WARNING: scan %s has %d games, %d seen starts, %d seen instances" %
+                  (scan, games_seen, starts_seen, instances_seen))
     for target in targets:
         existing_game_counts['target'][target] = len(games.loc[games['target'] == target])
     print("... done")
